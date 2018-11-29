@@ -3,6 +3,7 @@ import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import Home from "./Home.js";
 import About from "./About.js";
 import "../App.css";
+import { Button } from "react-bootstrap";
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+          <Button bsStyle="primary">Primary</Button>
           <NavLink to="/">home</NavLink>
           <NavLink to="/about"> About</NavLink>
           <Route path="/" exact component={Home} />
@@ -50,38 +52,3 @@ class App extends Component {
 }
 
 export default App;
-/*
-
- return (
-      <BrowserRouter>
-        <div className="App">
-          <NavLink to="/">home</NavLink>
-          <NavLink to="/about"> About</NavLink>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" exact component={About} />
-        </div>
-      </BrowserRouter>
-    );
-
-    return (
-       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          {"This is "}
-          <a href="https://github.com/mars/heroku-cra-node">
-            {"create-react-app with a custom Node/Express server"}
-          </a>
-          <br />
-        </p>
-        <p className="App-intro">
-          {this.state.fetching
-            ? "Fetching message from API"
-            : this.state.message}
-        </p>
-      </div>
-    );
-
-*/
