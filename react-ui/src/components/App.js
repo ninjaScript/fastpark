@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import Home from "./Home.js";
-import About from "./About.js";
 import "../App.css";
-import { Button } from "react-bootstrap";
-
+import SearchResults from "./SearchResults.js";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -40,11 +38,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Button bsStyle="primary">Primary</Button>
           <NavLink to="/">home</NavLink>
-          <NavLink to="/about"> About</NavLink>
+          <NavLink to="/Search"> searchReasults</NavLink>
           <Route path="/" exact component={Home} />
-          <Route path="/about" exact component={About} />
+          <Route path="/Search" exact component={SearchResults} />
         </div>
       </BrowserRouter>
     );
