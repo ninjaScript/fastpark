@@ -7,6 +7,9 @@
   },
   "scripts": {
     "start": "node server",
+    "server": "nodemon server",
+    "client": "cd react-ui && npm run start",
+    "test": "mocha test/test.js",
     "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "cacheDirectories": [
@@ -14,18 +17,15 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mars/heroku-cra-node.git"
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "create-react-app",
-    "react"
-  ],
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
 }
