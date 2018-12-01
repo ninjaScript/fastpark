@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
-import Home from "./Home.js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./Home.jsx";
 import "../App.css";
+import Navbar from "./NavbarCom.jsx";
 import SearchResults from "./SearchResults.js";
 class App extends Component {
   constructor(props) {
@@ -36,14 +37,12 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <NavLink to="/">home</NavLink>
-          <NavLink to="/Search"> searchReasults</NavLink>
-          <Route path="/" exact component={Home} />
-          <Route path="/Search" exact component={SearchResults} />
-        </div>
-      </BrowserRouter>
+      <Router>
+      <div>
+        <Navbar />
+        <Route exact path="/" component={Home} />
+      </div>
+    </Router>
     );
   }
 }
