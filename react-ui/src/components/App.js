@@ -3,6 +3,7 @@ import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import Home from "./Home.js";
 import "../App.css";
 import SearchResults from "./SearchResults.js";
+import $ from "jquery";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -11,27 +12,47 @@ class App extends Component {
       fetching: true
     };
   }
-
+  //"5c026ba1548c172ce9294538"
   componentDidMount() {
-    fetch("/api")
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(json => {
-        this.setState({
-          message: json.message,
-          fetching: false
-        });
-      })
-      .catch(e => {
-        this.setState({
-          message: `API call failed: ${e}`,
-          fetching: false
-        });
-      });
+    // $.ajax({
+    //   url: "/addpark",
+    //   type: "POST",
+    //   data: JSON.stringify({
+    //     title: "cheep park",
+    //     description: "good place ",
+    //     long: "35.8378158",
+    //     lat: "31.9866246",
+    //     location: "khalda",
+    //     image: "",
+    //     ownerId: "5c026ba1548c172ce9294538"
+    //   }),
+    //   contentType: "application/json",
+    //   success: function(data) {
+    //     console.log("pleasssssss", data);
+    //   },
+    //   error: function(error) {
+    //     console.error("errorrrrrr", error);
+    //   }
+    // });
+    // $.ajax({
+    //   url: "/ownersignup",
+    //   type: "POST",
+    //   data: JSON.stringify({
+    //     name: "mahmoud khudairi",
+    //     phoneNumber: "0796880279",
+    //     email: "mahmoudkhudairi@gmail.com",
+    //     password: "123456",
+    //     rating: "5",
+    //     image: ""
+    //   }),
+    //   contentType: "application/json",
+    //   success: function(data) {
+    //     console.log("pleasssssss", data);
+    //   },
+    //   error: function(error) {
+    //     console.error("errorrrrrr", error);
+    //   }
+    // });
   }
 
   render() {
