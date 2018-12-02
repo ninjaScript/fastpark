@@ -31,6 +31,25 @@ if (cluster.isMaster) {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   // Answer API requests.
+
+    app.post("/signup", function(req, res) {
+    db.saveUser(req.body, function(user) {
+      console.log("server");
+      console.log(user);
+      if (user) {
+        res.send(user);
+      }
+    });
+  });
+
+// handle login post request from client
+  app.post('/login', function (req, res) {
+  console.log('mustaf', req.body);
+  db.checkPassword(req.body,function(passRes){
+  res.send(passRes);
+  })  
+  });
+
   //handle GET requests for parks listings
   app.post("/parks", function(req, res) {
     db.findParks(req.body.location, function(parks) {
@@ -47,6 +66,7 @@ if (cluster.isMaster) {
       res.send("done");
     });
   });
+
   //handle adding new park listing by owners from /addpark post request
   app.post("/addpark", function(req, res) {
     db.savePark(req.body, function(done, err) {
@@ -64,24 +84,7 @@ if (cluster.isMaster) {
     );
   });
 
-  app.post("/signup", function(req, res) {
-    // console.log(req);
 
-    // username: req.body.username,
-    // password: req.body.password,
-    // name: req.body.name,
-    // plateNumber: req.body.plateNumber,
-    // email: req.body.email,
-    // phoneNumber: req.body.phoneNumber
-
-    db.saveUser(req.body, function(user) {
-      console.log("server");
-      console.log(user);
-      if (user) {
-        res.send(user);
-      }
-    });
-  });
 
   app.listen(PORT, function() {
     console.error(
