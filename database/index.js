@@ -124,6 +124,16 @@ let saveUser = (data, cb) => {
   });
   })
 };
+//checking login password with database
+let checkPassword = (data,cb) => {
+  User.findOne({email: data.email}, function(err, res){
+        bcrypt.compare(data.password, res.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(isMatch);
+    });
+  })
+}
+
 let savePark = data => {
   let park = new Park({
     title: data["title"],
@@ -163,3 +173,4 @@ module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
 module.exports.findParks = findParks;
 module.exports.saveUser = saveUser;
+module.exports.checkPassword = checkPassword;
