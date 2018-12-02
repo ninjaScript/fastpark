@@ -1,0 +1,26 @@
+.jumbotron { 
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 25%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width:400px;
+   
+}
+
+
+
+
+#EndL{
+   
+    padding-left: 100px;
+}
+#End{
+    width: 120px;
+    
+}
+#Start{
+    width:120px;
+
+}

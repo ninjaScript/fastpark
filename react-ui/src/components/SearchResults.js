@@ -9,6 +9,7 @@ class SearchResults extends Component {
     this.state = { parks: [] };
   }
   componentDidMount() {
+    console.log("query from the home comp", this.props.location.query);
     $.ajax({
       url: "/parks",
       type: "POST",

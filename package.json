@@ -17,6 +17,7 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "jquery": "^3.3.1",

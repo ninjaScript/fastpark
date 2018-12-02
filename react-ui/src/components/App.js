@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
-import Home from "./Home.js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./Home.jsx";
 import "../App.css";
+import Navbar from "./NavbarCom.jsx";
 import SearchResults from "./SearchResults.js";
 import $ from "jquery";
+// import signUp from './signup.js'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +47,35 @@ class App extends Component {
     //     password: "123456",
     //     rating: "5",
     //     image: ""
+    // fetch("/api")
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error(`status ${response.status}`);
+    //     }
+    //     return response.json();
+    //   })
+    //   .then(json => {
+    //     this.setState({
+    //       message: json.message,
+    //       fetching: false
+    //     });
+    //   })
+    //   .catch(e => {
+    //     this.setState({
+    //       message: `API call failed: ${e}`,
+    //       fetching: false
+    //     });
+    //   });
+    //   $.ajax({
+    //   url: "/signup",
+    //   type: "POST",
+    //   data: JSON.stringify({
+    //     name: "walaa something",
+    //     email: "w@w.com ",
+    //     plateNumber: "33218",
+    //     phoneNumber: "0780122323",
+    //     password: "walaa123",
+    //     username: "walaa11"
     //   }),
     //   contentType: "application/json",
     //   success: function(data) {
@@ -57,14 +89,13 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <NavLink to="/">home</NavLink>
-          <NavLink to="/Search"> searchReasults</NavLink>
-          <Route path="/" exact component={Home} />
-          <Route path="/Search" exact component={SearchResults} />
+      <Router>
+        <div>
+          <Navbar />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/SearchResults" component={SearchResults} />
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

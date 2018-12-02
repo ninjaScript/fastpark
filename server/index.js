@@ -27,7 +27,8 @@ if (cluster.isMaster) {
 
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
-  app.use(bodyParser.urlencoded({ extended: false }));
+
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   // Answer API requests.
   //handle GET requests for parks listings
@@ -61,6 +62,25 @@ if (cluster.isMaster) {
     response.sendFile(
       path.resolve(__dirname, "../react-ui/build", "index.html")
     );
+  });
+
+  app.post("/signup", function(req, res) {
+    // console.log(req);
+
+    // username: req.body.username,
+    // password: req.body.password,
+    // name: req.body.name,
+    // plateNumber: req.body.plateNumber,
+    // email: req.body.email,
+    // phoneNumber: req.body.phoneNumber
+
+    db.saveUser(req.body, function(user) {
+      console.log("server");
+      console.log(user);
+      if (user) {
+        res.send(user);
+      }
+    });
   });
 
   app.listen(PORT, function() {
