@@ -4,14 +4,15 @@ class GoogleMapsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedPlace: {}
+      showingInfoWindow: false, //hides or shows the infowindow
+      activeMarker: {}, //shows the active marker onclick
+      selectedPlace: {} // shows the infowindow to the selectedplace marker
     };
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
   }
+  componentDidMount() {}
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
@@ -32,6 +33,7 @@ class GoogleMapsContainer extends React.Component {
       width: "100%",
       height: "100vh"
     };
+
     return (
       <Map
         item
@@ -39,23 +41,32 @@ class GoogleMapsContainer extends React.Component {
         style={style}
         google={this.props.google}
         onClick={this.onMapClick}
-        zoom={14}
-        initialCenter={{ lat: 31.963158, lng: 35.910359 }}
+        zoom={10}
+        initialCenter={{ lat: 31.953158, lng: 35.950359 }}
       >
-        <Marker
-          onClick={this.onMarkerClick}
-          title={"Changing Colors Garage"}
-          position={{ lat: 31.963158, lng: 35.910359 }}
-          name={"Changing Colors Garage"}
-        />
+        {this.props.parks.map(park => {
+          return (
+            <Marker
+              onClick={this.onMarkerClick}
+              name={park.title}
+              position={{ lat: park.lat, lng: park.long }}
+            />
+          );
+        })}
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
-        />
+          onClose={this.onMapClick}
+        >
+          <div>
+            <h1>{this.state.selectedPlace.name}</h1>
+          </div>
+        </InfoWindow>
       </Map>
     );
   }
 }
 export default GoogleApiWrapper({
-  api: ""
+  apiKey: ""
 })(GoogleMapsContainer);
