@@ -65,7 +65,8 @@ class App extends Component {
       <Router>
       <div>
         <Navbar />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={SearchResults} />
+        
  
       </div>
     </Router>

@@ -1,14 +1,7 @@
-import React from "react";
-import ParksList from "./ParksList.js";
-import GoogleMapsContainer from "./GoogleMapsContainer.js";
-// import { Grid, Col, Row } from "react-bootstrap";
-import { Container, Row, Col } from 'reactstrap';
-// import parksTest from './test.js';
-// var parks = require('./test.js');
-// import NavbarCom from "./ParksList.js"
+// var parks = [{"title": "test", "description": "test", "location":"amman", "image": "http://2.bp.blogspot.com/-zyKlWanN5dI/Vj1Cd2jlWSI/AAAAAAAADL8/7IrG3rb9j1I/s1600/Anonymous-hacker-profile-picture.jpg"}, {"title": "test", "description": "test", "location":"amman", "image": "http://2.bp.blogspot.com/-zyKlWanN5dI/Vj1Cd2jlWSI/AAAAAAAADL8/7IrG3rb9j1I/s1600/Anonymous-hacker-profile-picture.jpg"},{"title": "test", "description": "test", "location":"amman", "image": "http://2.bp.blogspot.com/-zyKlWanN5dI/Vj1Cd2jlWSI/AAAAAAAADL8/7IrG3rb9j1I/s1600/Anonymous-hacker-profile-picture.jpg"}]
+// exports.parksTest = parks;
 
-const SearchResults = props => {
-  let parks =  [
+exports.parks = [
     // Samsung:
       {brand: "Samsung",
       name: "Galaxy A6",
@@ -64,26 +57,3 @@ const SearchResults = props => {
       img: "https://c1.staticflickr.com/5/4858/31101967937_5964b105b6_o.png"
       }
     ]
-  return (
-    <Container fluid>
-     <Row>
-       <div className="spaceDiv"></div>
-     </Row>
-
-     <Row>
-          <Col sm="7" >
-          <ParksList parks={parks} />
-          </Col>
-          <Col  sm="5" >
-          <div className="sticky">
-          <GoogleMapsContainer />
-          </div>
-          
-          </Col>
-          </Row>
-    </Container>
-
-  );
-};
-
-export default SearchResults;
