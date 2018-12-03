@@ -4,9 +4,8 @@ import Home from "./Home.jsx";
 import "../App.css";
 import Navbar from "./NavbarCom.jsx";
 import SearchResults from "./SearchResults.js";
-import $ from 'jquery'
+import $ from "jquery";
 // import signUp from './signup.js'
-
 
 class App extends Component {
   constructor(props) {
@@ -16,8 +15,38 @@ class App extends Component {
       fetching: true
     };
   }
-
+  //"5c026ba1548c172ce9294538"
   componentDidMount() {
+    // $.ajax({
+    //   url: "/addpark",
+    //   type: "POST",
+    //   data: JSON.stringify({
+    //     title: "cheep park",
+    //     description: "good place ",
+    //     long: "35.8378158",
+    //     lat: "31.9866246",
+    //     location: "khalda",
+    //     image: "",
+    //     ownerId: "5c026ba1548c172ce9294538"
+    //   }),
+    //   contentType: "application/json",
+    //   success: function(data) {
+    //     console.log("pleasssssss", data);
+    //   },
+    //   error: function(error) {
+    //     console.error("errorrrrrr", error);
+    //   }
+    // });
+    // $.ajax({
+    //   url: "/ownersignup",
+    //   type: "POST",
+    //   data: JSON.stringify({
+    //     name: "mahmoud khudairi",
+    //     phoneNumber: "0796880279",
+    //     email: "mahmoudkhudairi@gmail.com",
+    //     password: "123456",
+    //     rating: "5",
+    //     image: ""
     // fetch("/api")
     //   .then(response => {
     //     if (!response.ok) {
@@ -37,7 +66,6 @@ class App extends Component {
     //       fetching: false
     //     });
     //   });
-
     //   $.ajax({
     //   url: "/signup",
     //   type: "POST",
@@ -48,7 +76,6 @@ class App extends Component {
     //     phoneNumber: "0780122323",
     //     password: "walaa123",
     //     username: "walaa11"
-      
     //   }),
     //   contentType: "application/json",
     //   success: function(data) {
@@ -63,13 +90,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div>
-        <Navbar />
-        <Route exact path="/" component={SearchResults} />
-        
- 
-      </div>
-    </Router>
+        <div>
+          <Navbar />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/SearchResults" component={SearchResults} />
+        </div>
+      </Router>
     );
   }
 }
