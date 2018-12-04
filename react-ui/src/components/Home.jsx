@@ -1,57 +1,29 @@
-import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
-import SearchResults from "./SearchResults";
-import {
-  Jumbotron,
-  Grid,
-  ControlLabel,
-  Form,
-  FormGroup,
-  Button,
-  FormControl
-} from "react-bootstrap";
-import "../style/Home.css";
+import React from 'react';
+import { Card, CardImg, CardText, CardBody,Form,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import '../style/Home.css';
+const CardHome = (props) => {
+  return (
+    <div>
+      <Card id= "homecard">
+        <h4>Choose your Park anywhere any time .</h4>
+        <CardBody>
+        <label for="Where" >Where</label>
+        <input type="text" className="form-control" placeholder="Street Name" />
+        <Form inline>
+        <label for="inputEmail3" id="StartL">Start</label>    
+        <label for="inputPassword4" id="EndL">End</label>    
+        </Form>
+        <Form inline>
+        <input type="text" class="form-control" id="Start" placeholder="Start Hour"/>
+        <input type="text" class="form-control" id="End" placeholder="End Hour"/>
+        </Form>
 
-export default class Home extends Component {
-  render() {
-    return (
-      <Grid>
-        <Jumbotron>
-          <h3>Choose your Park anywhere any time .</h3>
-          <label htmlFor="inputEmail4">Where</label>
-          <input type="text" className="form-control" name="Street Name" />
-          <Form inline>
-            <label htmlFor="inputEmail3">Start</label>
+        <Button color="primary" id="btn" href="/searchresults">Search</Button>
+        </CardBody>
+      </Card>
+    </div>
+  );
+};
 
-            <label htmlFor="inputPassword4" id="EndL">
-              End
-            </label>
-          </Form>
-          <Form inline>
-            <input
-              type="text"
-              className="form-control"
-              id="Start"
-              placeholder="Start"
-            />
-            <input
-              type="text"
-              className="form-control"
-              id="End"
-              placeholder="End"
-            />
-          </Form>
-          <p>
-            <Link to={{ pathname: "/SearchResults", query: "mahmoud" }}>
-              Search
-            </Link>
-          </p>
-        </Jumbotron>
-        ;
-      </Grid>
-    );
-  }
-}
-
-// <Button bsStyle="primary">Search</Button>
-//<Link to="/SearchResults">Search</Link>
+export default CardHome;
