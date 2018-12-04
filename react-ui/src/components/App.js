@@ -7,6 +7,7 @@ import SearchResults from "./SearchResults.js";
 import $ from "jquery";
  import SignUp from './SignUp.jsx';
  import SignIn from './SignIn.jsx';
+import AddPark from "./AddPark.jsx";
 // import CardHome from './CardHome.jsx';
 class App extends Component {
   constructor(props) {
@@ -94,6 +95,7 @@ class App extends Component {
         <div>
           <Navbar />
           <Route exact path="/" component={Home} />
+          <Route exact path="/OwnerDashboard" component={AddPark} />
           <Route exact path="/SearchResults" component={SearchResults} />
         </div>
       </Router>

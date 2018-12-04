@@ -15,8 +15,8 @@ const CardHome = (props) => {
         <label for="inputPassword4" id="EndL">End</label>    
         </Form>
         <Form inline>
-        <input type="text" class="form-control" id="Start" placeholder="Start"/>
-        <input type="text" class="form-control" id="End" placeholder="End"/>
+        <input type="text" class="form-control" id="Start" placeholder="Start Hour"/>
+        <input type="text" class="form-control" id="End" placeholder="End Hour"/>
         </Form>
 
         <Button color="primary" id="btn" href="/searchresults">Search</Button>
