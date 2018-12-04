@@ -17,11 +17,11 @@ const ParksListItem = ({ parkInfo }) => {
   return (
       <div className="mapCard">
         <Card color="grey" className="mapCard">
-          <CardImg src={parkInfo.img} alt="Card image cap"  />
+          <CardImg src={parkInfo.image} alt="Card image cap"  />
           <CardBody>
-            <CardTitle>{parkInfo.name}</CardTitle>
+            <CardTitle>{parkInfo.title}</CardTitle>
             <CardSubtitle>here location</CardSubtitle>
-            <CardText>{parkInfo.price} JD</CardText>
+            <CardText>{parkInfo.location} JD</CardText>
             <a className="bookButton" href="#/" className="btn btn-primary">Book Now</a>
           </CardBody>
         </Card>

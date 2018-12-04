@@ -1,20 +1,27 @@
-.navbar {
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    color: white;
+.mynav {
+   overflow: hidden;
+   background-color: rgba(0, 0, 0, 0);
+   position: fixed;
+   top: 0;
+   color: white;
+   width:100%;
+   z-index: 1;
+   display: flex;
+
   }
- .fixed-top{
-    top:0;
-    position: fixed;
-    z-index:100;
- }
+ 
  .navbar-light .navbar-nav .nav-link{
     color:white;
  }
 
  .navbar-light .navbar-nav .nav-link{
     color:white;
+ }
+
+ /* .nav{
+   position: fixed;
+ } */
+ .navbar {
+   position: fixed;
+   width: 100%;
  }

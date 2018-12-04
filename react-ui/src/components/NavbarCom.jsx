@@ -48,8 +48,8 @@ export default class Example extends React.Component {
 
  render() {
    return (
-     <div>
-       <Navbar color="navbar-dark bg-dark" dark expand="md">
+    <div className="mynav">
+       <Navbar color="navbar-dark bg-dark" dark expand="md" class="nav">
          <NavbarBrand href="/" className="NavbarBrand">ParkIn</NavbarBrand>
          <NavbarToggler onClick={this.toggle} />
          <Collapse isOpen={this.state.isOpen} navbar>
@@ -67,7 +67,7 @@ export default class Example extends React.Component {
            </Nav>
          </Collapse>
        </Navbar>
-     </div>
+   </div>
    );
  }
 }
