@@ -1,32 +1,73 @@
-import React, { Component } from 'react'
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import {
+ Form,
+ Input,
+ Label,
+ FormGroup,
+ Modal,
+ Button,
+ ModalHeader,
+ ModalBody,
+ ModalFooter,
+ Collapse,
+ Navbar,
+ NavbarToggler,
+ NavbarBrand,
+ Nav,
+ NavItem,
+ NavLink,
+ UncontrolledDropdown,
+ DropdownToggle,
+ DropdownMenu,
+ DropdownItem } from 'reactstrap';
+ // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import SignUp from './SignUp.jsx';
+import SignIn from './SignIn.jsx';
+import HostCar from './HostCar.jsx';
 import '../style/NavbarCom.css';
+ // import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-export default class NavbarCom extends Component {
-    render(){
-        return (
-            <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/"></Link><strong>Garage Park</strong>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav pullRight>
-            <NavItem eventKey={1} componentClass={Link} href="/" to="/">
-              Home
-            </NavItem>
-            <NavItem eventKey={2} componentClass={Link} href="#" to="/">
-              Sign Up
-            </NavItem>
-            <NavItem eventKey={3} componentClass={Link} href="#" to="/">
-              Log In
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-        )
-    }
+export default class Example extends React.Component {
+ constructor(props) {
+   super(props);
+
+   this.toggle = this.toggle.bind(this);
+   this.state = {
+     isOpen: false,
+     modal: false
+   };
+ }
+ toggle() {
+   this.setState({
+     isOpen: !this.state.isOpen,
+     modal: !this.state.modal
+   });
+
+ }
+
+
+ render() {
+   return (
+     <div>
+       <Navbar color="navbar-dark bg-dark" dark expand="md">
+         <NavbarBrand href="/" className="NavbarBrand">ParkIn</NavbarBrand>
+         <NavbarToggler onClick={this.toggle} />
+         <Collapse isOpen={this.state.isOpen} navbar>
+           <Nav className="ml-auto" navbar>
+             <NavItem>
+             <HostCar/>
+        
+             </NavItem>
+             <NavItem>
+             <SignIn/>
+             </NavItem>
+             <NavItem>
+             <SignUp/>
+             </NavItem>
+           </Nav>
+         </Collapse>
+       </Navbar>
+     </div>
+   );
+ }
 }
