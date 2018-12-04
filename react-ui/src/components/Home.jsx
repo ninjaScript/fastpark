@@ -5,7 +5,7 @@ import '../style/Home.css';
 const CardHome = (props) => {
   return (
     <div>
-      <Card>
+      <Card id= "homecard">
         <h4>Choose your Park anywhere any time .</h4>
         <CardBody>
         <label for="Where" >Where</label>
