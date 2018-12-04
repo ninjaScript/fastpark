@@ -3,3 +3,82 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.mapCard{
+  /* background-color: lightgray; */
+  padding-bottom: 10px;
+  /* margin: -20px */
+}
+
+.mapCard img{
+  width: 838px;
+  height: 200px;
+  float:top;
+}
+
+.mapCard .card-body{
+  float: bottom;
+  /* margin: 20px; */
+  background-color: lightgray;
+}
+
+.mapCard .card-title{
+  float: bottom;
+  font-size: 20px;
+  font-weight: bold;
+  
+  
+}
+
+/* .mapCol {
+  position:sticky;
+  display: block;
+  height: 30px;
+} */
+
+/* div .sticky {
+  position: sticky;
+  top: 0;
+} */
+
+div .sticky {
+  position: fixed;
+  /* top: 70px; */
+  right: 0;
+  width: 600px;
+  /* height: 100%; */
+}
+
+
+/* div .navDiv {
+background-color: white;
+} */
+
+/* div .spaceDiv{
+  background-color: white;
+  height: 20px;
+} */
+
+
+/* div .nav {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+} */
+
+
+.NavbarBrand{
+  font-weight: bold;
+}
+
+
+div .navSticky {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  margin-bottom: 0px;
+}
