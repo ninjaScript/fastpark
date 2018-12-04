@@ -66,36 +66,15 @@ class SearchResults extends Component {
        ] };
   }
   componentDidMount() {
+    $('#root').css("background", "white");
     console.log("query from the home comp", this.props.location.query);
     $.ajax({
       url: "/parks",
       type: "POST",
-      data:JSON.stringify({"location": "khalda" }),  
+      data: JSON.stringify({ location: "khalda" }),
       contentType: "application/json",
       success: parks => {
-        
         this.setState({ parks });
-      },
-      error: function(error) {
-        console.error("errorrrrrr", error);
-      }
-    });
-    
-  $.ajax({
-      url: "/addpark",
-      type: "POST",
-      data: JSON.stringify({
-        title: "cheep park",
-        description: "good place ",
-        long: "35.8378158",
-        lat: "31.9866246",
-        location: "khalda",
-        image: "",
-        ownerId: "5c026ba1548c172ce9294538"
-      }),
-      contentType: "application/json",
-      success: function(data) {
-        console.log("pleasssssss", data);
       },
       error: function(error) {
         console.error("errorrrrrr", error);

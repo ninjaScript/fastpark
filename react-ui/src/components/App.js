@@ -5,8 +5,9 @@ import "../App.css";
 import Navbar from "./NavbarCom.jsx";
 import SearchResults from "./SearchResults.js";
 import $ from "jquery";
-// import signUp from './signup.js'
-
+ import SignUp from './SignUp.jsx';
+ import SignIn from './SignIn.jsx';
+// import CardHome from './CardHome.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -100,4 +101,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
