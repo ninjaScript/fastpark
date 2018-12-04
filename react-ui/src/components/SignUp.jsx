@@ -1,23 +1,51 @@
 import React from 'react';
 import { Button, Modal, ModalHeader,NavLink, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
-
+import $ from "jquery";
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      username: ""
     };
 
     this.toggle = this.toggle.bind(this);
+    this.updateInput = this.updateInput.bind(this);
   }
+
+  updateInput(event){
+    this.setState({username : event.target.value})
+    }
 
   toggle() {
     this.setState({
       modal: !this.state.modal
     });
+    console.log("hiiiii", this.state.username)
   }
 
- 
+ handleSUpClick = () => {
+   const userObj ={
+    name: this.state.username,
+    email: "w@w.com ",
+    plateNumber: "33218",
+    phoneNumber: "0780122323",
+    password: "walaa123",
+    username: "hhhhhh"
+  }
+      $.ajax({
+      url: "/signup",
+      type: "POST",
+      data: JSON.stringify(userObj),
+      contentType: "application/json",
+      success: function(data) {
+        console.log("pleasssssss", data);
+      },
+      error: function(error) {
+        console.error("errorrrrrr", error);
+      }
+    });
+ }
 
   render() {
     return (
@@ -27,7 +55,7 @@ class SignUp extends React.Component {
           <ModalHeader toggle={this.toggle}>Sign up</ModalHeader>
           <ModalBody>
           <FormGroup>
-          <Label for="text">User Name</Label>
+          <Label for="text" onChange={this.updateInput} >User Name</Label>
           <Input type="text" name="name" id="fullName" placeholder="input your full name" />
         </FormGroup>
         <FormGroup>
@@ -48,7 +76,7 @@ class SignUp extends React.Component {
         </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Sign up</Button>{' '}
+            <Button color="primary" onClick={this.toggle}>Sign up</Button>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
          
