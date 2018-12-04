@@ -174,3 +174,4 @@ module.exports.savePark = savePark;
 module.exports.findParks = findParks;
 module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
+module.exports.User = User
