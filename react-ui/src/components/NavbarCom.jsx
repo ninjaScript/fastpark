@@ -1,73 +1,82 @@
 import React from "react";
 import {
-  Form,
-  Input,
-  Label,
-  FormGroup,
-  Modal,
-  Button,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import SignUp from "./SignUp.jsx";
-import SignIn from "./SignIn.jsx";
-import HostCar from "./HostCar.jsx";
-import "../style/NavbarCom.css";
-// import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+ Form,
+ Input,
+ Label,
+ FormGroup,
+ Modal,
+ Button,
+ ModalHeader,
+ ModalBody,
+ ModalFooter,
+ Collapse,
+ Navbar,
+ NavbarToggler,
+ NavbarBrand,
+ Nav,
+ NavItem,
+ NavLink,
+ UncontrolledDropdown,
+ DropdownToggle,
+ DropdownMenu,
+ DropdownItem } from 'reactstrap';
+ // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import SignUp from './SignUp.jsx';
+import SignIn from './SignIn.jsx';
+import HostCar from './HostCar.jsx';
+import '../style/NavbarCom.css';
+import $ from "jquery";
+ // import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export default class Example extends React.Component {
-  constructor(props) {
-    super(props);
+ constructor(props) {
+   super(props);
+   
+   this.toggle = this.toggle.bind(this);
+   this.state = {
+     isOpen: false,
+     modal: false
+   };
+ }
+ componentDidMount() {
+  $("#searchtxt").hide();
+  $("#searchbtn").hide();
+ }
+ toggle() {
+   this.setState({
+     isOpen: !this.state.isOpen,
+     modal: !this.state.modal
+   });
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false,
-      modal: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-      modal: !this.state.modal
-    });
-  }
+ }
 
-  render() {
-    return (
-      <div className="mynav">
-        <Navbar color="navbar-dark bg-dark" dark expand="md" className="nav">
-          <NavbarBrand href="/" className="NavbarBrand">
-            ParkIn
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <HostCar />
-              </NavItem>
-              <NavItem>
-                <SignIn />
-              </NavItem>
-              <NavItem>
-                <SignUp />
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    );
-  }
+
+ render() {
+   return (
+    <div className="mynav">
+       <Navbar color="navbar-dark bg-dark" dark expand="md" class="nav">
+         <NavbarBrand href="/" className="NavbarBrand">ParkIn</NavbarBrand>
+         <NavbarToggler onClick={this.toggle} />
+         <Collapse isOpen={this.state.isOpen} navbar>
+         
+         <input id="searchtxt"  className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+         <button id="searchbtn" className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        
+           <Nav className="ml-auto" navbar>
+      
+             <NavItem>
+             <HostCar/>
+             </NavItem>
+             <NavItem>
+             <SignIn/>
+             </NavItem>
+             <NavItem>
+             <SignUp/>
+             </NavItem>
+           </Nav>
+         </Collapse>
+       </Navbar>
+   </div>
+   );
+ }
 }
