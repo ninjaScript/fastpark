@@ -5,8 +5,9 @@ import "../App.css";
 import Navbar from "./NavbarCom.jsx";
 import SearchResults from "./SearchResults.js";
 import $ from "jquery";
- import SignUp from './SignUp.jsx';
- import SignIn from './SignIn.jsx';
+import SignUp from "./SignUp.jsx";
+import SignIn from "./SignIn.jsx";
+import OwnerDashboard from "./OwnerDashboard.jsx";
 // import CardHome from './CardHome.jsx';
 class App extends Component {
   constructor(props) {
@@ -18,26 +19,6 @@ class App extends Component {
   }
   //"5c026ba1548c172ce9294538"
   componentDidMount() {
-    // $.ajax({
-    //   url: "/addpark",
-    //   type: "POST",
-    //   data: JSON.stringify({
-    //     title: "cheep park",
-    //     description: "good place ",
-    //     long: "35.8378158",
-    //     lat: "31.9866246",
-    //     location: "khalda",
-    //     image: "",
-    //     ownerId: "5c026ba1548c172ce9294538"
-    //   }),
-    //   contentType: "application/json",
-    //   success: function(data) {
-    //     console.log("pleasssssss", data);
-    //   },
-    //   error: function(error) {
-    //     console.error("errorrrrrr", error);
-    //   }
-    // });
     // $.ajax({
     //   url: "/ownersignup",
     //   type: "POST",
@@ -94,6 +75,7 @@ class App extends Component {
         <div>
           <Navbar />
           <Route exact path="/" component={Home} />
+          <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/SearchResults" component={SearchResults} />
         </div>
       </Router>
@@ -101,4 +83,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;

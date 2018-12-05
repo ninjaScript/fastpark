@@ -24,7 +24,7 @@ class SignIn extends React.Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log(userObj);
+    console.log('here signin',userObj);
         $.ajax({
         url: "/login",
         type: "POST",
@@ -59,8 +59,12 @@ class SignIn extends React.Component {
   render() {
     return (
       <div>
-       <NavLink onClick={this.toggle}>Sign in{this.props.buttonLabel}</NavLink>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <NavLink onClick={this.toggle}>Sign in{this.props.buttonLabel}</NavLink>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
           <ModalHeader toggle={this.toggle}>Sign in</ModalHeader>
           <ModalBody>
           <FormGroup>
@@ -68,8 +72,8 @@ class SignIn extends React.Component {
           <Input type="email" name="email" id="exampleEmail" placeholder="input your Email" value={this.state.email} onChange={this.handleInputChange} />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input  type="password" name="password" id="examplePassword" placeholder="input your password" value={this.state.password} onChange={this.handleInputChange} />
+          <Label for="password">Password</Label>
+          <Input  type="password" name="password" id="password" placeholder="input your password" value={this.state.password} onChange={this.handleInputChange} />
         </FormGroup>
           </ModalBody>
           <ModalFooter>

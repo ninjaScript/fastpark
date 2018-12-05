@@ -17,8 +17,7 @@ class SignUp extends React.Component {
   }
 //////////////////////////////
   signup() {
-    //this.toggle()
-    // console.log(this.state.email, this.state.name, this.state.password, this.state.plate, this.state.phone)
+    this.toggle()
 
     const userObj ={
       name: this.state.name,
@@ -43,26 +42,7 @@ class SignUp extends React.Component {
         }
       });
 
-      // $.ajax({
-      //   url: "/signup",
-      //   type: "POST",
-      //   data: JSON.stringify({
-      //     name: "Azhar",
-      //     email: "w@w.com ",
-      //     plateNumber: "33218",
-      //     phoneNumber: "0780122323",
-      //     password: "walaa123",
-      //     username: "walaa11"
-      //   }),
-      //   contentType: "application/json",
-      //   success: function(data) {
-      //     console.log("pleasssssss", data);
-      //   },
-      //   error: function(error) {
-      //     console.error("errorrrrrr", error);
-      //   }
-      // });
-
+    
       
   }
 
@@ -79,37 +59,18 @@ class SignUp extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
-    // console.log("hiiiii", this.state.username)
+  
   }
-
-//  handleSUpClick = () => {
-//    const userObj ={
-//     name: this.state.username,
-//     email: "w@w.com ",
-//     plateNumber: "33218",
-//     phoneNumber: "0780122323",
-//     password: "walaa123",
-//     username: "hhhhhh"
-//   }
-//       $.ajax({
-//       url: "/signup",
-//       type: "POST",
-//       data: JSON.stringify(userObj),
-//       contentType: "application/json",
-//       success: function(data) {
-//         console.log("pleasssssss", data);
-//       },
-//       error: function(error) {
-//         console.error("errorrrrrr", error);
-//       }
-//     });
-//  }
-
+  
   render() {
     return (
       <div>
         <NavLink onClick={this.toggle}>Sign Up{this.props.buttonLabel}</NavLink>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
           <ModalHeader toggle={this.toggle}>Sign up</ModalHeader>
           <ModalBody>
           <FormGroup>
@@ -141,7 +102,6 @@ class SignUp extends React.Component {
             <Button color="primary" onClick={this.signup}>Sign up</Button>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
-         
         </Modal>
       </div>
     );

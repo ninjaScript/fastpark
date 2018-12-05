@@ -1,0 +1,29 @@
+.parkCard {
+  padding-bottom: 20px;
+  width: 40%;
+  height: 20%;
+
+  padding-left: 60px;
+}
+
+.parkCard .card-body {
+  float: bottom;
+
+  background-color: lightgray;
+}
+
+.parkCard .card-title {
+  float: bottom;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.parkP {
+  padding: 20px;
+  margin-left: 100px;
+  margin-top: 50px;
+}
+.bouncy {
+  margin: 0 auto;
+  width: 200px;
+}
