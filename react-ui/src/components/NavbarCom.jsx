@@ -25,17 +25,22 @@ import SignUp from './SignUp.jsx';
 import SignIn from './SignIn.jsx';
 import HostCar from './HostCar.jsx';
 import '../style/NavbarCom.css';
+import $ from "jquery";
  // import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export default class Example extends React.Component {
  constructor(props) {
    super(props);
-
+   
    this.toggle = this.toggle.bind(this);
    this.state = {
      isOpen: false,
      modal: false
    };
+ }
+ componentDidMount() {
+  $("#searchtxt").hide();
+  $("#searchbtn").hide();
  }
  toggle() {
    this.setState({
@@ -53,10 +58,14 @@ export default class Example extends React.Component {
          <NavbarBrand href="/" className="NavbarBrand">ParkIn</NavbarBrand>
          <NavbarToggler onClick={this.toggle} />
          <Collapse isOpen={this.state.isOpen} navbar>
+         
+         <input id="searchtxt"  className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+         <button id="searchbtn" className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        
            <Nav className="ml-auto" navbar>
+      
              <NavItem>
              <HostCar/>
-        
              </NavItem>
              <NavItem>
              <SignIn/>
