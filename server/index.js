@@ -6,6 +6,7 @@ const numCPUs = require("os").cpus().length;
 const db = require("../database/index");
 const PORT = process.env.PORT || 5000;
 
+
 // Multi-process to utilize all CPU cores.
 if (cluster.isMaster) {
   console.error(`Node cluster master ${process.pid} is running`);
@@ -33,9 +34,9 @@ if (cluster.isMaster) {
   // Answer API requests.
 
     app.post("/signup", function(req, res) {
-    db.saveUser(req.body, function(user) {
-      console.log("server");
-      console.log(user);
+    db.saveUser(req.body, function(user,err) {
+      if(err) console.log("erreeer",err)
+      console.log("user",user);
       if (user) {
         res.send(user);
       }

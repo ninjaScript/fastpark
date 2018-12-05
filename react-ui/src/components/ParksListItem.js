@@ -22,7 +22,7 @@ const ParksListItem = ({ parkInfo }) => {
             <CardTitle>{parkInfo.name}</CardTitle>
             <CardSubtitle>here location</CardSubtitle>
             <CardText>{parkInfo.price} JD</CardText>
-            <a className="bookButton" href="#/" className="btn btn-primary">Book Now</a>
+            <a className="bookButton" href="#/" className="btn btn-primary" >Book Now</a>
           </CardBody>
         </Card>
  </div>
