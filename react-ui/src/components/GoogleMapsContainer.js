@@ -1,7 +1,15 @@
 import React from "react";
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
-import { Card, CardImg, CardText, CardBody,Form,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  Form,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
 
 class GoogleMapsContainer extends React.Component {
   constructor(props) {
@@ -17,6 +25,7 @@ class GoogleMapsContainer extends React.Component {
   }
   componentDidMount() {}
   onMarkerClick = (props, marker, e) => {
+    console.log("pppppppp", props);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -34,7 +43,6 @@ class GoogleMapsContainer extends React.Component {
   render() {
     const style = {
       width: "100%"
-      
     };
 
     return (
@@ -51,7 +59,13 @@ class GoogleMapsContainer extends React.Component {
           return (
             <Marker
               onClick={this.onMarkerClick}
-              name={park.title}
+              title={park.title}
+              image={park.image}
+              description={park.description}
+              startTime={park.startTime}
+              endTime={park.endTime}
+              price={park.price}
+              location={park.location}
               position={{ lat: park.lat, lng: park.long }}
             />
           );
@@ -62,17 +76,23 @@ class GoogleMapsContainer extends React.Component {
           visible={this.state.showingInfoWindow}
           onClose={this.onMapClick}
         >
-        
-         
-        <Card class="mapC">
-        <CardImg top width="200px" height="75px" src="#" />
-        <CardBody>
-          <CardSubtitle>Park description</CardSubtitle>
-          <CardText>Some quick example</CardText>
-          <Button>Book</Button>
-        </CardBody>
-      </Card>
-          
+          <Card className="mapC">
+            <CardImg
+              top
+              width="200px"
+              height="75px"
+              src={this.state.selectedPlace.image}
+            />
+            <CardBody>
+              <CardSubtitle>{this.state.selectedPlace.title}</CardSubtitle>
+              <CardText>{this.state.selectedPlace.description}</CardText>
+              <CardText>{this.state.selectedPlace.location}</CardText>
+              <CardText>{this.state.selectedPlace.startTime}</CardText>
+              <CardText>{this.state.selectedPlace.endTime}</CardText>
+              <CardText>{this.state.selectedPlace.price}</CardText>
+              <Button>Book</Button>
+            </CardBody>
+          </Card>
         </InfoWindow>
       </Map>
     );

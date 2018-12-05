@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ParksList from "./ParksList.js";
 import GoogleMapsContainer from "./GoogleMapsContainer.js";
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from "reactstrap";
 import $ from "jquery";
 
 class SearchResults extends Component {
@@ -10,7 +10,8 @@ class SearchResults extends Component {
     this.state = { parks: [] };
   }
   componentDidMount() {
-    $('#root').css("background", "white");
+    $("#root").css("background", "white");
+    //TODO: CHANGE THE SENT DATA TO THE QuERY
     console.log("query from the home comp", this.props.location.query);
     $.ajax({
       url: "/parks",
@@ -26,27 +27,22 @@ class SearchResults extends Component {
     });
   }
 
-
-    render() {
-  return (
-    <Container fluid>
- 
-     <Row>
-          <Col sm="7" >
-          <ParksList parks={this.state.parks} />
+  render() {
+    return (
+      <Container fluid>
+        <Row>
+          <Col sm="7">
+            <ParksList parks={this.state.parks} />
           </Col>
-          <Col  sm="5" >
-          <div className="sticky">
-          <GoogleMapsContainer parks={this.state.parks} />
-          </div>
-          
+          <Col sm="5">
+            <div className="sticky">
+              <GoogleMapsContainer parks={this.state.parks} />
+            </div>
           </Col>
-          </Row>
-    </Container>
-
-  );
-    }
+        </Row>
+      </Container>
+    );
+  }
 }
-
 
 export default SearchResults;
