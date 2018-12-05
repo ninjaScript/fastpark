@@ -13,17 +13,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Answer API requests.
 
-app.post("/signup", function(req, res) {
-  db.saveUser(req.body, function(user) {
-    if (user) {
-      res.send(user);
-    }
+    app.post("/signup", function(req, res) {
+    db.saveUser(req.body, function(user,err) {
+      if(err) console.log("erreeer",err)
+      console.log("user",user);
+      if (user) {
+        res.send(user);
+      }
+    });
   });
-});
 
 // handle login post request from client
 app.post("/login", function(req, res) {
-  db.checkPassword(req.body, function(passRes) {
+  db.checkPassword(req.body, function(passRes, err) {
+    if(err) console.log("erreeer",err)
     res.send(passRes);
   });
 });

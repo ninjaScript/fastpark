@@ -127,11 +127,15 @@ let saveUser = (data, cb) => {
 };
 //checking login password with database
 let checkPassword = (data, cb) => {
+  console.log('mustaf Data: ', data)
   User.findOne({ email: data.email }, function(err, res) {
-    bcrypt.compare(data.password, res.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(isMatch);
-    });
+    if (res) {
+      bcrypt.compare(data.password, res.password, function(err, isMatch) {
+        if (err) return cb(null, err);
+        cb(isMatch, err);
+      });
+    }
+    else{cb(false, null)}
   });
 };
 
