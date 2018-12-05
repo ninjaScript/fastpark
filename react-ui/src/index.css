@@ -4,36 +4,35 @@ body {
   font-family: sans-serif;
 }
 
-.mapCard{
+.mapCard {
   /* background-color: lightgray; */
   padding-bottom: 10px;
   top: 75px;
-  margin-top:25px;
+  margin-top: 25px;
   margin-left: 14px;
 }
 
-.mapCard img{
+.mapCard img {
   width: 838px;
   height: 200px;
-  float:top;
+  float: top;
 }
 
-.mapCard .card-body{
+.mapCard .card-body {
   float: bottom;
   /* margin: 20px; */
   background-color: lightgray;
 }
 
-.mapCard .card-title{
+.mapCard .card-title {
   float: bottom;
   font-size: 20px;
   font-weight: bold;
-  
 }
 
-.mapC{
-  width:200px;
-  height:200px ;
+.mapC {
+  width: 200px;
+  height: 200px;
 }
 
 /* .mapCol {
@@ -54,9 +53,8 @@ div .sticky {
   /* top: 70px; */
   right: 0;
   width: 600px;
- height: 94%; 
+  height: 94%;
 }
-
 
 /* div .navDiv {
 background-color: white;
@@ -67,7 +65,6 @@ background-color: white;
   height: 20px;
 } */
 
-
 /* div .nav {
   overflow: hidden;
   background-color: #333;
@@ -76,11 +73,9 @@ background-color: white;
   width: 100%;
 } */
 
-
-.NavbarBrand{
+.NavbarBrand {
   font-weight: bold;
 }
-
 
 div .navSticky {
   position: fixed;
