@@ -1,68 +1,138 @@
-import React from 'react';
-import { Button, Modal, Form, ModalHeader,FormText, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
+import React from "react";
+import {
+  Button,
+  Modal,
+  Form,
+  ModalHeader,
+  FormText,
+  ModalBody,
+  ModalFooter,
+  FormGroup,
+  Label,
+  Input
+} from "reactstrap";
 
 class ParkPop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      imgSrc: null,
+      selectedFile: null
     };
-
-    this.toggle = this.toggle.bind(this);
+    this.acceptedFileTypes = "image/x-png, image/png, image/jpg,image.jpeg";
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
+  handleBtnClick = () => {
+    this.props.handleAddClick(this.state.selectedFile, done => {
+      if (done) {
+        this.toggle();
+      }
+    });
+  };
+  fileSelectedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] });
+    var reader = new FileReader();
 
- 
+    reader.onload = e => {
+      this.setState({ imgSrc: e.target.result });
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 
   render() {
     return (
       <div>
-
-        <Button onClick={this.toggle} color="primary">Add Park{this.props.buttonLabel}</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Button onClick={this.toggle} color="primary">
+          Add Park{this.props.buttonLabel}
+        </Button>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
           <ModalHeader toggle={this.toggle}>Add Park</ModalHeader>
           <ModalBody>
-          <FormGroup>
-          <Label for="exampleFile">Upload Image</Label>
-          <Input type="file" name="file" id="exampleFile" />
-          <FormText color="muted">
-            This is some placeholder block-level help text for the above input.
-            It's a bit lighter and easily wraps to a new line.
-          </FormText>
-          <Label for="text">Title</Label>
-          <Input type="text" name="Title" id="Title" placeholder="input your Park Title" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="text">Description</Label>
-          <Input type="text" name="Description" id="Description" placeholder="input your Park Description" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="text">Area</Label>
-          <Input type="text" name="Area" id="Area" placeholder="input your Park Area" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="Password">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="input your password" />
-        </FormGroup>
-        <Form inline>
-        <label for="inputEmail3" id="StartL">Start</label>    
-        <label for="inputPassword4" id="EndL">End</label>    
-        </Form>
-        <Form inline>
-        <input type="text" class="form-control" id="Start" placeholder="Start Hour"/>
-        <input type="text" class="form-control" id="End" placeholder="End Hour"/>
-        </Form>
+            <FormGroup>
+              <Label htmlFor="addParkImageFile">Upload Image</Label>
+              <input
+                type="file"
+                name="file"
+                id="addParkImageFile"
+                accept={this.acceptedFileTypes}
+                multiple={false}
+                onChange={this.fileSelectedHandler}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="addParkTitle">Title</Label>
+              <Input
+                type="text"
+                name="Title"
+                id="addParkTitle"
+                placeholder="Insert Park Title"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="addParkDescription">Description</Label>
+              <Input
+                type="text"
+                name="Description"
+                id="addParkDescription"
+                placeholder="Insert Park Description"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="addParkArea">Area</Label>
+              <Input
+                type="text"
+                name="Area"
+                id="addParkArea"
+                placeholder="Insert Park Area"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="addParkPrice">Price</Label>
+              <Input
+                type="text"
+                name="Price"
+                id="addParkPrice"
+                placeholder="Insert Price"
+              />
+            </FormGroup>
+            <Form inline>
+              <label htmlFor="addParkStart" id="StartL">
+                Start
+              </label>
+              <label htmlFor="addParkEnd" id="EndL">
+                End
+              </label>
+            </Form>
+            <Form inline>
+              <input
+                type="text"
+                className="form-control"
+                id="addParkStart"
+                placeholder="Start Hour"
+              />
+              <input
+                type="text"
+                className="form-control"
+                id="addParkEnd"
+                placeholder="End Hour"
+              />
+            </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Add</Button>
-            
+            <Button color="primary" onClick={this.handleBtnClick}>
+              Add
+            </Button>
           </ModalFooter>
-         
         </Modal>
       </div>
     );

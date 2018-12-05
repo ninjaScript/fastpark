@@ -9,6 +9,7 @@
     "start": "node server",
     "server": "nodemon server",
     "client": "cd react-ui && npm run start",
+    "client-install": "cd react-ui && npm install",
     "test": "mocha test/test.js",
     "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },

@@ -1,24 +1,23 @@
 .mynav {
-   overflow: hidden;
-   background-color: rgba(0, 0, 0, 0);
-   position: fixed;
-   top: 0;
-   color: white;
-   width:100%;
-   z-index: 1;
-   display: flex;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  top: 0;
+  color: white;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+}
 
-  }
- 
- .navbar-light .navbar-nav .nav-link{
-    color:white;
- }
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
 
- .navbar-light .navbar-nav .nav-link{
-    color:white;
- }
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
 
- /* .nav{
+/* .nav{
    position: fixed;
  } */
  .navbar {
