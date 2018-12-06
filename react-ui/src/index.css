@@ -4,8 +4,15 @@ body {
   font-family: sans-serif;
 }
 
+.card{
+  background-color: lightgray;
+}
+.mapCardBody{
+  background-color: red; 
+  color: blue;
+}
 .mapCard {
-  /* background-color: lightgray; */
+
   padding-bottom: 10px;
   top: 75px;
   margin-top: 25px;
@@ -13,7 +20,7 @@ body {
 }
 
 .mapCard img {
-  width: 838px;
+  width: 826px;
   height: 200px;
   float: top;
 }
@@ -31,8 +38,8 @@ body {
 }
 
 .mapC {
-  width: 200px;
-  height: 200px;
+  width: 154px;
+  height: 242px;
 }
 
 /* .mapCol {
@@ -84,4 +91,22 @@ div .navSticky {
   width: 100%;
   z-index: 100;
   margin-bottom: 0px;
+}
+
+.mapInf{
+  display: block;
+  margin-left: 20px;
+  margin-right: auto;
+  text-align: center;
+  
+}
+.buttonMap {
+  position: relative;
+left:26%;
+top: 50%;
+}
+.mapCardN{
+  top:80px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }

@@ -65,6 +65,11 @@ app.post("/addpark", function(req, res) {
     res.send("done");
   });
 });
+app.delete("/deletepark",function(req,res){
+  db.deletePark(req.body.parkId,function(done){
+    res.send(done);
+  })
+})
 app.post("/updatepark", (req, res) => {
   db.updatePark(req.body.parkId, req.body.userId, (done, err) => {
     if (err) console.log("updateError", err);

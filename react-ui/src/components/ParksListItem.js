@@ -1,7 +1,4 @@
 import React from "react";
-// import Example from './signup';
-import { Container, Row, Col } from "reactstrap";
-
 import {
   Card,
   CardImg,
@@ -22,24 +19,24 @@ const ParksListItem = ({ parkInfo }) => {
   };
 
   return (
-    <div className="mapCard">
-      <Card color="grey" className="mapCard">
-        <CardImg src={parkInfo.image} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>{parkInfo.title}</CardTitle>
-          <CardSubtitle>{parkInfo.description}</CardSubtitle>
-          <CardText>{parkInfo.location}</CardText>
-          <CardText>OwnerName:{parkInfo.ownerdetails[0].name}</CardText>
-          <CardText>PhoneNumber{parkInfo.ownerdetails[0].phoneNumber}</CardText>
-          <CardText>{parkInfo.startTime}</CardText>
-          <CardText>{parkInfo.endTime}</CardText>
-          <CardText>{parkInfo.price}</CardText>
-          <a className="bookButton" href="#/" className="btn btn-primary">
-            Book Now
-          </a>
-        </CardBody>
-      </Card>
-    </div>
+   
+    <div>
+    <Card className="mapCardN">
+      <CardImg top width="100%" src={parkInfo.image} />
+      <CardBody>
+        <CardTitle>{parkInfo.title}</CardTitle>
+        <CardSubtitle>{parkInfo.description}</CardSubtitle>
+        <CardText>{""}</CardText>
+        <CardText>{"Area : "}{parkInfo.location}</CardText>
+        <CardText>OwnerName:{parkInfo.ownerdetails[0].name}</CardText>
+        <CardText>PhoneNumber{parkInfo.ownerdetails[0].phoneNumber}</CardText>
+        <CardText>{"Time : From "}{parkInfo.startTime}{" To "}{parkInfo.endTime}</CardText>
+        <CardText>{"Price : "}{parkInfo.price}</CardText>
+        <Button color="primary">Book Now</Button>
+      </CardBody>
+    </Card>
+  </div>
+   
   );
 };
 
