@@ -13,7 +13,7 @@ import SignUp from "./SignUp.jsx";
 import SignIn from "./SignIn.jsx";
 import HostCar from "./HostCar.jsx";
 import "../style/NavbarCom.css";
-
+import About from "./About.jsx"
 export default class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -88,7 +88,9 @@ export default class Example extends React.Component {
               <NavItem>
               <NavLink style={{'display': this.state.hideNav === false ?  'none':'block'}} href={"/"} onClick={this.logout}>Log out{this.props.buttonLabel}</NavLink>
               </NavItem>
-            
+             <NavItem>
+               <NavLink href="/About">About</NavLink>
+             </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
