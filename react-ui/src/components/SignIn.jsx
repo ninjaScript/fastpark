@@ -30,8 +30,9 @@ class SignIn extends React.Component {
         type: "POST",
         data: JSON.stringify(userObj),
         contentType: "application/json",
-        success: function(data) {
+        success: (data) => {
           window.localStorage.setItem("user", JSON.stringify(data))
+          this.props.handleClick()
           console.log("pleasssssss", data);
         },
         error: function(error) {

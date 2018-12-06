@@ -78,7 +78,7 @@ class HostCar extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle}>Host Carrrrrr</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Host Car</ModalHeader>
           <ModalBody>
             <FormGroup>
               <Label for="exampleEmail">Email</Label>
@@ -105,7 +105,7 @@ class HostCar extends React.Component {
           </ModalBody>
           <ModalFooter>
             <HostSignUp />
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="primary" onClick={this.toggle} href="/ownerdashboard">
               Sign in
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
