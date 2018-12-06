@@ -25,7 +25,9 @@ app.use(bodyParser.json());
 
 // handle login post request from client
 app.post("/login", function(req, res) {
+  console.log("AZZZZZZZZZZZZZZZHHHHHHHHHHHAAAAAAAAR")
   db.checkPassword(req.body, function(passRes, err) {
+    console.log(passRes,"/*/*/*/*/*/*/*/*/*/*/*/*9845354654689/*87")
     if(err) console.log("erreeer",err)
     res.send(passRes);
   });
@@ -55,6 +57,16 @@ app.post("/ownersignup", function(req, res) {
   });
 });
 
+//handle owner Creation from /logIn post request
+app.post("/ownerlogin", function(req, res) {
+  db.checkPassword(req.body, function(passRes, err) {
+    if(err) console.log("erreeer",err)
+    res.send(passRes);
+  });
+});
+
+
+
 //handle adding new park listing by owners from /addpark post request
 app.post("/addpark", function(req, res) {
   db.savePark(req.body, function(done, err) {
@@ -75,3 +87,5 @@ app.listen(PORT, function() {
     `Node cluster worker ${process.pid}: listening on port ${PORT}`
   );
 });
+
+

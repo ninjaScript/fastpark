@@ -85,3 +85,10 @@ div .navSticky {
   z-index: 100;
   margin-bottom: 0px;
 }
+div .directionBtn{
+  margin-top: 100px;
+ }
+
+ Button .direction{
+   margin-right:1000px !important;
+ }

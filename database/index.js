@@ -127,15 +127,22 @@ let saveUser = (data, cb) => {
 };
 //checking login password with database
 let checkPassword = (data, cb) => {
-  console.log('mustaf Data: ', data)
+  //console.log('mustaf Data: ', data)
   User.findOne({ email: data.email }, function(err, res) {
+    console.log(res,"AZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZHHHHHHHHHHHHHHHHHHHHHHHAAAAAAAAAAA");
+    
     if (res) {
+      console.log("89899898999898989889998");
+      //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       bcrypt.compare(data.password, res.password, function(err, isMatch) {
         if (err) return cb(null, err);
-        cb(isMatch, err);
+        cb(res, err);
       });
     }
-    else{cb(false, null)}
+    
+    else{
+      console.log("ellllllllllllllllllllllllsssssss");
+      cb(false, null)}
   });
 };
 

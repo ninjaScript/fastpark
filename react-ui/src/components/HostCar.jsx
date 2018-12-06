@@ -12,6 +12,8 @@ import {
 } from "reactstrap";
 import "./SignUpH.jsx";
 import SignUpH from "./SignUpH.jsx";
+import $ from "jquery";
+
 class HostCar extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,34 @@ class HostCar extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.login = this.login.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+
+  login() {
+
+    this.toggle()
+
+    const ownerObj ={
+      email: this.state.email,
+      password: this.state.password
+    }
+    console.log('here signin',ownerObj);
+        $.ajax({
+        url: "/ownerlogin",
+        type: "POST",
+        data: JSON.stringify(ownerObj),
+        contentType: "application/json",
+        success: function(data) {
+          window.localStorage.setItem("user", JSON.stringify(data))
+          console.log("pleasssssss", data);
+        },
+        error: function(error) {
+          console.error("errorrrrrr", error);
+        }
+      });
+
   }
 
   toggle() {
@@ -27,6 +57,16 @@ class HostCar extends React.Component {
       modal: !this.state.modal
     });
   }
+
+  handleInputChange (event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({
+      [name]: value
+    });
+  }
+
 
   render() {
     return (
@@ -39,7 +79,7 @@ class HostCar extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle}>Host Car</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Host Carrrrrr</ModalHeader>
           <ModalBody>
             <FormGroup>
               <Label for="exampleEmail">Email</Label>
@@ -48,6 +88,8 @@ class HostCar extends React.Component {
                 name="email"
                 id="exampleEmail"
                 placeholder="input your Email"
+                value={this.state.email}
+                onChange={this.handleInputChange}
               />
             </FormGroup>
             <FormGroup>
@@ -57,12 +99,14 @@ class HostCar extends React.Component {
                 name="password"
                 id="examplePassword"
                 placeholder="input your password"
+                value={this.state.password}
+                onChange={this.handleInputChange}
               />
             </FormGroup>
           </ModalBody>
           <ModalFooter>
             <SignUpH />
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="primary" onClick={this.toggle} onClick={this.login}>
               Sign in
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

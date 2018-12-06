@@ -8,6 +8,7 @@ import $ from "jquery";
 import SignUp from "./SignUp.jsx";
 import SignIn from "./SignIn.jsx";
 import OwnerDashboard from "./OwnerDashboard.jsx";
+import Book from "./book"
 // import CardHome from './CardHome.jsx';
 class App extends Component {
   constructor(props) {
@@ -77,6 +78,8 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/SearchResults" component={SearchResults} />
+          <Route exact path="/book" component={Book} />
+
         </div>
       </Router>
     );
