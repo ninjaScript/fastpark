@@ -9,6 +9,7 @@ import SignUp from "./SignUp.jsx";
 import SignIn from "./SignIn.jsx";
 import OwnerDashboard from "./OwnerDashboard.jsx";
 import Book from "./book"
+import About from "./About.jsx";
 // import CardHome from './CardHome.jsx';
 class App extends Component {
   constructor(props) {
@@ -90,6 +91,7 @@ class App extends Component {
           <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/SearchResults" component={SearchResults} />
           <Route exact path="/book" component={Book} />
+          <Route exact path="/About" component={About} />
 
         </div>
       </Router>
