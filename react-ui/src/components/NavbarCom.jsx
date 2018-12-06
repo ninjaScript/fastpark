@@ -21,7 +21,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import $ from "jQuery"
+import $ from "jquery"
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import SignUp from "./SignUp.jsx";
 import SignIn from "./SignIn.jsx";

@@ -33,7 +33,7 @@ class CardHome extends React.Component {
             <label htmlFor="Where">Where</label>
             <input
               type="text"
-              className="areaInput"
+              className="form-control"
               placeholder="Area Name"
               value={this.state.inputValue}
               onChange={evt => this.updateInputValue(evt)}

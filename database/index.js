@@ -10,7 +10,6 @@ const SALT_WORK_FACTOR = 10;
 const db = mongoose.connection;
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
-
 db.on("error", function() {
   console.log("mongoose connection error");
 });
@@ -198,6 +197,15 @@ const updatePark = (parkId, userId, cb) => {
     }
   });
 };
+const deletePark = function (parkId, cb){
+  Park.deleteOne({"_id":ObjectId(parkId)},(err,res)=>{
+    if (err) {
+      console.log("delete error", err)
+    } 
+    cb(res)
+  });
+};
+
 
 module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
@@ -206,4 +214,5 @@ module.exports.findOwnerParks = findOwnerParks;
 module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 module.exports.User = User;
+module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;

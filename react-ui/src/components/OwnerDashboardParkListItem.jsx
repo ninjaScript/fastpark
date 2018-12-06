@@ -10,45 +10,44 @@ import {
   Button
 } from "reactstrap";
 
-const OwnerDashboardParkListItem = ({ park }) => {
+const OwnerDashboardParkListItem = ({ park, handleDelete }) => {
   if (park.userdetails.length > 0) {
-    console.log("ddddd", park.userdetails);
-    return (
-      <div className="parkCard">
-        <Card color="grey" className="mapCard">
-          <CardImg src={`${park.image}`} alt="Card image cap" />
-          <CardBody>
-            <CardTitle>{park.title}</CardTitle>
-            <CardSubtitle>{park.description}</CardSubtitle>
-            <CardText>{park.location}</CardText>
-            <CardText>UserName:{park.userdetails[0].name}</CardText>
+  return (
+    
+    <div>
+    <Card className="parkCard">
+      <CardImg top width="100%" src={park.image} />
+      <CardBody>
+        <CardTitle>{park.title}</CardTitle>
+        <CardSubtitle>{park.description}</CardSubtitle>
+        <CardText>{""}</CardText>
+        <CardText>{"Area : "}{park.location}</CardText>
+        <CardText>UserName:{park.userdetails[0].name}</CardText>
             <CardText>PlateNumber:{park.userdetails[0].plateNumber}</CardText>
             <CardText>PhoneNumber{park.userdetails[0].phoneNumber}</CardText>
-            <CardText>{park.startTime}</CardText>
-            <CardText>{park.endTime}</CardText>
-            <CardText>{park.price}</CardText>
-            <Button color="danger">Remove</Button>
-          </CardBody>
-        </Card>
-      </div>
-    );
-  } else {
+        <CardText>{"Time : From "}{park.startTime}{" To "}{park.endTime}</CardText>
+        <Button color="danger" onClick = {()=>{handleDelete(park._id)}}>Delete</Button>
+      </CardBody>
+    </Card>
+  </div>
+
+  );}
+  else{
     return (
-      <div className="parkCard">
-        <Card color="grey" className="mapCard">
-          <CardImg src={`${park.image}`} alt="Card image cap" />
-          <CardBody>
-            <CardTitle>{park.title}</CardTitle>
-            <CardSubtitle>{park.description}</CardSubtitle>
-            <CardText>{park.location}</CardText>
-            <CardText>{park.startTime}</CardText>
-            <CardText>{park.endTime}</CardText>
-            <CardText>{park.price}</CardText>
-            <Button color="danger">Remove</Button>
-          </CardBody>
-        </Card>
-      </div>
-    );
+      <div>
+      <Card className="parkCard">
+        <CardImg top width="100%" src={park.image} />
+        <CardBody>
+          <CardTitle>{park.title}</CardTitle>
+          <CardSubtitle>{park.description}</CardSubtitle>
+          <CardText>{""}</CardText>
+          <CardText>{"Area : "}{park.location}</CardText>
+          <CardText>{"Time : From "}{park.startTime}{" To "}{park.endTime}</CardText>
+          <Button color="danger" onClick = {()=>{handleDelete(park._id)}}>Delete</Button>
+        </CardBody>
+      </Card>
+    </div>
+    )
   }
 };
 export default OwnerDashboardParkListItem;

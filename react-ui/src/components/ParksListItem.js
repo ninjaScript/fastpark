@@ -68,24 +68,27 @@ changeRoute () {
 render() {
   console.log(this.props.parkInfo)
   return (
-    <div className="mapCard">
-      <Card color="grey" className="mapCard">
-        <CardImg src={this.props.parkInfo.image} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>{this.props.parkInfo.title}</CardTitle>
-          <CardSubtitle>{this.props.parkInfo.description}</CardSubtitle>
-          <CardText>{this.props.parkInfo.location}</CardText>
-          <CardText>OwnerName:{this.props.parkInfo.ownerdetails[0].name}</CardText>
-          <CardText>PhoneNumber{this.props.parkInfo.ownerdetails[0].phoneNumber}</CardText>
-          <CardText>{this.props.parkInfo.startTime}</CardText>
-          <CardText>{this.props.parkInfo.endTime}</CardText>
-          <CardText>{this.props.parkInfo.price}</CardText>
-          <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
+   
+    <div>
+    <Card className="mapCardN">
+      <CardImg top width="100%" src={this.props.parkInfo.image} />
+      <CardBody>
+        <CardTitle>{this.props.parkInfo.title}</CardTitle>
+        <CardSubtitle>{this.props.parkInfo.description}</CardSubtitle>
+        <CardText>{""}</CardText>
+        <CardText>{"Area : "}{this.props.parkInfo.location}</CardText>
+        <CardText>OwnerName:{this.props.parkInfo.ownerdetails[0].name}</CardText>
+        <CardText>PhoneNumber{this.props.parkInfo.ownerdetails[0].phoneNumber}</CardText>
+        <CardText>{"Time : From "}{this.props.parkInfo.startTime}{" To "}{this.props.parkInfo.endTime}</CardText>
+        <CardText>{"Price : "}{this.props.parkInfo.price}</CardText>
+        <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
             <Button className="btn btn-info">Book Now</Button>
             </Link>
-        </CardBody>
-      </Card>
-    </div>
+
+      </CardBody>
+    </Card>
+  </div>
+   
   );
 }
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import '../index.css';
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import {
   Card,
@@ -71,28 +72,16 @@ class GoogleMapsContainer extends React.Component {
           );
         })}
 
-        <InfoWindow
+        <InfoWindow 
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
           onClose={this.onMapClick}
         >
-          <Card className="mapC">
-            <CardImg
-              top
-              width="200px"
-              height="75px"
-              src={this.state.selectedPlace.image}
-            />
-            <CardBody>
-              <CardSubtitle>{this.state.selectedPlace.title}</CardSubtitle>
-              <CardText>{this.state.selectedPlace.description}</CardText>
-              <CardText>{this.state.selectedPlace.location}</CardText>
-              <CardText>{this.state.selectedPlace.startTime}</CardText>
-              <CardText>{this.state.selectedPlace.endTime}</CardText>
-              <CardText>{this.state.selectedPlace.price}</CardText>
-              <Button>Book</Button>
-            </CardBody>
-          </Card>
+         <img className="mapInf"  width="150px" height="100px" src={this.state.selectedPlace.image}></img>
+         <CardTitle className="mapInf">{this.state.selectedPlace.location}</CardTitle>
+         <CardText className="mapInf">{"Price: "}{this.state.selectedPlace.price}</CardText>
+        <CardText className="mapInf">{"from "}{this.state.selectedPlace.startTime}{" to "}{this.state.selectedPlace.endTime}</CardText>
+        <Button className="buttonMap"  color="primary">Book Now</Button>
         </InfoWindow>
       </Map>
     );
