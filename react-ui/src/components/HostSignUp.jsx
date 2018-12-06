@@ -130,7 +130,7 @@ class HostSignUp extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.signup} href="/searchresults">
+            <Button color="primary" onClick={this.signup} href="/ownerdashboard">
               Sign up
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

@@ -117,3 +117,18 @@ top: 50%;
   margin-left: 20px;
   margin-bottom: 20px;
 }
+
+.ownerParkCard{
+  margin-left: 20%;
+  width: 67%;
+}
+#addbtn{
+  width:15%;
+  margin-left: 38%;
+  margin-top : 2%;
+}
+
+.bookingCard{
+  width:50%;
+  margin-left:24.5%;
+}

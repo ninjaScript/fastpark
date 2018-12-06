@@ -48,7 +48,7 @@ class ParkPop extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.toggle} color="primary">
+        <Button id="addbtn" onClick={this.toggle} color="primary">
           Add Park{this.props.buttonLabel}
         </Button>
         <Modal

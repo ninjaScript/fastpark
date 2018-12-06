@@ -64,7 +64,7 @@ class book extends React.Component {
               </Alert>
             </div>
 
-             <div>
+             <div className="bookingCard">
       <Card>
         <CardBody>
         <CardTitle>Location: {this.props.location.park.location}</CardTitle>
@@ -76,8 +76,8 @@ class book extends React.Component {
           <CardText>Mobile: {this.props.location.park.ownerdetails[0].phoneNumber}</CardText>
           <CardText>Start Time: {this.props.location.park.startTime}</CardText>
           <CardText>End Time: {this.props.location.park.endTime}</CardText>
-          <Button target="_blank" rel="noopener noreferrer" href={`http://maps.google.com/maps?saddr=${this.state.lat},${this.state.long}&daddr=${this.props.location.park.lat},${this.props.location.park.long}`} className="btn btn-info">Direction</Button>
-          <Button className="btn btn-success" onClick={this.toggle}>{this.props.buttonLabel}>Check Out</Button>
+          <Button target="_blank" rel="noopener noreferrer" href={`http://maps.google.com/maps?saddr=${this.state.lat},${this.state.long}&daddr=${this.props.location.park.lat},${this.props.location.park.long}`} className="btn btn-success">Direction</Button>{" "}
+          <Button className="btn btn-danger" onClick={this.toggle}>{this.props.buttonLabel}Check Out</Button>
 
        
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
