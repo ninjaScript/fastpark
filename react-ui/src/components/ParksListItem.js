@@ -28,6 +28,8 @@ const ParksListItem = ({ parkInfo }) => {
         <CardSubtitle>{parkInfo.description}</CardSubtitle>
         <CardText>{""}</CardText>
         <CardText>{"Area : "}{parkInfo.location}</CardText>
+        <CardText>OwnerName:{parkInfo.ownerdetails[0].name}</CardText>
+        <CardText>PhoneNumber{parkInfo.ownerdetails[0].phoneNumber}</CardText>
         <CardText>{"Time : From "}{parkInfo.startTime}{" To "}{parkInfo.endTime}</CardText>
         <CardText>{"Price : "}{parkInfo.price}</CardText>
         <Button color="primary">Book Now</Button>

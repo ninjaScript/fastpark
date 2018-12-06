@@ -10,8 +10,8 @@ import {
   Label,
   Input
 } from "reactstrap";
-import "./SignUpH.jsx";
-import SignUpH from "./SignUpH.jsx";
+
+import HostSignUp from "./HostSignUp.jsx";
 class HostCar extends React.Component {
   constructor(props) {
     super(props);
@@ -61,7 +61,7 @@ class HostCar extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <SignUpH />
+            <HostSignUp />
             <Button color="primary" onClick={this.toggle}>
               Sign in
             </Button>{" "}
