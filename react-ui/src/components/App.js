@@ -48,20 +48,31 @@ class App extends Component {
     //       fetching: false
     //     });
     //   });
-    //   $.ajax({
-    //   url: "/signup",
+    // $.ajax({
+    //   url: "/updatepark",
     //   type: "POST",
     //   data: JSON.stringify({
-    //     name: "walaa something",
-    //     email: "w@w.com ",
-    //     plateNumber: "33218",
-    //     phoneNumber: "0780122323",
-    //     password: "walaa123",
-    //     username: "walaa11"
+    //     parkId: "5c06f54d6eee5b6c7d86824e",
+    //     userId: "5c079c1c91800c33dc838573"
     //   }),
     //   contentType: "application/json",
     //   success: function(data) {
-    //     console.log("pleasssssss", data);
+    //     console.log("update", data);
+    //   },
+    //   error: function(error) {
+    //     console.error("errorrrrrr", error);
+    //   }
+    // });
+    // $.ajax({
+    //   url: "/updatepark",
+    //   type: "POST",
+    //   data: JSON.stringify({
+    //     parkId: "5c06f54d6eee5b6c7d86824e",
+    //     userId: null
+    //   }),
+    //   contentType: "application/json",
+    //   success: function(data) {
+    //     console.log("update", data);
     //   },
     //   error: function(error) {
     //     console.error("errorrrrrr", error);
