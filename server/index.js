@@ -13,22 +13,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Answer API requests.
 
-    app.post("/signup", function(req, res) {
-    db.saveUser(req.body, function(user,err) {
-      if(err) console.log("erreeer",err)
-      console.log("user",user);
-      if (user) {
-        res.send(user);
-      }
-    });
+app.post("/signup", function(req, res) {
+  db.saveUser(req.body, function(user, err) {
+    if (err) console.log("erreeer", err);
+    console.log("user", user);
+    if (user) {
+      res.send(user);
+    }
   });
+});
 
 // handle login post request from client
 app.post("/login", function(req, res) {
   console.log("AZZZZZZZZZZZZZZZHHHHHHHHHHHAAAAAAAAR")
   db.checkPassword(req.body, function(passRes, err) {
-    console.log(passRes,"/*/*/*/*/*/*/*/*/*/*/*/*9845354654689/*87")
-    if(err) console.log("erreeer",err)
+    if (err) console.log("erreeer", err);
     res.send(passRes);
   });
 });
@@ -77,6 +76,13 @@ app.post("/addpark", function(req, res) {
     res.send("done");
   });
 });
+app.post("/updatepark", (req, res) => {
+  db.updatePark(req.body.parkId, req.body.userId, (done, err) => {
+    if (err) console.log("updateError", err);
+    res.send(done);
+  });
+});
+
 // All remaining requests return the React app, so it can handle routing.
 app.get("*", function(request, response) {
   response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));

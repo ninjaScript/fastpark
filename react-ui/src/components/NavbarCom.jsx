@@ -21,7 +21,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import { Link } from 'react-router-dom'
+import $ from "jQuery"
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import SignUp from "./SignUp.jsx";
 import SignIn from "./SignIn.jsx";
@@ -50,6 +50,10 @@ export default class Example extends React.Component {
        //window.localStorage.getItem('user')==null,
        storage : window.localStorage.getItem('user')
     };
+  }
+  componentDidMount() {
+    $("#searchtxt").hide();
+    $("#searchbtn").hide();
   }
   toggle() {
     this.setState({
@@ -90,12 +94,28 @@ export default class Example extends React.Component {
   render() {
     return (
       <div className="mynav">
-        <Navbar color="navbar-dark bg-dark" dark expand="md" className="nav">
+        <Navbar color="navbar-dark bg-dark" dark expand="md" class="nav">
           <NavbarBrand href="/" className="NavbarBrand">
             ParkIn
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
+            <input
+              id="searchtxt"
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+
+            <button
+              id="searchbtn"
+              className="btn btn-outline-success my-2 my-sm-0"
+              type="submit"
+            >
+              Search
+            </button>
+
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <HostCar />

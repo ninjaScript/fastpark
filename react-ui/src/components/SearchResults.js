@@ -10,13 +10,18 @@ class SearchResults extends Component {
     this.state = { parks: [] };
   }
   componentDidMount() {
+    $("#searchtxt").show();
+    $("#searchbtn").show();
     $("#root").css("background", "white");
-    //TODO: CHANGE THE SENT DATA TO THE QuERY
     console.log("query from the home comp", this.props.location.query);
     $.ajax({
       url: "/parks",
       type: "POST",
-      data: JSON.stringify({ location: "khalda" }),
+      data: JSON.stringify({
+        location: this.props.location.query
+          ? this.props.location.query
+          : "khalda"
+      }),
       contentType: "application/json",
       success: parks => {
         this.setState({ parks });

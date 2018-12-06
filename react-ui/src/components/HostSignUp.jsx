@@ -13,7 +13,7 @@ import {
 import $ from "jquery";
  
 
-class SignUpH extends React.Component {
+class HostSignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -143,4 +143,4 @@ class SignUpH extends React.Component {
   }
 }
 
-export default SignUpH;
+export default HostSignUp;

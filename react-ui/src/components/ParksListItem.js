@@ -75,13 +75,14 @@ render() {
           <CardTitle>{this.props.parkInfo.title}</CardTitle>
           <CardSubtitle>{this.props.parkInfo.description}</CardSubtitle>
           <CardText>{this.props.parkInfo.location}</CardText>
+          <CardText>OwnerName:{this.props.parkInfo.ownerdetails[0].name}</CardText>
+          <CardText>PhoneNumber{this.props.parkInfo.ownerdetails[0].phoneNumber}</CardText>
           <CardText>{this.props.parkInfo.startTime}</CardText>
           <CardText>{this.props.parkInfo.endTime}</CardText>
           <CardText>{this.props.parkInfo.price}</CardText>
           <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
             <Button className="btn btn-info">Book Now</Button>
             </Link>
-
         </CardBody>
       </Card>
     </div>

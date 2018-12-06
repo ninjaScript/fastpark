@@ -1,15 +1,15 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 //mongoose.connect('mongodb://localhost/test');
 mongoose.connect(
   "mongodb://admin:admin123@ds119374.mlab.com:19374/fastpark",
   { useNewUrlParser: true }
 );
 
-var bcrypt = require("bcrypt");
-var SALT_WORK_FACTOR = 10;
-
-var db = mongoose.connection;
+const bcrypt = require("bcrypt");
+const SALT_WORK_FACTOR = 10;
+const db = mongoose.connection;
 const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
 db.on("error", function() {
   console.log("mongoose connection error");
@@ -18,44 +18,6 @@ db.on("error", function() {
 db.once("open", function() {
   console.log("mongoose connected successfully");
 });
-const OwnerSchema = new Schema({
-  name: String,
-  phoneNumber: String,
-  email: String,
-  password: String,
-  rating: String,
-  image: String
-});
-const ParkSchema = new Schema({
-  title: String,
-  description: String,
-  long: String,
-  lat: String,
-  location: String,
-  image: String,
-  ownerId: { type: mongoose.Schema.ObjectId, ref: "Owner" },
-  price: String,
-  startTime: String,
-  endTime: String
-});
-
-const Owner = mongoose.model("Owner", OwnerSchema);
-const Park = mongoose.model("Park", ParkSchema);
-let saveOwner = (data, cb) => {
-  let owner = new Owner({
-    name: data["name"],
-    phoneNumber: data["phoneNumber"],
-    email: data["email"],
-    password: data["password"],
-    rating: data["rating"],
-    image: data["image"]
-  });
-  owner.save(function(err) {
-    if (err) cb(null, err);
-    //returning the auto generated id from the db to be used when adding new parks
-    cb(owner._id, null);
-  });
-};
 
 const UserSchema = new Schema({
   username: {
@@ -77,37 +39,36 @@ const UserSchema = new Schema({
     required: true
   }
 });
+const OwnerSchema = new Schema({
+  name: String,
+  phoneNumber: String,
+  email: String,
+  password: String,
+  rating: String,
+  image: String
+});
+const ParkSchema = new Schema({
+  title: String,
+  description: String,
+  long: String,
+  lat: String,
+  location: String,
+  image: String,
+  ownerId: { type: mongoose.Schema.ObjectId, ref: "Owner" },
+  userId: { type: mongoose.Schema.ObjectId, ref: "User" },
+  price: String,
+  startTime: String,
+  endTime: String
+});
+
 const User = mongoose.model("User", UserSchema);
+const Owner = mongoose.model("Owner", OwnerSchema);
+const Park = mongoose.model("Park", ParkSchema);
 
-// UserSchema.pre('save', function(next){
-//   var user = this;
-//   if (!user.isModified('password')) return next();
-
-//   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
-//       if(err) return next(err);
-
-//       bcrypt.hash(user.password, salt, function(err, hash){
-//           if(err) return next(err);
-
-//           user.password = hash;
-//           next();
-//       });
-//   });
-// });
-
-let hashPassword = function(password, cb) {
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    if (err) throw err;
-
-    bcrypt.hash(password, salt, function(err, hash) {
-      if (err) return next(err);
-      console.log("azhar", hash);
-      cb(hash);
-    });
-  });
-};
-let saveUser = (data, cb) => {
-  hashPassword(data["password"], function(hashedPassword) {
+//saving user to Users table
+const saveUser = (data, cb) => {
+  hashPassword(data["password"], function(err, hashedPassword) {
+    if (err) console.log("HashPassword Error", err);
     let user = new User({
       name: data["name"],
       phoneNumber: data["phoneNumber"],
@@ -116,37 +77,57 @@ let saveUser = (data, cb) => {
       plateNumber: data["plateNumber"],
       email: data["email"]
     });
-
     user.save(function(err) {
       if (err) cb(null, err);
-      console.log("herrrrrrrrrrrrrreeeeee");
-      console.log(user);
       cb(user, null);
     });
   });
 };
+//generating hash password using bcrypt
+const hashPassword = function(password, cb) {
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    if (err) throw err;
+
+    bcrypt.hash(password, salt, function(err, hash) {
+      if (err) return cb(err, null);
+      cb(null, hash);
+    });
+  });
+};
 //checking login password with database
-let checkPassword = (data, cb) => {
-  //console.log('mustaf Data: ', data)
+const checkPassword = (data, cb) => {
   User.findOne({ email: data.email }, function(err, res) {
-    console.log(res,"AZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZHHHHHHHHHHHHHHHHHHHHHHHAAAAAAAAAAA");
     
     if (res) {
-      console.log("89899898999898989889998");
       //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       bcrypt.compare(data.password, res.password, function(err, isMatch) {
         if (err) return cb(null, err);
         cb(res, err);
       });
+    } else {
+      cb(false, null);
     }
-    
-    else{
-      console.log("ellllllllllllllllllllllllsssssss");
-      cb(false, null)}
+  });
+}
+//saving owner to the Owners table
+const saveOwner = (data, cb) => {
+  let owner = new Owner({
+    name: data["name"],
+    phoneNumber: data["phoneNumber"],
+    email: data["email"],
+    password: data["password"],
+    rating: data["rating"],
+    image: data["image"]
+  });
+  owner.save(function(err) {
+    if (err) cb(null, err);
+    //returning the auto generated id from the db to be used when adding new parks
+    cb(owner._id, null);
   });
 };
 
-let savePark = (data, cb) => {
+//saving parks to Parks table
+const savePark = (data, cb) => {
   let park = new Park({
     title: data["title"],
     description: data["description"],
@@ -164,7 +145,10 @@ let savePark = (data, cb) => {
     cb(true);
   });
 };
-let findParks = (query, cb) => {
+
+//finding all parks based on the provided location
+//using aggregation to get all the owner details from owners table
+const findParks = (query, cb) => {
   db.collection("parks")
     .aggregate([
       { $match: { location: query } },
@@ -183,15 +167,38 @@ let findParks = (query, cb) => {
       cb(res);
     });
 };
-let findOwnerParks = (query, callback) => {
-  Park.find({ ownerId: query }, function(err, parks) {
-    if (err) {
-      callback(err, null);
+//finding all ownerParks based on the provided ownerId
+//using aggregation to get all the user details from users table
+const findOwnerParks = (ownerId, callback) => {
+  db.collection("parks")
+    .aggregate([
+      { $match: { ownerId: ObjectId(ownerId) } },
+      {
+        $lookup: {
+          from: "users",
+          localField: "userId",
+          foreignField: "_id",
+          as: "userdetails"
+        }
+      }
+    ])
+    .toArray(function(err, res) {
+      console.log(res, err);
+      if (err) callback(err, null);
+      callback(null, res);
+    });
+};
+//updating the park document with userId based on booking and checkout
+const updatePark = (parkId, userId, cb) => {
+  Park.updateOne({ _id: parkId }, { userId: userId }, function(err, res) {
+    if (res) {
+      cb(true, null);
     } else {
-      callback(null, parks);
+      cb(false, err);
     }
   });
 };
+
 module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
 module.exports.findParks = findParks;
@@ -199,3 +206,4 @@ module.exports.findOwnerParks = findOwnerParks;
 module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 module.exports.User = User;
+module.exports.updatePark = updatePark;
