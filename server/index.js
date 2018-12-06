@@ -65,6 +65,11 @@ app.post("/addpark", function(req, res) {
     res.send("done");
   });
 });
+app.delete("/deletepark",function(req,res){
+  db.deletePark(req.body.parkId,function(done){
+    res.send(done);
+  })
+})
 // All remaining requests return the React app, so it can handle routing.
 app.get("*", function(request, response) {
   response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));

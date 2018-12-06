@@ -10,22 +10,23 @@ import {
   Button
 } from "reactstrap";
 
-const OwnerDashboardParkListItem = ({ park }) => {
+const OwnerDashboardParkListItem = ({ park, handleDelete }) => {
   return (
-    <div className="parkCard">
-      <Card color="grey" className="mapCard">
-        <CardImg src={`${park.image}`} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>{park.title}</CardTitle>
-          <CardSubtitle>{park.description}</CardSubtitle>
-          <CardText>{park.location}</CardText>
-          <CardText>{park.startTime}</CardText>
-          <CardText>{park.endTime}</CardText>
-          <CardText>{park.price}</CardText>
-          <Button color="danger">Remove</Button>
-        </CardBody>
-      </Card>
-    </div>
+    
+    <div>
+    <Card className="parkCard">
+      <CardImg top width="100%" src={park.image} />
+      <CardBody>
+        <CardTitle>{park.title}</CardTitle>
+        <CardSubtitle>{park.description}</CardSubtitle>
+        <CardText>{""}</CardText>
+        <CardText>{"Area : "}{park.location}</CardText>
+        <CardText>{"Time : From "}{park.startTime}{" To "}{park.endTime}</CardText>
+        <Button color="danger" onClick = {()=>{handleDelete(park._id)}}>Delete</Button>
+      </CardBody>
+    </Card>
+  </div>
+
   );
 };
 export default OwnerDashboardParkListItem;
