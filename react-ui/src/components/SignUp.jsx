@@ -41,9 +41,6 @@ class SignUp extends React.Component {
           console.error("errorrrrrr", error);
         }
       });
-
-    
-      
   }
 
   handleInputChange (event) {

@@ -21,20 +21,34 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+import $ from "jquery"
+// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import SignUp from "./SignUp.jsx";
 import SignIn from "./SignIn.jsx";
 import HostCar from "./HostCar.jsx";
 import "../style/NavbarCom.css";
-import $ from "jquery";
+import signUp from "./SignUp.jsx";
+import Book from "./book.js"
+// import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export default class Example extends React.Component {
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    // this.signup = this.signup.bind(this);
+    // //login
+    // this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+
+
+    
     this.state = {
       isOpen: false,
-      modal: false
+      modal: false,
+       hideNav: window.localStorage.getItem('user')?true:false,
+       //window.localStorage.getItem('user')==null,
+       storage : window.localStorage.getItem('user')
     };
   }
   componentDidMount() {
@@ -44,8 +58,37 @@ export default class Example extends React.Component {
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen,
-      modal: !this.state.modal
+      modal: !this.state.modal,
+      
     });
+  }
+    // signup(){
+    //   this.setState({
+    //     hideNav: !this.hideNav,
+    //   });
+
+    // }
+    // login(){
+    //   console.log("hhhhhhhhhhhhhh");
+    //   this.setState({
+    //     hideNav: !this.hideNav,
+    //   });
+
+    // }
+    // logout(){
+    //   console.log("hhhhhhhhhhhhhh");
+    //   // this.setState({
+    //   storage:localStorage.removeItem('user')
+    //   });
+
+    // }
+  // }
+  logout(){
+    console.log("hhhhhhhhhhhhhh");
+    this.setState({
+      storage: window.localStorage.removeItem('user'),
+    });
+
   }
 
   render() {
@@ -77,12 +120,24 @@ export default class Example extends React.Component {
               <NavItem>
                 <HostCar />
               </NavItem>
+              { !this.hideNav?  
               <NavItem>
-                <SignIn />
+                <SignIn/>
               </NavItem>
+              : null
+            }
+              { !this.hideNav?  
               <NavItem>
-                <SignUp />
+                <SignUp/>
               </NavItem>
+              : null
+            }
+              { !this.hideNav?  
+              <NavItem>
+              <NavLink href={"/"} onClick={this.logout}>Log out{this.props.buttonLabel}</NavLink>
+              </NavItem>
+              : null
+            }
             </Nav>
           </Collapse>
         </Navbar>

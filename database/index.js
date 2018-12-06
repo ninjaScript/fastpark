@@ -96,16 +96,18 @@ const hashPassword = function(password, cb) {
 //checking login password with database
 const checkPassword = (data, cb) => {
   User.findOne({ email: data.email }, function(err, res) {
+    
     if (res) {
+      //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       bcrypt.compare(data.password, res.password, function(err, isMatch) {
         if (err) return cb(null, err);
-        cb(isMatch, err);
+        cb(res, err);
       });
     } else {
       cb(false, null);
     }
   });
-};
+}
 //saving owner to the Owners table
 const saveOwner = (data, cb) => {
   let owner = new Owner({
