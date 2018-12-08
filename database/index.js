@@ -101,8 +101,25 @@ const checkPassword = (data, cb) => {
       //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       bcrypt.compare(data.password, res.password, function(err, isMatch) {
         if (err) return cb(null, err);
-        cb(res, err);
+        cb(res._id, err);
       });
+    } else {
+      cb(false, null);
+    }
+  });
+}
+
+//fix error log in as owner
+const checkPasswordOwner = (data, cb) => {
+  console.log(data,"OwnerOwnerOwnerOwnerOwnerOwnerdata")
+  Owner.findOne({ email: data.email }, function(err, res) {
+    
+    if (res) {
+      //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
+      // bcrypt.compare(data.password, res.password, function(err, isMatch) {
+      //   if (err) return cb(null, err);
+        cb(res._id, err);
+    //  });
     } else {
       cb(false, null);
     }
@@ -158,8 +175,7 @@ const findParks = (query, cb) => {
           foreignField: "_id",
           as: "ownerdetails"
         }
-      },
-      { $project: { _id: 0 } }
+      }
     ])
     .toArray(function(err, res) {
       if (err) throw err;
@@ -207,12 +223,36 @@ const deletePark = function (parkId, cb){
 };
 
 
+//updating the owner rating based on rating after checkout
+const updateOwnerRating = (ownerId, rating, cb) => {
+  console.log(rating,"rating come from FE")
+  owner.updateOne({ _id: ownerId }, { rating: rating }, function(err, res) {
+
+    if (res) {
+      cb(true, null);
+    } else {
+      cb(false, err);
+    }
+  });
+};
+
+
+
+
+
+
 module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
 module.exports.findParks = findParks;
 module.exports.findOwnerParks = findOwnerParks;
 module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
+//checkPasswordOwner
+module.exports.checkPasswordOwner = checkPasswordOwner;
+
 module.exports.User = User;
 module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
+// updateOwnerRating
+module.exports.updateOwnerRating = updateOwnerRating;
+

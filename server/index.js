@@ -18,7 +18,7 @@ app.post("/signup", function(req, res) {
     if (err) console.log("erreeer", err);
     console.log("user", user);
     if (user) {
-      res.send(user);
+      res.send(user._id);
     }
   });
 });
@@ -28,6 +28,8 @@ app.post("/login", function(req, res) {
   console.log("AZZZZZZZZZZZZZZZHHHHHHHHHHHAAAAAAAAR")
   db.checkPassword(req.body, function(passRes, err) {
     if (err) console.log("erreeer", err);
+    console.log(passRes,"passRespassRespassRespassRespassRespassRes");
+    
     res.send(passRes);
   });
 });
@@ -58,10 +60,14 @@ app.post("/ownersignup", function(req, res) {
 
 //handle owner Creation from /logIn post request
 app.post("/ownerlogin", function(req, res) {
-  db.checkPassword(req.body, function(passRes, err) {
+  db.checkPasswordOwner(req.body, function(passRes, err) {
     if(err) console.log("erreeer",err)
+    console.log(passRes,"passRespassRespassRespassRespassRespassRes");
+    
+
     res.send(passRes);
   });
+  //res.send("hhhhhhhhhhhhhh")
 });
 
 
@@ -87,6 +93,14 @@ app.post("/updatepark", (req, res) => {
     res.send(done);
   });
 });
+
+//handle adding rating coming from user after checking out from //updateownerrating post request
+app.post("/updateownerrating", (req, res) => {
+  db.updateOwnerRating(req.body.ownerId, req.body.rating, (done, err) => {
+    if (err) console.log("updateError", err);
+    res.send(done);
+  });
+ });
 
 // All remaining requests return the React app, so it can handle routing.
 app.get("*", function(request, response) {

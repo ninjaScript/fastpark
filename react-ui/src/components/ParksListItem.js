@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import $ from "jquery";
 
 // import Example from './signup';
 import { Container, Row, Col } from "reactstrap";
@@ -35,35 +36,71 @@ class ParksListItem extends Component {
     };
 
     // this.toggle = this.toggle.bind(this);
-    this.changeRoute = this.changeRoute.bind(this);
-    this.toggleSignUp = this.toggleSignUp.bind(this);
-    this.toggleBook = this.toggleBook.bind(this);
+    // this.changeRoute = this.changeRoute.bind(this);
+    // this.toggleSignUp = this.toggleSignUp.bind(this);
+    // this.toggleBook = this.toggleBook.bind(this);
   }
 
   
-  toggleSignUp() {
-    this.setState({
-      modal: !this.state.modalsignUp
-    });
+//   toggleSignUp() {
+//     this.setState({
+//       modal: !this.state.modalsignUp
+//     });
   
-  }
+//   }
 
-  toggleBook() {
-    this.setState({
-      modal: !this.state.modalBook
-    });
+//   toggleBook() {
+//     this.setState({
+//       modal: !this.state.modalBook
+//     });
   
-  }
+//   }
 
-changeRoute () {
-  if (localStorage.getItem("username") === null) {
-    //...opensignUp
-    this.toggleSignUp()
-  } else {
-    // render book page
-  }
-    console.log("test");
-  };
+// changeRoute () {
+//   if (localStorage.getItem("username") === null) {
+//     //...opensignUp
+//     this.toggleSignUp()
+//   } else {
+//     // render book page
+//   }
+//     console.log("test");
+//   };
+
+
+handleBookClick = () => {
+if(window.localStorage.getItem("user")) {
+  window.localStorage.setItem("book", true);
+  $.ajax({
+    url: "/updatepark",
+    type: "POST",
+    data: JSON.stringify({
+      parkId: this.props.parkInfo._id,
+      userId: window.localStorage.getItem("user")._id
+    }),
+    contentType: "application/json",
+    success: function(data) {
+      console.log("update", data);
+    },
+    error: function(error) {
+      console.error("errorrrrrr", error);
+    }
+  });
+} else {
+  window.localStorage.setItem("book", false);
+}
+  
+
+}
+
+toggle = () => {
+  this.setState({
+    modal: !this.state.modal
+  });
+}
+
+handleAlert = () => {
+alert("u are not signedIn please signIn first")
+}
 
 render() {
   console.log(this.props.parkInfo)
@@ -80,10 +117,13 @@ render() {
         <CardText>OwnerName:{this.props.parkInfo.ownerdetails[0].name}</CardText>
         <CardText>PhoneNumber{this.props.parkInfo.ownerdetails[0].phoneNumber}</CardText>
         <CardText>{"Time : From "}{this.props.parkInfo.startTime}{" To "}{this.props.parkInfo.endTime}</CardText>
-        <CardText>{"Price : "}{this.props.parkInfo.price}</CardText>
-        <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
-            <Button className="btn btn-info">Book Now</Button>
+        <CardText>{"Price : "}{this.props.parkInfo.price}</CardText> 
+       
+        <Link  to={{pathname:"/book", park: this.props.parkInfo}}  >
+            <Button className="btn btn-info" onClick={this.handleBookClick}>Book Now</Button>
             </Link>
+            
+            {/* <Button className={window.localStorage.getItem("user") ? '' : 'hidden'}  className="btn btn-info" onClick={this.handleAlert} >Book Now</Button> */}
 
       </CardBody>
     </Card>

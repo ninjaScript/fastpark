@@ -11,6 +11,8 @@ import {
   CardSubtitle,
   Button
 } from "reactstrap";
+import { Link } from 'react-router-dom';
+
 
 class GoogleMapsContainer extends React.Component {
   constructor(props) {
@@ -81,7 +83,10 @@ class GoogleMapsContainer extends React.Component {
          <CardTitle className="mapInf">{this.state.selectedPlace.location}</CardTitle>
          <CardText className="mapInf">{"Price: "}{this.state.selectedPlace.price}</CardText>
         <CardText className="mapInf">{"from "}{this.state.selectedPlace.startTime}{" to "}{this.state.selectedPlace.endTime}</CardText>
-        <Button className="buttonMap"  color="primary">Book Now</Button>
+       
+        <Button className="buttonMap"  color="primary" >Book Nowwwww</Button>
+       
+       
         </InfoWindow>
       </Map>
     );

@@ -15,7 +15,8 @@ class SignUp extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
 
   }
-//////////////////////////////
+  // send post recuest from client to BE to signup as user and update the data base by adding new user 
+
   signup() {
     this.toggle()
 
@@ -34,7 +35,7 @@ class SignUp extends React.Component {
         data: JSON.stringify(userObj),
         contentType: "application/json",
         success: function(data) {
-          window.localStorage.setItem("user", JSON.stringify(data))
+          window.localStorage.setItem("user", data)
           console.log("pleasssssss", data);
         },
         error: function(error) {
@@ -47,7 +48,7 @@ class SignUp extends React.Component {
     const target = event.target;
     const name = target.name;
     const value = target.value;
-    this.setState({
+    this.setState({ 
       [name]: value
     });
   }

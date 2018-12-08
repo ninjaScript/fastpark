@@ -17,25 +17,27 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  >ParkIn:
+  Rent your carage online to let the user park a car on it.
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > ParkIn is for all the Owner who has unused carage in his home and need to be charged by rent the carage online, and its also for the all the people who has car and need to park it on safty way  
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > ParkIn include hosts and users: hosts list and rent out their unused garage spaces, and users search for and book the hoster garage.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > In jordan alot of places have no carage available to park on it which let the drivers park on the street.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > In this project we solve the park on street issue and now the user can park his car in safe place.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > If you are Owner for the carage you need to click host car to sign up and upload you carage Information also from your acount you can delete or add another carage if you have.
+  For the user: from the website you can search for the place you up head to it and rent a carage by inserting your information using signin or signup.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
