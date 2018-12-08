@@ -105,7 +105,7 @@ class HostCar extends React.Component {
           </ModalBody>
           <ModalFooter>
             <HostSignUp />
-            <Button color="primary" onClick={this.login}>
+            <Button color="primary" onClick={this.toggle} href="/ownerdashboard">
               Sign in
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

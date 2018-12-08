@@ -107,23 +107,21 @@ render() {
   return (
    
     <div>
-    <Card className="mapCardN">
-      <CardImg top width="100%" src={this.props.parkInfo.image} />
+     <Card className="mapCardN">
+      <CardImg  width="100%" src={this.props.parkInfo.image} />
       <CardBody>
         <CardTitle>{this.props.parkInfo.title}</CardTitle>
         <CardSubtitle>{this.props.parkInfo.description}</CardSubtitle>
         <CardText>{""}</CardText>
         <CardText>{"Area : "}{this.props.parkInfo.location}</CardText>
-        <CardText>OwnerName:{this.props.parkInfo.ownerdetails[0].name}</CardText>
-        <CardText>PhoneNumber{this.props.parkInfo.ownerdetails[0].phoneNumber}</CardText>
+        <CardText>Owner Name : {this.props.parkInfo.ownerdetails[0].name}</CardText>
+        <CardText>Phone Number : {this.props.parkInfo.ownerdetails[0].phoneNumber}</CardText>
         <CardText>{"Time : From "}{this.props.parkInfo.startTime}{" To "}{this.props.parkInfo.endTime}</CardText>
-        <CardText>{"Price : "}{this.props.parkInfo.price}</CardText> 
-       
-        <Link  to={{pathname:"/book", park: this.props.parkInfo}}  >
-            <Button className="btn btn-info" onClick={this.handleBookClick}>Book Now</Button>
+        <CardText>Rating : {this.props.parkInfo.ownerdetails[0].rating}</CardText>
+        <CardText>{"Price : "}{this.props.parkInfo.price}</CardText>
+        <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
+            <Button className="btn btn-info">Book Now</Button>
             </Link>
-            
-            {/* <Button className={window.localStorage.getItem("user") ? '' : 'hidden'}  className="btn btn-info" onClick={this.handleAlert} >Book Now</Button> */}
 
       </CardBody>
     </Card>

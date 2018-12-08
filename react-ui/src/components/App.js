@@ -6,7 +6,7 @@ import Navbar from "./NavbarCom.jsx";
 import SearchResults from "./SearchResults.js";
 import $ from "jquery";
 import SignUp from "./SignUp.jsx";
-
+import About from "./About.jsx";
 import SignIn from "./SignIn.jsx";
 import OwnerDashboard from "./OwnerDashboard.jsx";
 import Book from "./book";
@@ -93,8 +93,7 @@ class App extends Component {
           <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/SearchResults" component={SearchResults} />
           <Route exact path="/book" component={Book} />
-          <Route exact path="/SignUp" component={SignUp} />
-          <Route exact path="/SignIp" component={SignIn} />
+          <Route exact path="/About" component={About} />
         </div>
       </Router>
     );

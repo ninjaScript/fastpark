@@ -115,8 +115,8 @@ class book extends React.Component {
         <div className="directionBtn">
           <Alert color="success">Your booking has been confirmed!</Alert>
         </div>
-
-        <div>
+        <div className="bookingCard">
+        
           <Card>
             <CardBody>
               <CardTitle>
@@ -153,9 +153,9 @@ class book extends React.Component {
                 className="btn btn-info"
               >
                 Direction
-              </Button>
+              </Button>{" "}
               <Button className="btn btn-success" onClick={this.toggle}>
-                {this.props.buttonLabel}>Check Out
+                {this.props.buttonLabel}Check Out
               </Button>
 
               <Modal
@@ -190,6 +190,7 @@ class book extends React.Component {
                     color="primary"
                     onClick={this.handleCheckOutClick}
                   >
+                
                     Check Out
                   </Button>{" "}
                   <Button color="secondary" onClick={this.toggle}>
