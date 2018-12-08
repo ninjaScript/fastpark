@@ -97,27 +97,21 @@ export default class Example extends React.Component {
             </button>
 
             <Nav className="ml-auto" navbar>
-              <NavItem>
+            <NavItem style={{'display':this.state.hideNav ? 'none': 'block'}}>
                 <HostCar />
               </NavItem>
-              { !this.hideNav?  
-              <NavItem>
-                <SignIn/>
+              <NavItem  style={{'display':this.state.hideNav ? 'none': 'block'}}>
+                <SignIn handleClick = {this.handleLoginClick}/>
               </NavItem>
-              : null
-            }
-              { !this.hideNav?  
-              <NavItem>
-                <SignUp/>
+              <NavItem style={{'display': this.state.hideNav ? 'none':'block'}}>
+                <SignUp />
               </NavItem>
-              : null
-            }
-              { !this.hideNav?  
               <NavItem>
-              <NavLink href={"/"} onClick={this.logout}>Log out{this.props.buttonLabel}</NavLink>
+              <NavLink style={{'display': this.state.hideNav === false ?  'none':'block'}} href={"/"} onClick={this.logout}>Log out{this.props.buttonLabel}</NavLink>
               </NavItem>
-              : null
-            }
+             <NavItem>
+               <NavLink href="/About">About</NavLink>
+             </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

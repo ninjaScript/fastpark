@@ -84,7 +84,7 @@ class GoogleMapsContainer extends React.Component {
          <CardText className="mapInf">{"Price: "}{this.state.selectedPlace.price}</CardText>
         <CardText className="mapInf">{"from "}{this.state.selectedPlace.startTime}{" to "}{this.state.selectedPlace.endTime}</CardText>
        
-        <Button className="buttonMap"  color="primary" >Book Nowwwww</Button>
+        <Button className="buttonMap"  color="primary" >Book Now</Button>
        
        
         </InfoWindow>
