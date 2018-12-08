@@ -6,7 +6,7 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false 
     };
 
     this.toggle = this.toggle.bind(this);
@@ -16,6 +16,7 @@ class SignIn extends React.Component {
 
   }
 
+  // send post recuest from client to BE to signin as a user
   login() {
 
     this.toggle()
@@ -30,9 +31,8 @@ class SignIn extends React.Component {
         type: "POST",
         data: JSON.stringify(userObj),
         contentType: "application/json",
-        success: (data) => {
-          window.localStorage.setItem("user", JSON.stringify(data))
-          this.props.handleClick()
+        success: function(data) {
+          window.localStorage.setItem("user", data)
           console.log("pleasssssss", data);
         },
         error: function(error) {

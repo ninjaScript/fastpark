@@ -25,7 +25,7 @@ class HostCar extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-
+// send post recuest from client to BE to signin as an owner
   login() {
 
     this.toggle()
@@ -34,14 +34,14 @@ class HostCar extends React.Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log('here signin',ownerObj);
+    console.log('here signinownerloginownerloginownerlogin',ownerObj);
         $.ajax({
         url: "/ownerlogin",
         type: "POST",
         data: JSON.stringify(ownerObj),
         contentType: "application/json",
         success: function(data) {
-          window.localStorage.setItem("user", JSON.stringify(data))
+          window.localStorage.setItem("user", data)
           console.log("pleasssssss", data);
         },
         error: function(error) {
@@ -105,7 +105,7 @@ class HostCar extends React.Component {
           </ModalBody>
           <ModalFooter>
             <HostSignUp />
-            <Button color="primary" onClick={this.toggle} href="/ownerdashboard">
+            <Button color="primary" onClick={this.login}>
               Sign in
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

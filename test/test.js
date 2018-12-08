@@ -86,3 +86,45 @@ describe('Database saved User:', function(done) {
 
 
 
+//Post test for create Ownername in server 
+describe('Fast parking requirement', function () {
+	
+	describe('POST Owner', function(done){
+			it('Should Create Acount SignUp', function(done){
+		// create account for the owner
+		request('http://localhost:3000').post("/ownersignup")
+		.expect(200)
+		.send({
+			"name": "Azhar",
+    		"phoneNumber": "079888888",
+    		"username": "Azhar",
+    		"password": "12345",
+   			 "email": "az@az.com "
+			})
+		.end(done)
+		});
+	});
+});
+
+
+// this test for the saving database from mongo database.
+
+// describe('Database saved Owner:', function(done) {
+   
+// 	it('Saves a record to the database', function(done){
+// 	// beforeEach(function(done) {
+// 		owner = new db.Owner({
+// 	"name": "Azhar",
+// 		"phoneNumber": "079888888",
+// 		"username": "Azhar",
+// 		"password": "12345",
+// 			"email": "az@az.com "
+// 		});
+// 		Owner.save(function(err) {
+// 			if(err) console.log("error",err)
+// 				console.log("the owner has been savedsaved")
+// 			done();
+// 		});
+// 	});
+
+// });

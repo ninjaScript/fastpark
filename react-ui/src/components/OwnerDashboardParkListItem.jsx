@@ -9,12 +9,12 @@ import {
   CardSubtitle,
   Button
 } from "reactstrap";
-import '../index.css';
+
 const OwnerDashboardParkListItem = ({ park, handleDelete }) => {
   if (park.userdetails.length > 0) {
   return (
     
-    <div className="ownerParkCard">
+    <div>
     <Card className="parkCard">
       <CardImg top width="100%" src={park.image} />
       <CardBody>
@@ -34,7 +34,7 @@ const OwnerDashboardParkListItem = ({ park, handleDelete }) => {
   );}
   else{
     return (
-      <div className="ownerParkCard">
+      <div>
       <Card className="parkCard">
         <CardImg top width="100%" src={park.image} />
         <CardBody>

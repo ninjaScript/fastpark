@@ -6,10 +6,10 @@ import Navbar from "./NavbarCom.jsx";
 import SearchResults from "./SearchResults.js";
 import $ from "jquery";
 import SignUp from "./SignUp.jsx";
+
 import SignIn from "./SignIn.jsx";
 import OwnerDashboard from "./OwnerDashboard.jsx";
-import Book from "./book"
-import About from "./About.jsx";
+import Book from "./book";
 // import CardHome from './CardHome.jsx';
 class App extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class App extends Component {
       fetching: true
     };
   }
-  //"5c026ba1548c172ce9294538"
+  
   componentDidMount() {
     // $.ajax({
     //   url: "/ownersignup",
@@ -82,6 +82,8 @@ class App extends Component {
     // });
   }
 
+  
+// render routes 
   render() {
     return (
       <Router>
@@ -91,8 +93,8 @@ class App extends Component {
           <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/SearchResults" component={SearchResults} />
           <Route exact path="/book" component={Book} />
-          <Route exact path="/About" component={About} />
-
+          <Route exact path="/SignUp" component={SignUp} />
+          <Route exact path="/SignIp" component={SignIn} />
         </div>
       </Router>
     );

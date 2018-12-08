@@ -28,6 +28,7 @@ class HostSignUp extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  // send post recuest from client to BE to update user and add a new owner on database.
   signup() {
 
     this.toggle()
@@ -130,7 +131,7 @@ class HostSignUp extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.signup} href="/ownerdashboard">
+            <Button color="primary" onClick={this.signup} href="/searchresults">
               Sign up
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
