@@ -68,8 +68,6 @@ app.post("/ownerlogin", function(req, res) {
   });
 });
 
-
-
 //handle adding new park listing by owners from /addpark post request
 app.post("/addpark", function(req, res) {
   db.savePark(req.body, function(done, err) {
