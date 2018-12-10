@@ -26,25 +26,28 @@ import {
   Col, 
   FormText
 } from "reactstrap";
-import logo from '../style/Customer.png';
+import Customer from '../style/Customer.png';
 
 
 export default class CustomerService extends React.Component {
   render() {
     return (
-      <Form className="Customer">
-        <FormGroup col>
-       
-           
-       
+      <div className="customerService">
+          <div id="advertisement">
+            <img src={Customer}/>
+          </div>
+          <div className="customer">
+      <Form >    
+        <FormGroup>
+   
           <Col sm={10}>
           <Col className="headCustomer">
           <h1>Find out more today</h1>
-            <h5>
+            <p>
                 Fill out the form below for more information about how we can work with 
-                you to drive higher revenues and improve customer experience at your car parks.
-                Need help with your booking? Contact customer support here.
-            </h5>
+                you to drive higher revenues and improve customer experience at your car parks.</p>
+                <p>Need help with your booking? <span id="contact" link="">Contact customer support here.</span>
+            </p>
             </Col>
             <Input type="text" name="name" id="exampleName" placeholder="Name" />
           </Col>
@@ -76,6 +79,8 @@ export default class CustomerService extends React.Component {
           
         </FormGroup>
       </Form>
+      </div>
+      </div>
     );
   }
 }

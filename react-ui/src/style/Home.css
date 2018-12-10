@@ -251,16 +251,29 @@ li{
 }
 
 /***************************** Customer Service Section ******************************/
-.Customer {
-	margin-top: 250px;
+.customer {
+	margin-top: -550px;
 	width: 800px;
-	height: 650px;
+	height: 500px;
 	margin-left: 950px;
 }
 
+.customerService{
+	height: 700px;
+}
 .headCustomer {
 	text-align: center;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
+}
+
+#advertisement{
+	margin-left: 300px;
+	margin-top: 200px;
+}
+
+#contact {
+	color: #b43932;
+	cursor: pointer; 
 }
 
 #exampleText {
