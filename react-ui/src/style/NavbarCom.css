@@ -9,6 +9,11 @@
   display: flex;
 }
 
+.logoName {
+  margin-top: -30px;
+  margin-left: 36px;
+}
+
 .navbar-light .navbar-nav .nav-link {
   color: white;
 }
