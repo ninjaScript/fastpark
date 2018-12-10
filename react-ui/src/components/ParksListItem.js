@@ -8,8 +8,9 @@ import { Container, Row, Col } from "reactstrap";
 
 
 // Import Sign up to use it inside Booking
-import SignUp from "./SignUp.jsx"
-import Book from "./book.js"
+import SignUp from "./SignUp.jsx";
+import Book from "./book.js";
+import AlertToConfirmBook from "./popUpAlert.jsx";
 
 import {
   Card,
@@ -119,10 +120,10 @@ render() {
         <CardText>{"Time : From "}{this.props.parkInfo.startTime}{" To "}{this.props.parkInfo.endTime}</CardText>
         <CardText>Rating : {this.props.parkInfo.ownerdetails[0].rating}</CardText>
         <CardText>{"Price : "}{this.props.parkInfo.price}</CardText>
-        <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
+        {/* <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
             <Button className="btn btn-info">Book Now</Button>
-            </Link>
-
+        </Link> */}
+        <AlertToConfirmBook park = {this.props.parkInfo}/>
       </CardBody>
     </Card>
   </div>
