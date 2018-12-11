@@ -1,15 +1,23 @@
 import React from 'react';
 import FavCard from "./FavCard.jsx";
 import { Row, Col } from 'reactstrap';
-// import UserInfo from "./UserInfo.jsx";
+import UserInfo from "./UserInfo.jsx";
 // import Pagination from "react-js-pagination";
 import Pagination from './Pagination';
 // import "bootstrap/dist/css/bootstrap.min.css";
 
+var exampleUser = [{
+	id: 3,
+    		name: "Ahmad",
+    		location: "Amman",
+    		imgUrl: "https://randomuser.me/api/portraits/women/91.jpg",
+    		descr: "hi its me someone"
+    	}]
 
 class UserProfile extends React.Component {
 	constructor(props) {
     super(props)
+    	
       var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
       this.state = {
           exampleItems: exampleItems,
@@ -29,9 +37,14 @@ class UserProfile extends React.Component {
 
 	render() {
 		return (
-				
+			<div>
+			<div className="container">
+				{exampleUser.map(user =>
+								<UserInfo key={user.id} user={user}/>	
+            	)}	
+				</div>
 					<div className="container">
-            <div className="text-center">
+            <div className="text-center">       
               <h4>Your Favorite Parking Lots</h4>
               <div className="fav">
               <Row>
@@ -45,6 +58,8 @@ class UserProfile extends React.Component {
             </div>
           </div>
          </div>
+         </div>
+         
 		)	
 	}
 }
