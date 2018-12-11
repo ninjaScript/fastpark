@@ -29,6 +29,8 @@ import HostCar from "./HostCar.jsx";
 import "../style/NavbarCom.css";
 import signUp from "./SignUp.jsx";
 import Book from "./book.js"
+import logo from "../style/logo.png";
+
 // import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export default class Example extends React.Component {
@@ -64,7 +66,6 @@ export default class Example extends React.Component {
   }
 
   logout(){
-    console.log("hhhhhhhhhhhhhh");
     this.setState({
       storage: window.localStorage.removeItem('user'),
     });
@@ -73,10 +74,11 @@ export default class Example extends React.Component {
 
   render() {
     return (
+    <div>
       <div className="mynav">
         <Navbar color="navbar-dark bg-dark" dark expand="md" class="nav">
           <NavbarBrand href="/" className="NavbarBrand">
-            ParkIn
+            <img src={logo} width="40px" height="40px" className="logo"/><h2 className="logoName">arkIn</h2>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -116,6 +118,8 @@ export default class Example extends React.Component {
           </Collapse>
         </Navbar>
       </div>
+      </div>
+      
     );
   }
 }

@@ -12,6 +12,8 @@ import {
 import "../style/Home.css";
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import Footer from './Footer.js';
+
 class CardHome extends React.Component {
   constructor(props) {
     super(props);
@@ -26,15 +28,16 @@ class CardHome extends React.Component {
   }
   render() {
     return (
+      <body>
       <div>
         <Card id="homecard">
           <h4>Choose your Park anywhere any time .</h4>
           <CardBody>
-            <label htmlFor="Where">Where</label>
+            <label htmlFor="Where">Location</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Area Name"
+              placeholder="Where do you want to Park?"
               value={this.state.inputValue}
               onChange={evt => this.updateInputValue(evt)}
             />
@@ -51,13 +54,13 @@ class CardHome extends React.Component {
                 type="text"
                 className="form-control"
                 id="Start"
-                placeholder="Start Hour"
+                placeholder="Select a Date & Time"
               />
               <input
                 type="text"
                 className="form-control"
                 id="End"
-                placeholder="End Hour"
+                placeholder="Select a Date & Time"
               />
             </Form>
             <Link
@@ -73,6 +76,10 @@ class CardHome extends React.Component {
           </CardBody>
         </Card>
       </div>
+      <div>
+        
+      </div>
+      </body>
     );
   }
 }
