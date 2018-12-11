@@ -56,6 +56,16 @@ body {
 	z-index : -10 ; 
 }
 
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
+}
+
+.icon {
+	color:green;
+}
+
+
 .media3 {
   margin-top: -10px;
   margin-left: 50px;
@@ -248,4 +258,40 @@ li{
 		margin-left: 0;
 	}
 
+}
+
+/***************************** Customer Service Section ******************************/
+.customer {
+	margin-top: -550px;
+	width: 800px;
+	height: 500px;
+	margin-left: 950px;
+}
+
+.customerService{
+	height: 700px;
+}
+.headCustomer {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#advertisement{
+	margin-left: 300px;
+	margin-top: 200px;
+}
+
+#contact {
+	color: #b43932;
+	cursor: pointer; 
+}
+
+#exampleText {
+	height: 200px;
+}
+
+#submit {
+	background: #b43932;
+	width: 640px;
+	margin-left: 14px;
 }

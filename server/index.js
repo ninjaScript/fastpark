@@ -33,6 +33,18 @@ app.post("/login", function(req, res) {
   });
 });
 
+app.post('/admin', function (req, res) {
+  console.log("admin", req.body);
+  var user = {
+    "name": req.body.name,
+    "email": req.body.email,
+    "phoneNumber": req.body.phoneNumber,
+    "comments": req.body.comments
+  }
+  res.send(user);
+})
+
+
 //handle GET requests for parks listings
 app.post("/parks", function(req, res) {
   if (req.body.location) {
