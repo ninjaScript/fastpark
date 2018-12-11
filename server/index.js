@@ -41,9 +41,13 @@ app.post('/admin', function (req, res) {
     "phoneNumber": req.body.phoneNumber,
     "comments": req.body.comments
   }
-  res.send(user);
+  db.saveMessageCustomer(user, function(error, result) {
+    if (error) {console.log("error", error)
+  } else {
+    console.log("Success!", result)
+  }
+  });
 })
-
 
 //handle GET requests for parks listings
 app.post("/parks", function(req, res) {

@@ -155,7 +155,7 @@ export default class CustomerService extends React.Component {
             <img src={Customer}/>
           </div>
           <div className="customer">
-                <Form onSubmit={!enabled}>    
+                <Form>    
                     <FormGroup>
                         <Col sm={10}>
                             <Col className="headCustomer">
@@ -185,7 +185,7 @@ export default class CustomerService extends React.Component {
                         </Col>
                     </FormGroup>
                     <FormGroup  handleOnClick={this.handleOnClick} >
-                            <Button type = "submit" id="submit"  onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}SEND</Button>
+                            <Button type = "submit" id="submit" disabled={enabled} onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}SEND</Button>
                                 {this.state.toggleButton && <p align="center" style={{marginLeft: "-100px"}}  className="label"><i class="fa fa-check icon"></i><b>Thanks, we'll be in touch as soon as possible.</b></p>}
                     </FormGroup>
                 </Form>

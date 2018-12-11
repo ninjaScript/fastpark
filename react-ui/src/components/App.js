@@ -12,6 +12,7 @@ import OwnerDashboard from "./OwnerDashboard.jsx";
 import Book from "./book";
 import Footer from "./Footer.js";
 import CustomerService from "./CustomerService.js";
+import WhySection from "./WhySection.js";
 
 // import CardHome from './CardHome.jsx';
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
           <Route exact path="/book" component={Book} />
           <Route exact path="/About" component={About} />
           </body>
+          <WhySection/>
           <CustomerService/>
           <Footer/>
         </div>
