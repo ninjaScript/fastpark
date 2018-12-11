@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Helvetica Neue:300,400,700');
+
 #homecard {
   margin: 0;
   position: absolute;
@@ -45,7 +47,7 @@ h4 {
 }
 
 /*****************************Footer******************************/
-body {
+/* body {
 	background-image: url('./bk.jpeg');
 	background-position: center;
 	background-repeat: no-repeat;
@@ -54,7 +56,7 @@ body {
 	bottom: 0;
 	height: 100vh;
 	z-index : -10 ; 
-}
+} */
 
 .fa {
   margin-left: -12px;
@@ -297,7 +299,13 @@ li{
 }
 
 /************************************** Why Us Section ************************************/
+
+#mission {
+	font-family: 'Varela Round', sans-serif;
+}
+
 .headBoard{
+	font-family: 'Varela Round', sans-serif;
 	margin-top: 100px;
 }
 
@@ -317,16 +325,18 @@ li{
 
 
 #mission3 {
+	color: #b43932;
   text-align: justify;
-  font-family: myFirstFont;
-  margin-left: -50px;
-  margin-bottom: 0px;
+  font-family: 'Varela Round', sans-serif;
+  margin-left: 0px;
+  margin-bottom: 10px;
 }
 
 .p5 {
   text-align: justify;
   margin-left: 200px;
-  margin-top: 50px;
+	margin-top: 50px;
+	margin-bottom: 20px;
   height: 100px;
   width: 400px;
 }
@@ -347,43 +357,5 @@ li{
   margin-left: 300px;
 }
 
-/*SlideShow functionality including transform and animation property usage from CSS*/
-/* .tech-slideshow1 {
-  height: 200px;
-  max-width: 1800px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-} */
-
-/* .tech-slideshow1 > div {
-  height: 200px;
-  width: 2700px;
-  background: url('./all.jpg');
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  transform: translate3d(0, 0, 0);
-}
-.tech-slideshow1 .mover-3 {
-  animation: moveSlideshow 22s linear infinite;
-}
-.tech-slideshow1 .mover-4 {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-  background-position: 0 -200px;
-  animation: moveSlideshow 15s linear infinite;
-}
-.tech-slideshow1:hover .mover-4 {
-  opacity: 1;
-}
-
-@keyframes moveSlideshow {
-  100% { 
-    transform: translateX(-66.6666%);  
-  }
-} */
 
 

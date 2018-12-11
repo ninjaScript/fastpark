@@ -10,9 +10,7 @@ import About from "./About.jsx";
 import SignIn from "./SignIn.jsx";
 import OwnerDashboard from "./OwnerDashboard.jsx";
 import Book from "./book";
-import Footer from "./Footer.js";
 import CustomerService from "./CustomerService.js";
-import WhySection from "./WhySection.js";
 
 // import CardHome from './CardHome.jsx';
 class App extends Component {
@@ -30,16 +28,12 @@ class App extends Component {
       <Router>
         <div>
           <Navbar />
-          <body>
           <Route exact path="/" component={Home} />
-          <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/SearchResults" component={SearchResults} />
+          <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/book" component={Book} />
           <Route exact path="/About" component={About} />
-          </body>
-          <WhySection/>
-          <CustomerService/>
-          <Footer/>
+          <Route exact path="/CustomerService" component={CustomerService} />
         </div>
       </Router>
     );
