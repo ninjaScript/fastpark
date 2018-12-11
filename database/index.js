@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 //mongoose.connect('mongodb://localhost/test');
 mongoose.connect(
-  "mongodb://admin:admin123@ds119374.mlab.com:19374/fastpark",
+  "mongodb://admin:admin1234@ds255930.mlab.com:55930/parkdb",
   { useNewUrlParser: true }
 );
 
@@ -18,6 +18,7 @@ db.once("open", function() {
   console.log("mongoose connected successfully");
 });
 
+// schema for user
 const UserSchema = new Schema({
   username: {
     type: String,
@@ -36,16 +37,28 @@ const UserSchema = new Schema({
   phoneNumber: {
     type: String,
     required: true
-  }
+  }, 
+  imgUrl: String,
+  balance: Number
 });
-const OwnerSchema = new Schema({
+
+// shcema for favorite park
+const FavParkSchema = new Schema({
+  userId: { type: mongoose.Schema.ObjectId, ref: "User" },
+  parkId: { type: mongoose.Schema.ObjectId, ref: "Park" },
+}); 
+
+// Schema for owner 
+const OwnerSchema = new Schema({  
   name: String,
   phoneNumber: String,
   email: String,
   password: String,
   rating: String,
-  image: String
+  image: String, 
 });
+
+// schema for Park
 const ParkSchema = new Schema({
   title: String,
   description: String,
@@ -53,18 +66,70 @@ const ParkSchema = new Schema({
   lat: String,
   location: String,
   image: String,
+  limit : Number,
   ownerId: { type: mongoose.Schema.ObjectId, ref: "Owner" },
-  userId: { type: mongoose.Schema.ObjectId, ref: "User" },
+  // userId: { type: mongoose.Schema.ObjectId, ref: "User" },
   price: String,
+  rateAvg: Number,
+  numFeed: Number,
   startTime: String,
   endTime: String
 });
 
+//schema for Booking
+const BookingSchema = new Schema({
+  userId: { type: mongoose.Schema.ObjectId, ref: "User" },
+  parkId: { type: mongoose.Schema.ObjectId, ref: "Park" },
+  startTime: String,
+  endTime : String,
+  price : Number,
+  createdAt : {
+    type : Date,
+    default: Date.now()
+  } 
+})
+
+//schema for prmotion code
+const PromotionCodeSchema = new Schema({
+  code: String,
+  discount: Number, 
+  startTime: Date, 
+  endTime: Date
+})
+
+const CustomerServicesSchema = new Schema({
+  name: String, 
+  email: String,
+  phoneNumber: String,
+  comment: String
+})
+
 const User = mongoose.model("User", UserSchema);
 const Owner = mongoose.model("Owner", OwnerSchema);
 const Park = mongoose.model("Park", ParkSchema);
+const Booking = mongoose.model("Booking", BookingSchema);
+const FavPark = mongoose.model("FavPark", FavParkSchema);
+const PromotionCode = mongoose.model("PromotionCode", PromotionCodeSchema)
+const CustomerServices = mongoose.model("CustomerServices", CustomerServicesSchema);
 
-//saving user to Users table
+// This function to save the message for customer services
+const saveMessageCustomer = (data, callback) => {
+  let message = new CustomerServices({
+    name: data.name, 
+    phoneNumber: data.phoneNumber, 
+    email : data.email,
+    comment: data.comment
+  });
+  message.save(function (err) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, user)
+    }
+  })
+}
+
+//saving user to Users table // updated
 const saveUser = (data, cb) => {
   hashPassword(data["password"], function(err, hashedPassword) {
     if (err) console.log("HashPassword Error", err);
@@ -74,7 +139,8 @@ const saveUser = (data, cb) => {
       username: data["username"],
       password: hashedPassword,
       plateNumber: data["plateNumber"],
-      email: data["email"]
+      email: data["email"],
+      imgUrl: data["imgUrl"]
     });
     user.save(function(err) {
       if (err) cb(null, err);
