@@ -25,7 +25,6 @@ app.post("/signup", function(req, res) {
 
 // handle login post request from client
 app.post("/login", function(req, res) {
-  console.log("AZZZZZZZZZZZZZZZHHHHHHHHHHHAAAAAAAAR")
   db.checkPassword(req.body, function(passRes, err) {
     if (err) console.log("erreeer", err);
     console.log(passRes,"passRespassRespassRespassRespassRespassRes");
@@ -67,10 +66,7 @@ app.post("/ownerlogin", function(req, res) {
 
     res.send(passRes);
   });
-  //res.send("hhhhhhhhhhhhhh")
 });
-
-
 
 //handle adding new park listing by owners from /addpark post request
 app.post("/addpark", function(req, res) {

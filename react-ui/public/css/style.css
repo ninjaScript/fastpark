@@ -1,9 +1,0 @@
-#root {
-    background-image: url('../img/garage.jpg');
-    background-size: cover;
-    background-position : relative;
-    top : 0;
-    bottom: 0;
-    height: 100vh;
-    z-index : -10 ; 
-}

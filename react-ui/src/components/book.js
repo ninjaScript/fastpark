@@ -75,7 +75,7 @@ class book extends React.Component {
         console.log("update", data);
       },
       error: function(error) {
-        console.error("errorrrrrr", error);
+        console.error("Error", error);
       }
     });
   };
