@@ -4,11 +4,13 @@ import { Row, Col } from 'reactstrap';
 // import UserInfo from "./UserInfo.jsx";
 // import Pagination from "react-js-pagination";
 import Pagination from './Pagination';
+// import "bootstrap/dist/css/bootstrap.min.css";
+
 
 class UserProfile extends React.Component {
 	constructor(props) {
     super(props)
-      var exampleItems = [...Array(8).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+      var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
       this.state = {
           exampleItems: exampleItems,
           pageOfItems: []
@@ -31,12 +33,16 @@ class UserProfile extends React.Component {
 					<div className="container">
             <div className="text-center">
               <h4>Your Favorite Parking Lots</h4>
+              <div className="fav">
               <Row>
               {this.state.pageOfItems.map(item =>
 								<FavCard key={item.id} item={item}/>	
             	)}
 						</Row>
+						</div>
+						<div>
             <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage} />
+            </div>
           </div>
          </div>
 		)	
