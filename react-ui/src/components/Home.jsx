@@ -28,8 +28,7 @@ class CardHome extends React.Component {
   }
   render() {
     return (
-      <body>
-      <div>
+
         <Card id="homecard">
           <h4>Choose your Park anywhere any time .</h4>
           <CardBody>
@@ -75,11 +74,8 @@ class CardHome extends React.Component {
             </Link>
           </CardBody>
         </Card>
-      </div>
-      <div>
-        
-      </div>
-      </body>
+
+
     );
   }
 }

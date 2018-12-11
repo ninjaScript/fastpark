@@ -56,6 +56,16 @@ body {
 	z-index : -10 ; 
 }
 
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
+}
+
+.icon {
+	color:green;
+}
+
+
 .media3 {
   margin-top: -10px;
   margin-left: 50px;
