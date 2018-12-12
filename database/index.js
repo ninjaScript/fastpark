@@ -10,11 +10,11 @@ const SALT_WORK_FACTOR = 10;
 const db = mongoose.connection;
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
-db.on("error", function() {
+db.on("error", function () {
   console.log("mongoose connection error");
 });
 
-db.once("open", function() {
+db.once("open", function () {
   console.log("mongoose connected successfully");
 });
 
@@ -37,7 +37,7 @@ const UserSchema = new Schema({
   phoneNumber: {
     type: String,
     required: true
-  }, 
+  },
   imgUrl: String,
   balance: Number
 });
@@ -46,16 +46,16 @@ const UserSchema = new Schema({
 const FavParkSchema = new Schema({
   userId: { type: mongoose.Schema.ObjectId, ref: "User" },
   parkId: { type: mongoose.Schema.ObjectId, ref: "Park" },
-}); 
+});
 
 // Schema for owner 
-const OwnerSchema = new Schema({  
+const OwnerSchema = new Schema({
   name: String,
   phoneNumber: String,
   email: String,
   password: String,
   rating: String,
-  image: String, 
+  image: String,
 });
 
 // schema for Park
@@ -66,14 +66,18 @@ const ParkSchema = new Schema({
   lat: String,
   location: String,
   image: String,
-  limit : Number,
+  limit: Number,
   ownerId: { type: mongoose.Schema.ObjectId, ref: "Owner" },
   // userId: { type: mongoose.Schema.ObjectId, ref: "User" },
   price: String,
   rateAvg: Number,
   numFeed: Number,
   startTime: String,
-  endTime: String
+  endTime: String,
+  all: {
+    type: String,
+    default: "all"
+  }
 });
 
 //schema for Booking
@@ -81,24 +85,24 @@ const BookingSchema = new Schema({
   userId: { type: mongoose.Schema.ObjectId, ref: "User" },
   parkId: { type: mongoose.Schema.ObjectId, ref: "Park" },
   startTime: String,
-  endTime : String,
-  price : Number,
-  createdAt : {
-    type : Date,
+  endTime: String,
+  price: Number,
+  createdAt: {
+    type: Date,
     default: Date.now()
-  } 
+  }
 })
 
 //schema for prmotion code
 const PromotionCodeSchema = new Schema({
   code: String,
-  discount: Number, 
-  startTime: Date, 
+  discount: Number,
+  startTime: Date,
   endTime: Date
 })
 
 const CustomerServicesSchema = new Schema({
-  name: String, 
+  name: String,
   email: String,
   phoneNumber: String,
   comment: String
@@ -115,11 +119,12 @@ const CustomerServices = mongoose.model("CustomerServices", CustomerServicesSche
 // This function to save the message for customer services
 const saveMessageCustomer = (data, callback) => {
   let message = new CustomerServices({
-    name: data.name, 
-    phoneNumber: data.phoneNumber, 
-    email : data.email,
+    name: data.name,
+    phoneNumber: data.phoneNumber,
+    email: data.email,
     comment: data.comment
   });
+
   message.save(function (err) {
     if (err) {
       callback(err, null);
@@ -131,29 +136,29 @@ const saveMessageCustomer = (data, callback) => {
 
 //saving user to Users table // updated
 const saveUser = (data, cb) => {
-  hashPassword(data["password"], function(err, hashedPassword) {
-    if (err) console.log("HashPassword Error", err);
-    let user = new User({
-      name: data["name"],
-      phoneNumber: data["phoneNumber"],
-      username: data["username"],
-      password: hashedPassword,
-      plateNumber: data["plateNumber"],
-      email: data["email"],
-      imgUrl: data["imgUrl"]
-    });
-    user.save(function(err) {
-      if (err) cb(null, err);
-      cb(user, null);
-    });
+  // hashPassword(data["password"], function (err, hashedPassword) {
+  //   if (err) console.log("HashPassword Error", err);
+  let user = new User({
+    name: data["name"],
+    phoneNumber: data["phoneNumber"],
+    username: data["username"],
+    password: data["password"],
+    plateNumber: data["plateNumber"],
+    email: data["email"],
+    imgUrl: data["imgUrl"]
   });
+  user.save(function (err) {
+    if (err) cb(null, err);
+    cb(user, null);
+  });
+  // });
 };
 //generating hash password using bcrypt
-const hashPassword = function(password, cb) {
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+const hashPassword = function (password, cb) {
+  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
     if (err) throw err;
 
-    bcrypt.hash(password, salt, function(err, hash) {
+    bcrypt.hash(password, salt, function (err, hash) {
       if (err) return cb(err, null);
       cb(null, hash);
     });
@@ -161,38 +166,42 @@ const hashPassword = function(password, cb) {
 };
 //checking login password with database
 const checkPassword = (data, cb) => {
-  User.findOne({ email: data.email }, function(err, res) {
-    
+  User.findOne({ email: data.email }, function (err, res) {
+    console.log(res)
     if (res) {
       //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
-      bcrypt.compare(data.password, res.password, function(err, isMatch) {
-        if (err) return cb(null, err);
-        cb(res._id, err);
-      });
+      // bcrypt.compare(data.password, res.password, function (err, isMatch) {
+      if (res.password === data.password) {
+        cb(null, res);
+      }
+
+      // });
     } else {
-      cb(false, null);
+      cb(err, null);
     }
   });
 }
 
 //fix error log in as owner
 const checkPasswordOwner = (data, cb) => {
-  console.log(data,"OwnerOwnerOwnerOwnerOwnerOwnerdata")
-  Owner.findOne({ email: data.email }, function(err, res) {
-    
+  Owner.findOne({ email: data.email }, function (err, res) {
     if (res) {
       //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       // bcrypt.compare(data.password, res.password, function(err, isMatch) {
       //   if (err) return cb(null, err);
-        cb(res._id, err);
-    //  });
+        if (res.password === data.password) {
+          cb(res, true);
+        }
+        
     } else {
-      cb(false, null);
+      cb(null, false);
     }
   });
 }
 //saving owner to the Owners table
 const saveOwner = (data, cb) => {
+  // hashPassword(data.password, function (err, hash) {
+  //   console.log(hash)
   let owner = new Owner({
     name: data["name"],
     phoneNumber: data["phoneNumber"],
@@ -201,11 +210,13 @@ const saveOwner = (data, cb) => {
     rating: data["rating"],
     image: data["image"]
   });
-  owner.save(function(err) {
+  owner.save(function (err) {
     if (err) cb(null, err);
     //returning the auto generated id from the db to be used when adding new parks
-    cb(owner._id, null);
+    cb(owner, null);
   });
+  // })
+
 };
 
 //saving parks to Parks table
@@ -222,7 +233,7 @@ const savePark = (data, cb) => {
     startTime: data["startTime"],
     endTime: data["endTime"]
   });
-  park.save(function(err) {
+  park.save(function (err) {
     if (err) throw err;
     cb(true);
   });
@@ -231,9 +242,16 @@ const savePark = (data, cb) => {
 //finding all parks based on the provided location
 //using aggregation to get all the owner details from owners table
 const findParks = (query, cb) => {
+  // if the query = all  match with all feild
+  // if the query = any thing else match with location feild
+  var feild = "location";
+  if (query === "all") {
+    feild = "all"
+  }
+  console.log(query);
   db.collection("parks")
     .aggregate([
-      { $match: { location: query } },
+      { $match: { [feild]: query } },
       {
         $lookup: {
           from: "owners",
@@ -243,8 +261,9 @@ const findParks = (query, cb) => {
         }
       }
     ])
-    .toArray(function(err, res) {
+    .toArray(function (err, res) {
       if (err) throw err;
+      console.log(res)
       cb(res);
     });
 };
@@ -263,7 +282,7 @@ const findOwnerParks = (ownerId, callback) => {
         }
       }
     ])
-    .toArray(function(err, res) {
+    .toArray(function (err, res) {
       console.log(res, err);
       if (err) callback(err, null);
       callback(null, res);
@@ -271,7 +290,7 @@ const findOwnerParks = (ownerId, callback) => {
 };
 //updating the park document with userId based on booking and checkout
 const updatePark = (parkId, userId, cb) => {
-  Park.updateOne({ _id: parkId }, { userId: userId }, function(err, res) {
+  Park.updateOne({ _id: parkId }, { userId: userId }, function (err, res) {
     if (res) {
       cb(true, null);
     } else {
@@ -279,11 +298,11 @@ const updatePark = (parkId, userId, cb) => {
     }
   });
 };
-const deletePark = function (parkId, cb){
-  Park.deleteOne({"_id":ObjectId(parkId)},(err,res)=>{
+const deletePark = function (parkId, cb) {
+  Park.deleteOne({ "_id": ObjectId(parkId) }, (err, res) => {
     if (err) {
       console.log("delete error", err)
-    } 
+    }
     cb(res)
   });
 };
@@ -291,8 +310,8 @@ const deletePark = function (parkId, cb){
 
 //updating the owner rating based on rating after checkout
 const updateOwnerRating = (ownerId, rating, cb) => {
-  console.log(rating,"rating come from FE")
-  owner.updateOne({ _id: ownerId }, { rating: rating }, function(err, res) {
+  console.log(rating, "rating come from FE")
+  owner.updateOne({ _id: ownerId }, { rating: rating }, function (err, res) {
 
     if (res) {
       cb(true, null);

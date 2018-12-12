@@ -13,76 +13,91 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Answer API requests.
 
-app.post("/signup", function(req, res) {
-  db.saveUser(req.body, function(user, err) {
+app.post("/signup", function (req, res) {
+  db.saveUser(req.body, function (user, err) {
     if (err) console.log("erreeer", err);
-    console.log("user", user);
+      console.log("user", user);
     if (user) {
-      res.send(user._id);
+      res.send(user);
     }
   });
 });
 
 // handle login post request from client
-app.post("/login", function(req, res) {
-  db.checkPassword(req.body, function(passRes, err) {
+app.post("/login", function (req, res) {
+  db.checkPassword(req.body, function (err, result) {
     if (err) console.log("erreeer", err);
-    console.log(passRes,"passRespassRespassRespassRespassRespassRes");
-    
-    res.send(passRes);
+    console.log(result, "passRespassRespassRespassRespassRespassRes");
+
+    res.send(result);
   });
 });
 
-//handle GET requests for parks listings
-app.post("/parks", function(req, res) {
+//handle Post requests for parks listings
+app.post("/parks", function (req, res) {
   if (req.body.location) {
-    db.findParks(req.body.location, function(parks) {
+    db.findParks(req.body.location, function (parks) {
       res.json(parks);
     });
   } else {
-    db.findOwnerParks(req.body.ownerId, function(err, parks) {
+    db.findOwnerParks(req.body.ownerId, function (err, parks) {
       if (err) console.log("findOwnerParksERROR", err);
       res.json(parks);
     });
   }
 });
 //handle owner Creation from /signup post request
-app.post("/ownersignup", function(req, res) {
-  db.saveOwner(req.body, function(done, err) {
+app.post("/ownersignup", function (req, res) {
+  db.saveOwner(req.body, function (owner, err) {
     if (err) {
       throw err;
     }
     console.log("saved owner");
-    res.send("done");
+    res.send(owner);
   });
 });
 
 //handle owner Creation from /logIn post request
-app.post("/ownerlogin", function(req, res) {
-  db.checkPasswordOwner(req.body, function(passRes, err) {
-    if(err) console.log("erreeer",err)
-    console.log(passRes,"passRespassRespassRespassRespassRespassRes");
-    
+app.post("/ownerlogin", function (req, res) {
+  console.log(req.body)
+  db.checkPasswordOwner(req.body, function (result, match) {
+    console.log(match);
+    //console.log(result,"passRes");
+    if (match) {
+      res.send({
+        data: {
+          ownerId: result._id,
+          name: result.name,
+          phoneNumber: result.phoneNumber,
+          email: result.email
+        }
+      });
+    } else {
+      res.send({
+        data: false
+      });
+    }
 
-    res.send(passRes);
   });
 });
 
 //handle adding new park listing by owners from /addpark post request
-app.post("/addpark", function(req, res) {
-  db.savePark(req.body, function(done, err) {
+app.post("/addpark", function (req, res) {
+  db.savePark(req.body, function (done, err) {
     if (err) {
       throw err;
     }
     console.log("saved park");
-    res.send("done");
+    res.send(done);
   });
 });
-app.delete("/deletepark",function(req,res){
-  db.deletePark(req.body.parkId,function(done){
+
+app.delete("/deletepark", function (req, res) {
+  db.deletePark(req.body.parkId, function (done) {
     res.send(done);
   })
 })
+
 app.post("/updatepark", (req, res) => {
   db.updatePark(req.body.parkId, req.body.userId, (done, err) => {
     if (err) console.log("updateError", err);
@@ -96,14 +111,14 @@ app.post("/updateownerrating", (req, res) => {
     if (err) console.log("updateError", err);
     res.send(done);
   });
- });
+});
 
 // All remaining requests return the React app, so it can handle routing.
-app.get("*", function(request, response) {
+app.get("*", function (request, response) {
   response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));
 });
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.error(
     `Node cluster worker ${process.pid}: listening on port ${PORT}`
   );
