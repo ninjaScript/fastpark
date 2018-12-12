@@ -25,7 +25,7 @@ class SignUp extends React.Component {
       email: this.state.email,
       plateNumber: this.state.plate,
       phoneNumber: this.state.phoneNumber,
-      password: this.state.phoneNumber,
+      password: this.state.password,
       username: this.state.username
     }
     console.log("noooooooooooooooooo",userObj)
