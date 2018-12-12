@@ -184,13 +184,24 @@ const checkPasswordOwner = (data, cb) => {
       //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       // bcrypt.compare(data.password, res.password, function(err, isMatch) {
       //   if (err) return cb(null, err);
-        cb(res._id, err);
+      cb(res._id, err);
     //  });
     } else {
       cb(false, null);
     }
   });
 }
+//check if the promotion code is avilable or not.
+const checkPromoCode = (data,cb) => {
+  PromotionCode.findOne({code: data.code}, funcion(err, res) {
+    if (res) {
+      cb(res, err);
+    } else {
+      cb(null,err);
+    }  
+  });
+}
+
 //saving owner to the Owners table
 const saveOwner = (data, cb) => {
   let owner = new Owner({
@@ -248,6 +259,7 @@ const findParks = (query, cb) => {
       cb(res);
     });
 };
+
 //finding all ownerParks based on the provided ownerId
 //using aggregation to get all the user details from users table
 const findOwnerParks = (ownerId, callback) => {
@@ -269,6 +281,7 @@ const findOwnerParks = (ownerId, callback) => {
       callback(null, res);
     });
 };
+
 //updating the park document with userId based on booking and checkout
 const updatePark = (parkId, userId, cb) => {
   Park.updateOne({ _id: parkId }, { userId: userId }, function(err, res) {
@@ -288,7 +301,6 @@ const deletePark = function (parkId, cb){
   });
 };
 
-
 //updating the owner rating based on rating after checkout
 const updateOwnerRating = (ownerId, rating, cb) => {
   console.log(rating,"rating come from FE")
@@ -301,11 +313,6 @@ const updateOwnerRating = (ownerId, rating, cb) => {
     }
   });
 };
-
-
-
-
-
 
 module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
