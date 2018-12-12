@@ -2,7 +2,8 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardLink,
   CardTitle, CardSubtitle, Row, Col, Container } from 'reactstrap';
 import PropTypes from 'prop-types';
-
+import "../style/Home.css";
+import hello from "../style/hello.png";
 
 class UserInfo extends React.Component{
   constructor(props) {
@@ -11,21 +12,23 @@ class UserInfo extends React.Component{
   render() {
     console.log(this.props)
       return (
-            <Col sm="12">
-              <Card body>
-              <div className="imgdiv">
-              <img className="userimg"  src={this.props.user.imgUrl} alt="User Image" />
+            
+              <Card style={{height: "650px"}}>
+              <div className="imgdiv1">
+              <img className="userImage"  src={this.props.user.imgUrl} alt="User Image" />
               </div>
-              <div className="usercard">
+              <Col className="usercard">
               <CardBody>
-                <CardTitle>Name: {this.props.user.name}</CardTitle>
+                <img src={hello} width="100px" height="100px"/>
+                <CardTitle><span className="im">I'm</span><span className="myName"><b>{this.props.user.name}</b></span></CardTitle>
+                <CardSubtitle style={{marginTop: "-10px"}}>{this.props.user.job}</CardSubtitle>
                 <CardSubtitle>Location:{this.props.user.location}</CardSubtitle>
                 <CardText><h5>Description:</h5> {this.props.user.descr}</CardText>
                 <CardLink href="#">Edit</CardLink>
               </CardBody>
-              </div>
-              </Card>
               </Col>
+              </Card>
+              
             
       );
     }

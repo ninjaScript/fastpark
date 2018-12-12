@@ -5,12 +5,15 @@ import UserInfo from "./UserInfo.jsx";
 // import Pagination from "react-js-pagination";
 import Pagination from './Pagination';
 // import "bootstrap/dist/css/bootstrap.min.css";
-
+import profBack from "../style/background.jpg";
+import "../style/Home.css";
+import woman from "../style/woman.jpeg";
 var exampleUser = [{
 	id: 3,
-    		name: "Ahmad",
+        name: "Mary Joy Nebres",
+        job: "Software Engineer",
     		location: "Amman",
-    		imgUrl: "https://randomuser.me/api/portraits/women/91.jpg",
+    		imgUrl: woman,
     		descr: "hi its me someone"
     	}]
 
@@ -38,9 +41,10 @@ class UserProfile extends React.Component {
 	render() {
 		return (
 			<div>
-			<div className="container">
+        <img src = {profBack} className="profile"/>
+			<div className="profileBox">
 				{exampleUser.map(user =>
-								<UserInfo key={user.id} user={user}/>	
+								<UserInfo key={user.id} user={user} />	
             	)}	
 				</div>
 					<div className="container">

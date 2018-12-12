@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Helvetica Neue:300,400,700');
 
+
 #homecard {
   margin: 0;
   position: absolute;
@@ -362,5 +363,40 @@ li{
 
 .getIn:hover {
 	background-color: #fff;
-  color: #b43932;
+	color: #b43932;	
 }
+
+/*****************************profile********************************/
+
+.profile {
+	background-attachment: fixed;
+	height: 550px;
+	width: 100%;
+}
+
+.profileBox {
+	margin-top: -400px;
+	width: 1200px;
+	margin-left: 400px;
+}
+
+.userImage {
+	padding: 70px;
+	width: 400px;
+	height: 500px; 
+}
+
+.usercard{
+	margin-top: -450px;
+	margin-left: 380px;
+}
+
+.im {
+	font-family: Roboto, sans-serif;
+	margin-right: 15px;
+}
+
+.myName{
+	letter-spacing: 1px;
+}
+
