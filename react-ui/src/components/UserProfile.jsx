@@ -1,6 +1,6 @@
 import React from 'react';
 import FavCard from "./FavCard.jsx";
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import UserInfo from "./UserInfo.jsx";
 // import Pagination from "react-js-pagination";
 import Pagination from './Pagination';
@@ -8,26 +8,31 @@ import Pagination from './Pagination';
 import profBack from "../style/background.jpg";
 import "../style/Home.css";
 import woman from "../style/woman.jpeg";
+import logo from "../style/logo.png";
+import "../style/Home.css";
+
 var exampleUser = [{
 	id: 3,
         name: "Mary Joy Nebres",
         job: "Software Engineer",
-    		location: "Amman",
+    		address: "Hacker Haus, Amman, Jordan",
     		imgUrl: woman,
-    		descr: "hi its me someone"
+        email: "radwanabdoh@yahoo.com",
+        phoneNumber: "+962 79642 6783"
     	}]
 
 class UserProfile extends React.Component {
 	constructor(props) {
     super(props)
-    	
       var exampleItems = [...Array(14).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
       this.state = {
           exampleItems: exampleItems,
           pageOfItems: []
       };
+      
+  
  
-      // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+    
       this.onChangePage = this.onChangePage.bind(this);
     }
   
@@ -37,19 +42,32 @@ class UserProfile extends React.Component {
     this.setState({ pageOfItems: pageOfItems });
   }
 
-
 	render() {
 		return (
 			<div>
+         <Navbar class="navbar navbar-transparent" light>
+          <NavbarBrand href="/" className="mr-auto"><img src={logo} width="40px" height="40px" className="logo"/><h2 className="logoName">arkIn</h2></NavbarBrand>
+          <Navbar>Home</Navbar>
+          <Collapse navbar>
+            <Nav>
+              <NavItem>
+                <NavLink href="/">Home</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
         <img src = {profBack} className="profile"/>
 			<div className="profileBox">
 				{exampleUser.map(user =>
 								<UserInfo key={user.id} user={user} />	
             	)}	
 				</div>
-					<div className="container">
-            <div className="text-center">       
-              <h4>Your Favorite Parking Lots</h4>
+					 <div className="container1">
+            <div className="text-center" style={{marginTop: "20px"}}>       
+              <h4>Favorite Parking Lots</h4>
               <div className="fav">
               <Row>
               {this.state.pageOfItems.map(item =>

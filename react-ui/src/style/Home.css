@@ -369,15 +369,15 @@ li{
 /*****************************profile********************************/
 
 .profile {
-	background-attachment: fixed;
+	margin-top: -100px;
 	height: 550px;
 	width: 100%;
 }
 
 .profileBox {
 	margin-top: -400px;
-	width: 1200px;
-	margin-left: 400px;
+	width: 1000px;
+	margin-left: 450px;
 }
 
 .userImage {
@@ -398,5 +398,46 @@ li{
 
 .myName{
 	letter-spacing: 1px;
+}
+
+hr {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+#info {
+	margin-left: 190px;
+	text-align: justify;
+	margin-top: -20px;
+}
+
+.edit {
+	outline: none;
+	border-radius: 10px;
+	width: 60px;
+	color: white;
+	background-color: #b43932;
+}
+
+.edit:hover {
+	background-color: white;
+	border: 2px solid #b43932;
+	color: #b43932;
+}
+
+.mediaBar {
+	background-color: #b43932;
+	width: 999px;
+	height: 80px;
+}
+
+.iconTo {
+	color: white;
+	margin-left: 50px;
+}
+
+.iconTo:hover {
+	color: yellow;
 }
 
