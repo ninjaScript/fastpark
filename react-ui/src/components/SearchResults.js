@@ -7,7 +7,7 @@ import $ from "jquery";
 class SearchResults extends Component {
   constructor(props) {
     super(props);
-    this.state = { parks: [] };
+    this.state = { parks: [] , noData: ""};
   }
   componentDidMount() {
     $("#searchtxt").show();
@@ -18,13 +18,18 @@ class SearchResults extends Component {
       url: "/parks",
       type: "POST",
       data: JSON.stringify({
-        location: this.props.location.query
-          ? this.props.location.query
-          : "khalda"
+        location: this.props.location.query,
+        place: this.props.location.place
       }),
       contentType: "application/json",
       success: parks => {
-        this.setState({ parks });
+        console.log(parks)
+        if (parks.length > 0) {
+          this.setState({ parks: parks, noData:"" });
+        } else  {
+          console.log("No Data Exist ");
+          this.setState({noData:"No Parking Exist in this area" });
+        }
       },
       error: function(error) {
         console.error("errorrrrrr", error);
@@ -34,10 +39,14 @@ class SearchResults extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container fluid style = {{marginTop: '30px'}}>
         <Row>
           <Col sm="7">
-            <ParksList parks={this.state.parks} />
+            <div>
+              <ParksList parks={this.state.parks} />
+              
+            </div>
+
           </Col>
           <Col sm="5">
             <div className="sticky">

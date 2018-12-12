@@ -10,14 +10,17 @@ import {
   Label,
   Input
 } from "reactstrap";
-
+import {Redirect} from "react-router-dom";
 import HostSignUp from "./HostSignUp.jsx";
 import $ from "jquery";
+import { format } from "url";
 class HostCar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      isLogin :false, 
+      user : null
     };
 
     this.toggle = this.toggle.bind(this);
@@ -27,7 +30,6 @@ class HostCar extends React.Component {
 
 // send post recuest from client to BE to signin as an owner
   login() {
-
     this.toggle()
 
     const ownerObj ={
@@ -40,9 +42,15 @@ class HostCar extends React.Component {
         type: "POST",
         data: JSON.stringify(ownerObj),
         contentType: "application/json",
-        success: function(data) {
-          window.localStorage.setItem("user", data)
-          console.log("pleasssssss", data);
+        success: (res) => {
+          if (res.data) {
+            this.setState({isLogin: true, user: res.data});
+            window.localStorage.setItem("user", res)
+            console.log("pleasssssss", res);
+          } else {
+            console.log("this User not exist");
+          }
+         
         },
         error: function(error) {
           console.error("errorrrrrr", error);
@@ -68,6 +76,16 @@ class HostCar extends React.Component {
 
 
   render() {
+    
+    if(this.state.isLogin){
+      return (
+        <Redirect to = {{
+          pathname: "/OwnerDashboard",
+          user: this.state.user
+        }} />
+      )
+    }
+
     return (
       <div>
         <NavLink onClick={this.toggle}>
@@ -105,7 +123,8 @@ class HostCar extends React.Component {
           </ModalBody>
           <ModalFooter>
             <HostSignUp />
-            <Button color="primary" onClick={this.toggle} href="/ownerdashboard">
+            {/*href="/ownerdashboard"*/}
+            <Button color="primary" onClick={this.login} >
               Sign in
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
