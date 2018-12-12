@@ -23,7 +23,7 @@ import Tech from "../style/Tech.png";
 class WhySection extends Component {
     render() {
         return (
-          <Card className="card2" style={{width: "100%", backgroundColor: "#f4f4f4", height: "900px"}}>
+          <Card  style={{width: "100%", backgroundColor: "#f4f4f4", height: "900px"}}>
                         <CardBody className="headBoard">
                             <CardTitle align="center">
                                                                                         <h1 id="mission">How we're different</h1>

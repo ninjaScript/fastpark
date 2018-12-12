@@ -16,7 +16,7 @@ import Footer from "./Footer.js";
 import CustomerService from "./CustomerService.js";
 import WhySection from "./WhySection.js";
 import background from "../style/bk.jpeg";
-
+import WhatWeDo from "./WhatWeDo.js";
 
 class CardHome extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class CardHome extends React.Component {
   }
   render() {
     return (
-<div>
+      <div width="100%">
         <Card id="homecard" >
           <h4>Choose your Park anywhere any time .</h4>
           <CardBody>
@@ -79,7 +79,8 @@ class CardHome extends React.Component {
           </CardBody>
         </Card>
         <div>
-          <img src={background}/>
+          <img src={background} width="100%"/>
+          <WhatWeDo/>
          <WhySection/>
          <CustomerService/>
          <Footer/>
