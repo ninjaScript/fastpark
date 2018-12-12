@@ -11,6 +11,7 @@ import SignIn from "./SignIn.jsx";
 import OwnerDashboard from "./OwnerDashboard.jsx";
 import Book from "./book";
 import CustomerService from "./CustomerService.js";
+import UserProfile from "./UserProfile.jsx"
 
 
 // import CardHome from './CardHome.jsx';
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path="/SearchResults" component={SearchResults} />
           <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
           <Route exact path="/book" component={Book} />
+          <Route exact path="/user-profile" component={UserProfile} />
           <Route exact path="/About" component={About} />
           <Route exact path="/CustomerService" component={CustomerService} />
         </div>

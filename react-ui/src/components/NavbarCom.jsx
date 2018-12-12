@@ -109,10 +109,16 @@ export default class Example extends React.Component {
                 <SignUp />
               </NavItem>
               <NavItem>
+               <NavLink style={{'display': this.state.hideNav === false ?  'none':'block'}} href="/">Home</NavLink>
+             </NavItem>
+              <NavItem>
               <NavLink style={{'display': this.state.hideNav === false ?  'none':'block'}} href={"/"} onClick={this.logout}>Log out{this.props.buttonLabel}</NavLink>
               </NavItem>
              <NavItem>
                <NavLink href="/About">About</NavLink>
+             </NavItem>
+             <NavItem>
+               <NavLink style={{'display': this.state.hideNav === false ?  'none':'block'}} href="/user-profile">Profile</NavLink>
              </NavItem>
             </Nav>
           </Collapse>

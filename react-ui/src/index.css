@@ -173,13 +173,13 @@ padding: 50px;
 
 
 
-
 .container {
+  padding: 30px;
   margin-top: 50px;
 }
 .container h4 {
   margin-bottom: 25px;
-  margin-top: 25px;
+  margin-top: 5px;
 }
 
 .fav {
