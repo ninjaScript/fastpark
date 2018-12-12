@@ -193,13 +193,13 @@ const checkPasswordOwner = (data, cb) => {
 }
 //check if the promotion code is avilable or not.
 const checkPromoCode = (data,cb) => {
-  PromotionCode.findOne({code: data.code}, funcion(err, res) {
+  PromotionCode.findOne({code: data.code}, function(err, res){
     if (res) {
       cb(res, err);
     } else {
-      cb(null,err);
+      cb(err, null);
     }  
-  });
+  })
 }
 
 //saving owner to the Owners table
@@ -322,7 +322,7 @@ module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 //checkPasswordOwner
 module.exports.checkPasswordOwner = checkPasswordOwner;
-
+module.exports.checkPromoCode = checkPromoCode;
 module.exports.User = User;
 module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
