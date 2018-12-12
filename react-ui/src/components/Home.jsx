@@ -12,7 +12,11 @@ import {
 import "../style/Home.css";
 import { Link } from "react-router-dom";
 import $ from "jquery";
-import Footer from './Footer.js';
+import Footer from "./Footer.js";
+import CustomerService from "./CustomerService.js";
+import WhySection from "./WhySection.js";
+import background from "../style/bk.jpeg";
+import WhatWeDo from "./WhatWeDo.js";
 
 class CardHome extends React.Component {
   constructor(props) {
@@ -28,8 +32,8 @@ class CardHome extends React.Component {
   }
   render() {
     return (
-
-        <Card id="homecard">
+      <div width="100%">
+        <Card id="homecard" >
           <h4>Choose your Park anywhere any time .</h4>
           <CardBody>
             <label htmlFor="Where">Location</label>
@@ -74,8 +78,14 @@ class CardHome extends React.Component {
             </Link>
           </CardBody>
         </Card>
-
-
+        <div>
+          <img src={background} width="100%"/>
+          <WhatWeDo/>
+         <WhySection/>
+         <CustomerService/>
+         <Footer/>
+        </div>
+        </div>
     );
   }
 }

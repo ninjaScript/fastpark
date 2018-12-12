@@ -144,3 +144,66 @@ padding: 50px;
   width:70%;
    font-family: "Times New Roman", Times, serif;
 }
+
+/*//////////////////////////////////////////////////////////*/
+
+.pagination {
+  display: inline-block;
+  margin-top: 50px;
+  margin-left: 300px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color .3s;
+  border: 1px solid #ddd; /* Gray */
+
+}
+
+.pagination a:hover:not(.active) {background-color: #37BE4C;}
+
+
+.active { 
+    background-color: #37BE4C;
+}
+
+
+
+
+.container {
+  margin-top: 50px;
+}
+.container h4 {
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.fav {
+  border-style: solid;
+  border-width: 2px 10px 4px 20px;
+}
+
+.userimg {
+  padding: 5px;
+  width: 33.33%;
+  border-radius: 8px;
+}
+/*////// not positioning correctly*/
+.imgdiv{
+  display:inline-block;
+    width: auto;
+    height: auto;
+    border:1px solid red;
+    margin-right:10px;
+    float:left;
+}
+
+
+.usercard {
+    float:left;
+    margin-right:5px;
+}
