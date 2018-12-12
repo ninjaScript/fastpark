@@ -7,7 +7,9 @@ import {
   Form,
   CardTitle,
   CardSubtitle,
-  Button
+  Button,
+  Row,
+  Col
 } from "reactstrap";
 import "../style/Home.css";
 import { Link } from "react-router-dom";
@@ -18,11 +20,22 @@ import WhySection from "./WhySection.js";
 import background from "../style/bk.jpeg";
 import WhatWeDo from "./WhatWeDo.js";
 
+// adding google location library
+import { GoogleComponent } from 'react-google-location';
+import Geocode from "react-geocode";
+// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+Geocode.setApiKey("AIzaSyBAe4cdWlsIE8Rc4eXiMumZyJXK7Qn-7FE");
+// Enable or disable logs. Its optional.
+Geocode.enableDebug();
+// const API_KEY = "AIzaSyDpKwSgkSgxI2zQNYzRnulK7KQzltbc0SI"  // how to get key - step are below
+
+
 class CardHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ""
+      inputValue: "all",
+      place: null
     };
   }
   updateInputValue(evt) {
@@ -30,20 +43,71 @@ class CardHome extends React.Component {
       inputValue: evt.target.value
     });
   }
+
+  getAddress() {
+    // this.getLocation(function(obj){
+    //   console.log(obj)
+    //   Geocode.fromLatLng(obj.lat, obj.long).then(
+    //     response => {
+    //       const address = response.results[0].formatted_address;
+    //       console.log(address);
+    //     },
+    //     error => {
+    //       console.error(error);
+    //     }
+    //   );
+    // })
+  }
+  // function to get the location 
+  getLocation(cb) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        cb({
+          lat: position.coords.latitude,
+          long: position.coords.longitude
+        });
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  // handle with on click on button to get the Location
+  handleGetLoaction() {
+    this.getLocation((obj) => {
+      var location = obj.lat + " " + obj.long;
+      this.setState({ place: obj, inputValue: location })
+    })
+  }
+
   render() {
+    console.warn(this.state.place);
     return (
       <div width="100%">
         <Card id="homecard" >
           <h4>Choose your Park anywhere any time .</h4>
           <CardBody>
-            <label htmlFor="Where">Location</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Where do you want to Park?"
-              value={this.state.inputValue}
-              onChange={evt => this.updateInputValue(evt)}
-            />
+           
+            <Row>
+              <Col sm={3}>
+                <Button 
+                  color="primary"
+                  onClick = {this.handleGetLoaction.bind(this)}
+                >
+                  My Location
+                </Button>
+              </Col>
+              <Col sm = {8}>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Where do you want to Park?"
+                  value={this.state.inputValue}
+                  onChange={evt => this.updateInputValue(evt)}
+                />
+              </Col>
+            </Row>
+
             <Form inline>
               <label htmlFor="inputEmail3" id="StartL">
                 Start
@@ -54,13 +118,13 @@ class CardHome extends React.Component {
             </Form>
             <Form inline>
               <input
-                type="text"
+                type="time"
                 className="form-control"
                 id="Start"
                 placeholder="Select a Date & Time"
               />
               <input
-                type="text"
+                type="time"
                 className="form-control"
                 id="End"
                 placeholder="Select a Date & Time"
@@ -79,13 +143,13 @@ class CardHome extends React.Component {
           </CardBody>
         </Card>
         <div>
-          <img src={background} width="100%"/>
-          <WhatWeDo/>
-         <WhySection/>
-         <CustomerService/>
-         <Footer/>
+          <img src={background} width="100%" />
+          <WhatWeDo />
+          <WhySection />
+          <CustomerService />
+          <Footer />
         </div>
-        </div>
+      </div>
     );
   }
 }

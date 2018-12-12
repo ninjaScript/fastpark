@@ -14,7 +14,7 @@ class OwnerDashboard extends React.Component {
     this.state = {
       lat: "",
       long: "",
-      ownerId: "5c026ba1548c172ce9294538",
+      user: props.location.user,
       parks: [],
       isBouncing: false,
       isDeleted : false
@@ -31,7 +31,7 @@ class OwnerDashboard extends React.Component {
     $.ajax({
       url: "/parks",
       type: "POST",
-      data: JSON.stringify({ ownerId: this.state.ownerId }),
+      data: JSON.stringify({ ownerId: this.state.user.ownerId }),
       contentType: "application/json",
       success: parks => {
         this.setState({ parks });
@@ -102,7 +102,7 @@ class OwnerDashboard extends React.Component {
               image: url,
               lat: this.state.lat,
               long: this.state.long,
-              ownerId: this.state.ownerId
+              ownerId: this.state.user.ownerId
             };
             this.saveToDB(park);
             cb(true);
