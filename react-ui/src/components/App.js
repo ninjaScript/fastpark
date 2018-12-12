@@ -95,7 +95,6 @@ class App extends Component {
           <Route exact path="/SearchResults" component={SearchResults} />
           <Route exact path="/book" component={Book} />
           <Route exact path="/About" component={About} />
-          <Footer/>
         </div>
       </Router>
     );

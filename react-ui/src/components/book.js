@@ -1,6 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import { Alert } from "reactstrap";
+import Footer from "./Footer.js";
 
 import { Button } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
@@ -201,6 +202,7 @@ class book extends React.Component {
             </CardBody>
           </Card>
         </div>
+        <Footer/>
       </Container>
     );
   }
