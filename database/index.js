@@ -314,6 +314,16 @@ const updateOwnerRating = (ownerId, rating, cb) => {
     }
   });
 };
+// updating the park average rating and number of feedback.
+const updatedParkRate = (parkId, rateAvg, numFeed, cb) => {
+  Park.update({ _id: parkId }, {rateAvg:rateAvg}, {numFeed: numFeed}, function(err, res) {
+    if (res) {
+      cb(true, null);
+    } else {
+      cb(false,err);
+    }
+  });
+};
 
 module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
@@ -323,14 +333,12 @@ module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 //checkPasswordOwner
 module.exports.checkPasswordOwner = checkPasswordOwner;
-<<<<<<< HEAD
 module.exports.checkPromoCode = checkPromoCode;
-=======
 module.exports.saveMessageCustomer = saveMessageCustomer;
->>>>>>> 9f4a38e2f7a72fc05395568a3119e87cc8f8f9dc
 module.exports.User = User;
 module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
 // updateOwnerRating
 module.exports.updateOwnerRating = updateOwnerRating;
+module.exports.updatedParkRate = updatedParkRate;
 
