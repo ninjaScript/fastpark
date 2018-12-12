@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Helvetica Neue:300,400,700');
+
 #homecard {
   margin: 0;
   position: absolute;
@@ -45,16 +47,16 @@ h4 {
 }
 
 /*****************************Footer******************************/
-body {
-	background-image: url('./bk.jpeg');
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	top : 0;
-	bottom: 0;
-	height: 100vh;
-	z-index : -10 ; 
+
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
 }
+
+.icon {
+	color:green;
+}
+
 
 .media3 {
   margin-top: -10px;
@@ -248,4 +250,117 @@ li{
 		margin-left: 0;
 	}
 
+}
+
+/***************************** Customer Service Section ******************************/
+.customer {
+	margin-top: -550px;
+	width: 800px;
+	height: 500px;
+	margin-left: 950px;
+}
+
+.customerService{
+	height: 700px;
+	width: 100%;
+}
+.headCustomer {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#advertisement{
+	margin-left: 300px;
+	margin-top: 100px;
+}
+
+#contact {
+	color: #b43932;
+	cursor: pointer; 
+}
+
+#exampleText {
+	height: 200px;
+}
+
+#submit {
+	background: #b43932;
+	width: 640px;
+	margin-left: 14px;
+}
+
+/************************************** Why Us Section ************************************/
+
+#mission {
+	font-family: 'Varela Round', sans-serif;
+}
+
+.headBoard{
+	font-family: 'Varela Round', sans-serif;
+	margin-top: 100px;
+}
+
+.organize1 {
+  height: 100px;
+  width: 100px;
+  margin-top: -160px;
+  margin-left: -150px;
+}
+
+.organize2 {
+  height: 100px;
+  width: 100px;
+  margin-top: -200px;
+  margin-left: -150px;
+}
+
+
+#mission3 {
+	color: #b43932;
+  text-align: justify;
+  font-family: 'Varela Round', sans-serif;
+  margin-left: 0px;
+  margin-bottom: 10px;
+}
+
+.p5 {
+  text-align: justify;
+  margin-left: 200px;
+	margin-top: 50px;
+	margin-bottom: 20px;
+  height: 100px;
+  width: 400px;
+}
+
+.p6 {
+  text-align: justify;
+  margin-left: 850px;
+  margin-top: 50px;
+  height: 100px;
+  width: 400px;
+}
+
+.org2 {
+  margin-top: -450px;
+}
+
+.mainOrg {
+  margin-left: 300px;
+}
+
+/****************************** whatWeDo ***************************/
+.whatWeDo {
+	height: 800px;
+	width: 100%;
+}
+
+.customer1 {
+	margin-top: -450px;
+	width: 500px;
+	height: 500px;
+}
+
+.getIn:hover {
+	background-color: #fff;
+  color: #b43932;
 }

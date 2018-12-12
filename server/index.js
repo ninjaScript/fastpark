@@ -33,8 +33,24 @@ app.post("/login", function (req, res) {
   });
 });
 
-//handle Post requests for parks listings
-app.post("/parks", function (req, res) {
+app.post('/admin', function (req, res) {
+  console.log("admin", req.body);
+  var user = {
+    "name": req.body.name,
+    "email": req.body.email,
+    "phoneNumber": req.body.phoneNumber,
+    "comments": req.body.comments
+  }
+  db.saveMessageCustomer(user, function(error, result) {
+    if (error) {console.log("error", error)
+  } else {
+    console.log("Success!", result)
+  }
+  });
+})
+
+//handle GET requests for parks listings
+app.post("/parks", function(req, res) {
   if (req.body.location) {
     db.findParks(req.body.location, function (parks) {
       res.json(parks);

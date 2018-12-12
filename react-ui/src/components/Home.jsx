@@ -14,17 +14,21 @@ import {
 import "../style/Home.css";
 import { Link } from "react-router-dom";
 import $ from "jquery";
-import Footer from './Footer.js';
+import Footer from "./Footer.js";
+import CustomerService from "./CustomerService.js";
+import WhySection from "./WhySection.js";
+import background from "../style/bk.jpeg";
+import WhatWeDo from "./WhatWeDo.js";
+
 // adding google location library
-import { GoogleComponent } from 'react-google-location'
+import { GoogleComponent } from 'react-google-location';
 import Geocode from "react-geocode";
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
 Geocode.setApiKey("AIzaSyBAe4cdWlsIE8Rc4eXiMumZyJXK7Qn-7FE");
-
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
-
 // const API_KEY = "AIzaSyDpKwSgkSgxI2zQNYzRnulK7KQzltbc0SI"  // how to get key - step are below
+
 
 class CardHome extends React.Component {
   constructor(props) {
@@ -54,7 +58,7 @@ class CardHome extends React.Component {
     //   );
     // })
   }
-// function to get the location 
+  // function to get the location 
   getLocation(cb) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -76,83 +80,76 @@ class CardHome extends React.Component {
     })
   }
 
-
-  // handlOnKeyPass () {
-  //   this.setState({
-  //     inputValue: ""
-  //   });
-  // }
   render() {
     console.warn(this.state.place);
     return (
-      <body>
-        <div>
-          <Card id="homecard">
-            <h4>Choose your Park anywhere any time .</h4>
-            <CardBody>
-              <label htmlFor="Where">Where</label>
-              <Row >
-                <Col sm={3}>
-                  <Button className="btn"
-                    color="primary"
-                    onClick={this.handleGetLoaction.bind(this)}
-
-                  >
-                    My Location
-                  </Button>
-                </Col>
-                <Col sm>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Where do you want to Park?"
-                    value={this.state.inputValue}
-                    onChange={evt => this.updateInputValue(evt)}
-                  />
-                </Col>
-              </Row>
-              <Form inline>
-                <label htmlFor="inputEmail3" id="StartL">
-                  Start
-              </label>
-                <label htmlFor="inputPassword4" id="EndL">
-                  End
-              </label>
-              </Form>
-              <Form inline>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="Start"
-                  placeholder="Select a Date & Time"
-                />
-                <input
-                  type="text"
-                  className="form-control"
-                  id="End"
-                  placeholder="Select a Date & Time"
-                />
-              </Form>
-              <Link
-                to={{
-                  pathname: "/SearchResults",
-                  query: this.state.inputValue.toLowerCase(),
-                  place : this.state.place
-                }}
-              >
-                <Button color="primary" id="btn" href="/searchresults">
-                  Search
+      <div width="100%">
+        <Card id="homecard" >
+          <h4>Choose your Park anywhere any time .</h4>
+          <CardBody>
+           
+            <Row>
+              <Col sm={3}>
+                <Button 
+                  color="primary"
+                  onClick = {this.handleGetLoaction.bind(this)}
+                >
+                  My Location
                 </Button>
-              </Link>
-            </CardBody>
-          </Card>
-          
-        </div>
+              </Col>
+              <Col sm = {8}>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Where do you want to Park?"
+                  value={this.state.inputValue}
+                  onChange={evt => this.updateInputValue(evt)}
+                />
+              </Col>
+            </Row>
+
+            <Form inline>
+              <label htmlFor="inputEmail3" id="StartL">
+                Start
+              </label>
+              <label htmlFor="inputPassword4" id="EndL">
+                End
+              </label>
+            </Form>
+            <Form inline>
+              <input
+                type="time"
+                className="form-control"
+                id="Start"
+                placeholder="Select a Date & Time"
+              />
+              <input
+                type="time"
+                className="form-control"
+                id="End"
+                placeholder="Select a Date & Time"
+              />
+            </Form>
+            <Link
+              to={{
+                pathname: "/SearchResults",
+                query: this.state.inputValue.toLowerCase()
+              }}
+            >
+              <Button color="primary" id="btn" href="/searchresults">
+                Search
+              </Button>
+            </Link>
+          </CardBody>
+        </Card>
         <div>
-       
+          <img src={background} width="100%" />
+          <WhatWeDo />
+          <WhySection />
+          <CustomerService />
+          <Footer />
         </div>
-       
-      </body>
+      </div>
     );
   }
 }

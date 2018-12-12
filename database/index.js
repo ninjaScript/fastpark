@@ -105,7 +105,7 @@ const CustomerServicesSchema = new Schema({
   name: String,
   email: String,
   phoneNumber: String,
-  comment: String
+  comments: String
 })
 
 const User = mongoose.model("User", UserSchema);
@@ -118,14 +118,15 @@ const CustomerServices = mongoose.model("CustomerServices", CustomerServicesSche
 
 // This function to save the message for customer services
 const saveMessageCustomer = (data, callback) => {
+  
   let message = new CustomerServices({
-    name: data.name,
-    phoneNumber: data.phoneNumber,
-    email: data.email,
-    comment: data.comment
-  });
 
-  message.save(function (err) {
+    name: data.name, 
+    phoneNumber: data.phoneNumber, 
+    email : data.email,
+    comments: data.comments
+  });
+  message.save(function (err, user) {
     if (err) {
       callback(err, null);
     } else {
@@ -334,7 +335,7 @@ module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 //checkPasswordOwner
 module.exports.checkPasswordOwner = checkPasswordOwner;
-
+module.exports.saveMessageCustomer = saveMessageCustomer;
 module.exports.User = User;
 module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
