@@ -124,6 +124,7 @@ render() {
             <Button className="btn btn-info">Book Now</Button>
         </Link> */}
         <AlertToConfirmBook park = {this.props.parkInfo}/>
+        {/* <Button style={{backgroundColor:"green",marginLeft:"50px"}}>+Add To Favourite</Button> */}
       </CardBody>
     </Card>
   </div>

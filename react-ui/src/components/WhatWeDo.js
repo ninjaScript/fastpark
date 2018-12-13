@@ -56,7 +56,7 @@ export default class WhatWeDo extends React.Component {
                            value</b>, or by managing entire sites <b>end-to-end</b></p>
                            
                            <p>Find out how you could benefit with a <b>free consultation today</b>.</p>
-                           <Button className="getIn" style={{backgroundColor: "#b43932"}}>Get in Touch</Button>
+                           <Button className="getIn" href = "/CustomerService" style={{backgroundColor: "#b43932"}}>Get in Touch</Button>
                     </FormGroup>
                 </Form>
            </div>

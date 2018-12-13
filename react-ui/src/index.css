@@ -42,43 +42,15 @@ body {
   height: 242px;
 }
 
-/* .mapCol {
-  position:sticky;
-  display: block;
-  height: 30px;
-} */
-
-/* div .sticky {
-  position: sticky;
-  top: 0;
-} */
-
 div .sticky {
   position: fixed;
   margin-top: 50px;
   margin-bottom: 100px;
-  /* top: 70px; */
   right: 0;
   width: 600px;
   height: 94%;
 }
 
-/* div .navDiv {
-background-color: white;
-} */
-
-/* div .spaceDiv{
-  background-color: white;
-  height: 20px;
-} */
-
-/* div .nav {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  top: 0;
-  width: 100%;
-} */
 
 .NavbarBrand {
   font-weight: bold;
@@ -125,7 +97,7 @@ top: 50%;
 #addbtn{
   width:15%;
   margin-left: 38%;
-  margin-top : 2%;
+  margin-top : 6%;
 }
 
 .bookingCard{
@@ -150,7 +122,7 @@ padding: 50px;
 .pagination {
   display: inline-block;
   margin-top: 50px;
-  margin-left: 300px;
+  margin-left: 700px;
 }
 
 .pagination a {
@@ -160,15 +132,14 @@ padding: 50px;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color .3s;
-  border: 1px solid #ddd; /* Gray */
-
+  border: 1px solid #ddd;
 }
 
-.pagination a:hover:not(.active) {background-color: #37BE4C;}
+.pagination a:hover {background-color: #b43932;}
 
 
 .active { 
-    background-color: #37BE4C;
+    background-color: #b43932;
 }
 
 
@@ -182,10 +153,7 @@ padding: 50px;
   margin-top: 5px;
 }
 
-.fav {
-  border-style: solid;
-  border-width: 2px 10px 4px 20px;
-}
+
 
 .userimg {
   padding: 5px;

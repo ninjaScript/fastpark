@@ -198,15 +198,28 @@ const checkPasswordOwner = (data, cb) => {
       //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       // bcrypt.compare(data.password, res.password, function(err, isMatch) {
       //   if (err) return cb(null, err);
+      cb(res._id, err);
+    //  });
         if (res.password === data.password) {
           cb(res, true);
         }
-        
+       
     } else {
       cb(null, false);
     }
   });
 }
+//check if the promotion code is avilable or not.
+const checkPromoCode = (data,cb) => {
+  PromotionCode.findOne({code: data.code}, function(err, res){
+    if (res) {
+      cb(res, err);
+    } else {
+      cb(err, null);
+    }  
+  })
+}
+
 //saving owner to the Owners table
 const saveOwner = (data, cb) => {
   // hashPassword(data.password, function (err, hash) {
@@ -277,6 +290,7 @@ const findParks = (query, cb) => {
       cb(res);
     });
 };
+
 //finding all ownerParks based on the provided ownerId
 //using aggregation to get all the user details from users table
 const findOwnerParks = (ownerId, callback) => {
@@ -298,6 +312,7 @@ const findOwnerParks = (ownerId, callback) => {
       callback(null, res);
     });
 };
+
 //updating the park document with userId based on booking and checkout
 const updatePark = (parkId, userId, cb) => {
   Park.updateOne({ _id: parkId }, { userId: userId }, function (err, res) {
@@ -317,7 +332,6 @@ const deletePark = function (parkId, cb) {
   });
 };
 
-
 //updating the owner rating based on rating after checkout
 const updateOwnerRating = (ownerId, rating, cb) => {
 
@@ -333,6 +347,18 @@ const updateOwnerRating = (ownerId, rating, cb) => {
     }
   });
 };
+ 
+// updating the park average rating and number of feedback.
+const updatedParkRate = (parkId, rateAvg, numFeed, cb) => {
+  Park.update({ _id: parkId }, {rateAvg:rateAvg}, {numFeed: numFeed}, function(err, res) {
+    if (res) {
+      cb(true, null);
+    } else {
+      cb(false,err);
+    }
+  });
+};
+                  
 
 
 const findUser = (user_id, cb) => {
@@ -377,6 +403,7 @@ const getAllMessage = (callback) => {
   });
 }
 
+
 module.exports.findUser = findUser;
 module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
@@ -386,14 +413,19 @@ module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 //checkPasswordOwner
 module.exports.checkPasswordOwner = checkPasswordOwner;
+module.exports.checkPromoCode = checkPromoCode;
 module.exports.saveMessageCustomer = saveMessageCustomer;
 module.exports.User = User;
 module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
 // updateOwnerRating
 module.exports.updateOwnerRating = updateOwnerRating;
+
+module.exports.updatedParkRate = updatedParkRate;
+
 module.exports.savePromotionCode = savePromotionCode;
 module.exports.getAllpromotion = getAllpromotion;
 module.exports.updateStatePromotionCode = updateStatePromotionCode;
 module.exports.getAllMessage = getAllMessage;
+
 

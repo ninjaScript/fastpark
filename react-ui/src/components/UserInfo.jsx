@@ -1,32 +1,49 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardLink,
-  CardTitle, CardSubtitle, Row, Col, Container } from 'reactstrap';
+  CardTitle, CardSubtitle, Row, Col, Container} from 'reactstrap';
 import PropTypes from 'prop-types';
-
+import "../style/Home.css";
+import hello from "../style/hello.png";
+import line from "../style/line.png";
 
 class UserInfo extends React.Component{
   constructor(props) {
     super(props)
+    
   }
+
+
   render() {
     console.log(this.props)
       return (
-            <Col sm="12">
-              <Card body>
-              <div className="imgdiv">
-              <img className="userimg"  src={this.props.user.imgUrl} alt="User Image" />
-              </div>
-              <div className="usercard">
-              <CardBody>
-                <CardTitle>Name: {this.props.user.name}</CardTitle>
-                <CardSubtitle>Location:{this.props.user.location}</CardSubtitle>
-                <CardText><h5>Description:</h5> {this.props.user.descr}</CardText>
-                <CardLink href="#">Edit</CardLink>
-              </CardBody>
-              </div>
-              </Card>
-              </Col>
-            
+              <Card style={{height: "550px"}}>
+                <div className="imgdiv1" >
+                  <img className="userImage"  src={this.props.user.imgUrl} alt="User Image" />
+                    </div>
+                  <Col className="usercard">
+                      <CardBody>
+                          <img src={hello} width="100px" height="100px"/>
+                            <CardTitle><span className="im">I'm</span><span className="myName"><b>{this.props.user.name}</b></span></CardTitle>
+                            <CardSubtitle style={{marginTop: "-10px"}}>{this.props.user.job}</CardSubtitle>
+                          <img src={line} style={{marginTop: "-90px", marginLeft: "-90px"}}/>
+                        <div style={{marginTop: "-80px"}} >
+                          <CardSubtitle><b>Address</b><p  id="info">{this.props.user.address}</p ></CardSubtitle>
+                          <CardSubtitle><b>Email</b> <p  id="info">{this.props.user.email}</p ></CardSubtitle>
+                          <CardSubtitle><b>Phone Number</b><p  id="info">{this.props.user.phoneNumber}</p ></CardSubtitle>
+                          <button className="edit" href="#">Edit</button>
+                        </div>
+                      </CardBody>
+                        <div className="mediaBar" style={{backgroundColor: "#b43932", marginTop: "100px", marginLeft: "-395px"}}>
+                        <div style={{marginLeft: "300px", padding: "20px"}}>
+                            <a className="iconTo"  href="#"><i className="fa fa-star fa-lg"></i></a>
+                            <a className="iconTo" href="#"><i className="fa fa-facebook fa-lg"></i></a>
+                            <a className="iconTo" href="#"><i className="fa fa-instagram fa-lg"></i></a>
+                            <a className="iconTo" href="#"><i className="fa fa-twitter fa-lg"></i></a>
+                            <a className="iconTo" href="#"><i className="fa fa-linkedin fa-lg"></i></a>
+                        </div>
+                        </div>
+                  </Col>
+              </Card>  
       );
     }
 };
@@ -42,7 +59,6 @@ Container.propTypes = {
 
 Row.propTypes = {
   noGutters: PropTypes.bool,
-  // see https://reactstrap.github.io/components/form Form Grid with Form Row
   form: PropTypes.bool
 }
 
@@ -54,10 +70,6 @@ const columnProps = PropTypes.oneOfType([
   PropTypes.bool,
   PropTypes.shape({
     size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-    // example size values:
-    // 12 || "12" => col-12 or col-`width`-12
-    // auto => col-auto or col-`width`-auto
-    // true => col or col-`width`
     order: stringOrNumberProp,
     offset: stringOrNumberProp
   })
@@ -70,7 +82,6 @@ Col.propTypes = {
   lg: columnProps,
   xl: columnProps,
   // override the predefined width (the ones above) with your own custom widths.
-  // see https://github.com/reactstrap/reactstrap/issues/297#issuecomment-273556116
   widths: PropTypes.array,
 }
 
