@@ -8,7 +8,7 @@ const multer = require("multer");
 const app = express();
 
 // Priority serve any static files.
-app.use(express.static(path.resolve(__dirname, "../react-ui/public")));
+app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -208,9 +208,9 @@ app.get('/customer-services', function(req, res){
 ///////////////////
 
 // All remaining requests return the React app, so it can handle routing.
-// app.get("*", function (request, response) {
-//   response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));
-// });
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));
+});
 
 
 app.listen(PORT, function () {
