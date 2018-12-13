@@ -27,6 +27,8 @@ import {
   FormText
 } from "reactstrap";
 import Customer from '../style/Customer.png';
+import line from '../style/line.png';
+import sponsors from "../style/sponsors.png";
 import $ from "jquery";
 
 // Customer Service Render Part, Organize the front-end version with styling from Home css file
@@ -51,7 +53,7 @@ export default class CustomerService extends React.Component {
 
       handleChange(e) {
         e.preventDefault();
-        const email = this.state.email;
+        let email = this.state.email;
         let target = e.target;
         this.setState({ [target.name]: target.value });
         // checking for phone number validation where the condition is if the number inputed is less that required validation will be false and provide error
@@ -89,7 +91,7 @@ export default class CustomerService extends React.Component {
             // if the validation true  send data
             if (this.state.validation) {
               $.ajax({
-                url: '/admin',
+                url: '/customer-services',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -182,6 +184,8 @@ export default class CustomerService extends React.Component {
                     </FormGroup>
                 </Form>
            </div>
+           <img src={line} style={{marginLeft: "650px", marginTop: "30px"}}/>
+           <img src={sponsors} style={{marginLeft: "-300px"}}/>
       </div>
     );
   }
