@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const db = require("../database/index");
 const PORT = process.env.PORT || 5000;
+const multer = require("multer");
 
 const app = express();
 
@@ -13,9 +14,36 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Answer API requests.
 
-app.post("/signup", function (req, res) {
-  db.saveUser(req.body, function (user, err) {
-    if (err) console.log("erreeer", err);
+///////////////////////
+const storage = multer.diskStorage({
+   destination: function(req, file, cb){
+    cb(null, __dirname + '/../react-ui/public/Userimg')
+   },
+   filename: function(req, file, cb){
+      cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+   }
+});
+
+const upload = multer({
+   storage: storage,
+   limits:{fileSize: 1000000},
+}).single("myImage");
+
+
+// app.post('/signup', upload, (req, res) => {
+//   console.log(req.file)
+// });
+
+app.post("/signup", upload, function (req, res) {
+  console.log(req.body);
+  console.log(req.file)
+  // recive the data from the formData request;
+  let user = JSON.parse(req.body.user);
+  // make link to image to save in database
+  let imgUrl = 'http://' + req.get('host') + '/Userimg/' + req.file.filename;
+  user.imgUrl = imgUrl;
+  db.saveUser(user, function (user, err) {
+    if (err) console.log("error", err);
       console.log("user", user);
     if (user) {
       res.send(user);
@@ -175,10 +203,15 @@ app.get('/customer-services', function(req, res){
   })
 })
 
+
+
+///////////////////
+
 // All remaining requests return the React app, so it can handle routing.
 // app.get("*", function (request, response) {
 //   response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));
 // });
+
 
 app.listen(PORT, function () {
   console.error(

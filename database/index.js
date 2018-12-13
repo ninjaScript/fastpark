@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 //mongoose.connect('mongodb://localhost/test');
 mongoose.connect(
-  "mongodb://admin:admin1234@ds255930.mlab.com:55930/parkdb",
+  "mongodb://qusay97:nin123@ds251240.mlab.com:51240/park",
   { useNewUrlParser: true }
 );
 
@@ -340,8 +340,12 @@ const deletePark = function (parkId, cb) {
 
 //updating the owner rating based on rating after checkout
 const updateOwnerRating = (ownerId, rating, cb) => {
-  console.log(rating, "rating come from FE")
-  Owner.updateOne({ _id: ownerId }, { rating: rating }, function (err, res) {
+
+  console.log(rating,"rating come from FE")
+  Owner.updateOne({ _id: ownerId }, { rating: rating }, function(err, res) {
+
+
+
     if (res) {
       cb(true, null);
     } else {
@@ -362,6 +366,14 @@ const updatedParkRate = (parkId, rateAvg, numFeed, cb) => {
 };
                   
 
+
+const findUser = (user_id, cb) => {
+  User.findOne({_id: user_id},
+  function (err, user) {
+    if(err){console.log('error', err)}
+    cb(user)
+  })
+}
 // save promotion code 
 const savePromotionCode = (promo, callback) => {
   let promotionCode = new PromotionCode(promo);
@@ -375,6 +387,7 @@ const getAllpromotion = (callback) => {
   PromotionCode.find(function(err, res){
     if (err) throw err;
      callback(null, res)
+
   });
 }
 // this function to update code state available or not  available
@@ -407,6 +420,9 @@ const getAllMessage = (callback) => {
   });
 }
 
+
+module.exports.findUser = findUser;
+module.exports.saveOwner = saveOwner;
 module.exports.savePark = savePark;
 module.exports.findParks = findParks;
 module.exports.findOwnerParks = findOwnerParks;
@@ -426,4 +442,6 @@ module.exports.savePromotionCode = savePromotionCode;
 module.exports.getAllpromotion = getAllpromotion;
 module.exports.updateStatePromotionCode = updateStatePromotionCode;
 module.exports.getAllMessage = getAllMessage;
+
 module.exports.usePromotionCode = usePromotionCode;
+

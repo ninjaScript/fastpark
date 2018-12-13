@@ -15,6 +15,7 @@ import AdmainDashboard from "./components/AdminDashboard.js";
 import PromotionCode from "./components/PromotionCode.jsx";
 import MessageCustomers from './components/MessageCustomers.jsx';
 import App from "./components/App.js"
+import UserProfile from './components/UserProfile.jsx'
 
 // import CardHome from './CardHome.jsx';
 class Routers extends Component {
@@ -40,6 +41,9 @@ class Routers extends Component {
           <Route exact path={"book"} component={Book} />
           <Route exact path= {"About"} component={About} />
           <Route exact path= {"CustomerService"} component={CustomerService} />
+          <Route exact path= {"user-profile"} component={UserProfile} />
+
+          
           <Route exact path= {"admin-dashboard"} component={AdmainDashboard} >
             
           </Route>

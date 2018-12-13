@@ -24,10 +24,10 @@ class UserInfo extends React.Component{
                       <CardBody>
                           <img src={hello} width="100px" height="100px"/>
                             <CardTitle><span className="im">I'm</span><span className="myName"><b>{this.props.user.name}</b></span></CardTitle>
-                            <CardSubtitle style={{marginTop: "-10px"}}>{this.props.user.job}</CardSubtitle>
+                            <CardSubtitle style={{marginTop: "-10px"}}>{"Software engineer"}</CardSubtitle>
                           <img src={line} style={{marginTop: "-90px", marginLeft: "-90px"}}/>
                         <div style={{marginTop: "-80px"}} >
-                          <CardSubtitle><b>Address</b><p  id="info">{this.props.user.address}</p ></CardSubtitle>
+                          <CardSubtitle><b>Plate number</b><p  id="info">{this.props.user.plateNumber}</p ></CardSubtitle>
                           <CardSubtitle><b>Email</b> <p  id="info">{this.props.user.email}</p ></CardSubtitle>
                           <CardSubtitle><b>Phone Number</b><p  id="info">{this.props.user.phoneNumber}</p ></CardSubtitle>
                           <button className="edit" href="#">Edit</button>
