@@ -97,15 +97,23 @@ const BookingSchema = new Schema({
 const PromotionCodeSchema = new Schema({
   code: String,
   discount: Number,
-  startTime: Date,
-  endTime: Date
+  startDate: Date,
+  endDate: Date,
+  available: {
+    type: Boolean,
+    default: true
+  }
 })
 
 const CustomerServicesSchema = new Schema({
   name: String,
   email: String,
   phoneNumber: String,
-  comments: String
+  comments: String,
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 })
 
 const User = mongoose.model("User", UserSchema);
@@ -190,15 +198,12 @@ const checkPasswordOwner = (data, cb) => {
       //here i change cb(isMatch,error) to cb(res, err) because i need to send user information in response
       // bcrypt.compare(data.password, res.password, function(err, isMatch) {
       //   if (err) return cb(null, err);
-<<<<<<< HEAD
       cb(res._id, err);
     //  });
-=======
         if (res.password === data.password) {
           cb(res, true);
         }
-        
->>>>>>> 375ded27f6c6af2bad722699c0550a7c172ee762
+       
     } else {
       cb(null, false);
     }
@@ -227,6 +232,7 @@ const saveOwner = (data, cb) => {
     rating: data["rating"],
     image: data["image"]
   });
+
   owner.save(function (err) {
     if (err) cb(null, err);
     //returning the auto generated id from the db to be used when adding new parks
@@ -329,8 +335,7 @@ const deletePark = function (parkId, cb) {
 //updating the owner rating based on rating after checkout
 const updateOwnerRating = (ownerId, rating, cb) => {
   console.log(rating, "rating come from FE")
-  owner.updateOne({ _id: ownerId }, { rating: rating }, function (err, res) {
-
+  Owner.updateOne({ _id: ownerId }, { rating: rating }, function (err, res) {
     if (res) {
       cb(true, null);
     } else {
@@ -338,6 +343,7 @@ const updateOwnerRating = (ownerId, rating, cb) => {
     }
   });
 };
+ 
 // updating the park average rating and number of feedback.
 const updatedParkRate = (parkId, rateAvg, numFeed, cb) => {
   Park.update({ _id: parkId }, {rateAvg:rateAvg}, {numFeed: numFeed}, function(err, res) {
@@ -348,8 +354,42 @@ const updatedParkRate = (parkId, rateAvg, numFeed, cb) => {
     }
   });
 };
+                  
 
-module.exports.saveOwner = saveOwner;
+// save promotion code 
+const savePromotionCode = (promo, callback) => {
+  let promotionCode = new PromotionCode(promo);
+  promotionCode.save(function (err) {
+    if (err) throw err;
+    callback(promotionCode);
+  });
+}
+//  get all promotion code
+const getAllpromotion = (callback) => {
+  PromotionCode.find(function(err, res){
+    if (err) throw err;
+     callback(null, res)
+  });
+}
+
+const updateStatePromotionCode = (data, callback) => {
+  PromotionCode.updateOne({ _id: data.codeId }, { available: data.available }, function (err, res) {
+    if (res) {
+      callback(true, res);
+    } else {
+      callback(false, null);
+    }
+  });
+}
+
+//  get all Message for customer services 
+const getAllMessage = (callback) => {
+  CustomerServices.find(function(err, res){
+    if (err) throw err;
+     callback(null, res)
+  });
+}
+
 module.exports.savePark = savePark;
 module.exports.findParks = findParks;
 module.exports.findOwnerParks = findOwnerParks;
@@ -364,5 +404,13 @@ module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
 // updateOwnerRating
 module.exports.updateOwnerRating = updateOwnerRating;
+
 module.exports.updatedParkRate = updatedParkRate;
 
+module.exports.savePromotionCode = savePromotionCode;
+module.exports.getAllpromotion = getAllpromotion;
+module.exports.updateStatePromotionCode = updateStatePromotionCode;
+module.exports.getAllMessage = getAllMessage;
+
+
+getAllMessage

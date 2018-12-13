@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardLink,
   CardTitle, CardSubtitle, Row, Col, Container } from 'reactstrap';
 import PropTypes from 'prop-types';
-
+import garage from '../style/background.jpeg';
 
 class FavCard extends React.Component{
   constructor(props) {
@@ -16,7 +16,7 @@ class FavCard extends React.Component{
                 <CardTitle>{this.props.item.name}</CardTitle>
                 <CardSubtitle>{this.props.item.name}</CardSubtitle>
               </CardBody>
-              <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+              <img width="100%" src={garage} alt="Card image cap" />
               <CardBody>
                 <CardText>{this.props.item.name}</CardText>
                 <CardLink href="#">View</CardLink>

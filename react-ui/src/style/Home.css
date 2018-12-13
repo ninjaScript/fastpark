@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Helvetica Neue:300,400,700');
 
+
 #homecard {
   margin: 0;
   position: absolute;
@@ -362,5 +363,106 @@ li{
 
 .getIn:hover {
 	background-color: #fff;
-  color: #b43932;
+	color: #b43932;	
+}
+
+/*****************************profile********************************/
+
+.profile {
+	margin-top: -100px;
+	height: 550px;
+	width: 100%;
+}
+
+.profile1 {
+
+	margin-top: -200px;
+	height: 600px;
+	width: 107% !important;
+	margin-left: -120px;
+}
+
+.profileBox {
+	margin-top: -400px;
+	width: 1000px;
+	margin-left: 450px;
+}
+
+.userImage {
+	padding: 70px;
+	width: 400px;
+	height: 500px; 
+}
+
+.usercard{
+	margin-top: -450px;
+	margin-left: 380px;
+}
+
+.im {
+	font-family: Roboto, sans-serif;
+	margin-right: 15px;
+}
+
+.myName{
+	letter-spacing: 1px;
+}
+
+#info {
+	margin-left: 190px;
+	text-align: justify;
+	margin-top: -20px;
+}
+
+.edit {
+	outline: none;
+	border-radius: 10px;
+	width: 60px;
+	color: white;
+	background-color: #b43932;
+}
+
+.edit:hover {
+	outline: none;
+	background-color: white;
+	border: 1px solid #b43932;
+	color: #b43932;
+}
+
+.edit1 {
+	outline: none;
+	border-radius: 10px;
+	width: 60px;
+	color: white;
+	background-color: #006789;
+}
+
+.edit1:hover {
+	outline: none;
+	background-color: white;
+	border: 1px solid #006789;
+	color: #006789;
+}
+
+.mediaBar {
+	background-color: #b43932;
+	width: 999px;
+	height: 80px;
+}
+
+.iconTo {
+	color: white;
+	margin-left: 50px;
+}
+
+.iconTo:hover {
+	color: yellow;
+}
+
+#bt:hover {
+	color: red;
+}
+
+.upper{
+	margin-top: -100px;
 }
