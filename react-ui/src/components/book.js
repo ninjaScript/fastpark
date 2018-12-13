@@ -32,17 +32,18 @@ class book extends React.Component {
       username: "",
       lat: "",
       long: "",
-      value: 0
+      value: 0,
     };
-    this.ratingCount = 0;
+    this.ratingCount =  0
   }
 
 
   handleChangeRate = e => {
     console.log(e);
 
-    this.ratingCount = e;
-  };
+    this.ratingCount = e
+  }
+
 // send post recuest from client to BE to update park data
   handleCheckOutClick = () => {
     this.toggle();
@@ -65,10 +66,11 @@ class book extends React.Component {
     // send post recuest from client to BE to update rating.
 
     $.ajax({
-      url: "/updateownerrating",
+      url: "/updateparkrating",
       type: "POST",
       data: JSON.stringify({
-        rating: this.ratingCount
+        rating: this.ratingCount,
+        parkId: this.props.location.state.park._id
       }),
       contentType: "application/json",
       success: function(data) {
@@ -89,7 +91,7 @@ class book extends React.Component {
   componentDidMount() {
     $("#root").css("background", "white");
     //////// this.props.location.park.ownerdetails[0]._id
-    console.log("parkinfo:", this.props.location.park);
+    console.log("parkinfo:", this.props.location.state.park);
 
     this.getLocation(location => {
       this.setState({ lat: location.lat, long: location.long });

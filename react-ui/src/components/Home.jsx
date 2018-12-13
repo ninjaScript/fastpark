@@ -19,7 +19,7 @@ import CustomerService from "./CustomerService.js";
 import WhySection from "./WhySection.js";
 import background from "../style/bk.jpeg";
 import WhatWeDo from "./WhatWeDo.js";
-
+import WhoWeHelp from "./WhoWeHelp.js";
 // adding google location library
 import { GoogleComponent } from 'react-google-location';
 import Geocode from "react-geocode";
@@ -85,7 +85,7 @@ class CardHome extends React.Component {
     return (
       <div width="100%">
         <Card id="homecard" >
-          <h4>Choose your Park anywhere any time .</h4>
+          <h4 style={{textAlign: "center"}}>Choose your Park anywhere any time</h4>
           <CardBody>
            
             <Row>
@@ -100,6 +100,7 @@ class CardHome extends React.Component {
               <Col sm = {8}>
                 <input
                   type="text"
+                  style={{width: "317px"}}
                   className="form-control"
                   placeholder="Where do you want to Park?"
                   value={this.state.inputValue}
@@ -150,6 +151,7 @@ class CardHome extends React.Component {
         </Card>
         <div>
           <img src={background} width="100%" />
+          <WhoWeHelp/>
           <WhatWeDo />
           <WhySection />
           <CustomerService />

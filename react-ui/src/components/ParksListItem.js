@@ -162,7 +162,9 @@ render() {
         {/* <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
             <Button className="btn btn-info">Book Now</Button>
         </Link> */}
-        <AlertToConfirmBook park = {this.props.parkInfo} getDiscount = {this.getDiscount.bind(this)}/>
+        
+        <AlertToConfirmBook park = {this.props.parkInfo} getDiscount = {this.getDiscount.bind(this)}/>        
+        {/* <Button style={{backgroundColor:"green",marginLeft:"50px"}}>+Add To Favourite</Button> */}
       </CardBody>
     </Card>
   </div>

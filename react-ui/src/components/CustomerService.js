@@ -27,6 +27,8 @@ import {
   FormText
 } from "reactstrap";
 import Customer from '../style/Customer.png';
+import line from '../style/line.png';
+import sponsors from "../style/sponsors.png";
 import $ from "jquery";
 
 // Customer Service Render Part, Organize the front-end version with styling from Home css file
@@ -133,14 +135,6 @@ export default class CustomerService extends React.Component {
           comments: ""})
         }
 
-        // isEnabled () {
-        //   this.state.name.length > 0 &&
-        //   this.state.email.length > 0 &&
-        //   this.state.phoneNumber.length > 0 &&
-        //   this.state.comments > 0
-        // }
-
-
   render() {
     const { email, name, phoneNumber, comments } = this.state;
     const enabled =
@@ -190,6 +184,8 @@ export default class CustomerService extends React.Component {
                     </FormGroup>
                 </Form>
            </div>
+           <img src={line} style={{marginLeft: "650px", marginTop: "30px"}}/>
+           <img src={sponsors} style={{marginLeft: "-300px"}}/>
       </div>
     );
   }
