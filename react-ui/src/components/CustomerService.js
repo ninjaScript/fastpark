@@ -133,14 +133,6 @@ export default class CustomerService extends React.Component {
           comments: ""})
         }
 
-        // isEnabled () {
-        //   this.state.name.length > 0 &&
-        //   this.state.email.length > 0 &&
-        //   this.state.phoneNumber.length > 0 &&
-        //   this.state.comments > 0
-        // }
-
-
   render() {
     const { email, name, phoneNumber, comments } = this.state;
     const enabled =
