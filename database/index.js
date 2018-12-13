@@ -69,9 +69,15 @@ const ParkSchema = new Schema({
   limit: Number,
   ownerId: { type: mongoose.Schema.ObjectId, ref: "Owner" },
   // userId: { type: mongoose.Schema.ObjectId, ref: "User" },
-  price: String,
-  rateAvg: Number,
-  numFeed: Number,
+  price: Number,
+  rateAvg:{
+    type :Number,
+    default: 0
+  },
+  numFeed:{
+    type :Number,
+    default: 0
+  },
   startTime: String,
   endTime: String,
   all: {
@@ -384,7 +390,7 @@ const getAllpromotion = (callback) => {
 
   });
 }
-
+// this function to update code state available or not  available
 const updateStatePromotionCode = (data, callback) => {
   PromotionCode.updateOne({ _id: data.codeId }, { available: data.available }, function (err, res) {
     if (res) {
@@ -392,6 +398,17 @@ const updateStatePromotionCode = (data, callback) => {
     } else {
       callback(false, null);
     }
+  });
+}
+
+// This function to use promotion code
+const usePromotionCode = (code, callback) => {
+  PromotionCode.findOne({ code: code }, function (err, res) {
+       if (err) {
+         throw err;
+       } else  {
+         callback(null, res);
+       }
   });
 }
 
@@ -420,12 +437,11 @@ module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
 // updateOwnerRating
 module.exports.updateOwnerRating = updateOwnerRating;
-
 module.exports.updatedParkRate = updatedParkRate;
-
 module.exports.savePromotionCode = savePromotionCode;
 module.exports.getAllpromotion = getAllpromotion;
 module.exports.updateStatePromotionCode = updateStatePromotionCode;
 module.exports.getAllMessage = getAllMessage;
 
+module.exports.usePromotionCode = usePromotionCode;
 

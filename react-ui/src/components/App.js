@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {Router, Route, browserHistory } from "react-router";
 import Home from "./Home.jsx";
 import "../App.css";
 import Navbar from "./NavbarCom.jsx";
@@ -30,22 +30,15 @@ class App extends Component {
 // render routes 
   render() {
     return (
-      <Router>
         <div>
-          <Navbar />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/SearchResults" component={SearchResults} />
-          <Route exact path="/OwnerDashboard" component={OwnerDashboard} />
-          <Route exact path="/book" component={Book} />
-          <Route exact path="/user-profile" component={UserProfile} />
-          <Route exact path="/About" component={About} />
-          <Route exact path="/CustomerService" component={CustomerService} />
-          <Route exact path="/AdminDashboard" component={AdmainDashboard} >
-            {/* <Route exact path="/AdminDashboard/PromotionCode" component={PromotionCode} /> */}
-          </Route>
-        </div>
-      </Router>
-    );
+          <div>
+            <Navbar />
+          </div> 
+          <div>
+            {this.props.children}
+          </div>
+        </div>   
+    )
   }
 }
 

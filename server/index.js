@@ -92,7 +92,12 @@ app.post("/ownersignup", function (req, res) {
       throw err;
     }
     console.log("saved owner");
-    res.send(owner);
+    res.send({
+      ownerId: owner._id,
+      name: owner.name,
+      phoneNumber: owner.phoneNumber,
+      email: owner.email
+    });
   });
 });
 
@@ -122,6 +127,7 @@ app.post("/ownerlogin", function (req, res) {
 
 //handle adding new park listing by owners from /addpark post request
 app.post("/addpark", function (req, res) {
+  console.log(req.body)
   db.savePark(req.body, function (done, err) {
     if (err) {
       throw err;
@@ -154,7 +160,6 @@ app.post("/updateownerrating", (req, res) => {
 // post request to save the promotion code in db
 app.post('/add-promotion', function(req, res){
   db.savePromotionCode(req.body ,function(promotionCode){
-    console.log(promotionCode)
     res.send(promotionCode);
   })
 });
@@ -176,11 +181,18 @@ app.post('/update-promotion', function(req, res){
    })
 })
 
+// use promotion code and get discount
+app.post('/use-promotion', function(req, res){
+  db.usePromotionCode(req.body.code ,function(err, result){
+    console.log(result)
+    res.send(result);
+  })
+});
+
 // get request to get messages for customer services 
 app.get('/customer-services', function(req, res){
   db.getAllMessage(function(err, result){
     if(result) {
-      console.log(result);
       res.send(result)
     } 
   })

@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import $ from "jquery";
 
 // import Example from './signup';
@@ -20,7 +20,8 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button
+  Button,
+  Badge
 } from "reactstrap";
 
 // import { Card, CardBlock, Button, CardTitle, CardText, CardImg } from 'reactstrap';
@@ -33,7 +34,10 @@ class ParksListItem extends Component {
       message: null,
       fetching: true,
       modalsignUp: false,
-      modalBook: false
+      modalBook: false,
+      park : props.parkInfo,
+      promotion :{},
+      price : 0
     };
 
     // this.toggle = this.toggle.bind(this);
@@ -103,6 +107,38 @@ handleAlert = () => {
 alert("u are not signedIn please signIn first")
 }
 
+getDiscount (promotionCode) {
+   console.log(promotionCode);
+   $.ajax({
+    url: "/use-promotion",
+    type: "POST",
+    data: JSON.stringify({
+      code: promotionCode
+    }),
+    contentType: "application/json",
+    success: (data) => {
+      console.log("promotion Code", data);
+      if( data.available) {
+        this.setState({promotion: data})
+        this.computeDiscount(data)
+      } else {
+        alert("Promotion code not available")
+      } 
+    },
+    error: function(error) {
+      console.error("Error", error);
+    }
+  });
+ }
+
+ computeDiscount (promotion) {
+   
+    let price = this.props.parkInfo.price * (promotion.discount / 100);
+     this.setState({price : price});
+    this.props.parkInfo.newPrice = price;
+    console.log(this.props.parkInfo);
+ }
+
 render() {
   console.log(this.props.parkInfo)
   return (
@@ -119,11 +155,15 @@ render() {
         <CardText>Phone Number : {this.props.parkInfo.ownerdetails[0].phoneNumber}</CardText>
         <CardText>{"Time : From "}{this.props.parkInfo.startTime}{" To "}{this.props.parkInfo.endTime}</CardText>
         <CardText>Rating : {this.props.parkInfo.ownerdetails[0].rating}</CardText>
-        <CardText>{"Price : "}{this.props.parkInfo.price}</CardText>
+        <CardText>
+           { this.state.price === 0 ? "Price : " + this.props.parkInfo.price : <del style={{marginRight: 20}}>{"Price : " + this.props.parkInfo.price + "JD"}</del> }
+           { this.state.price !== 0 ? <label color= "primary"> {"Price : " + this.state.price + "JD"}</label>: "" }
+        </CardText>
         {/* <Link to={{pathname:"/book", park: this.props.parkInfo}} className="bookButton" >
             <Button className="btn btn-info">Book Now</Button>
         </Link> */}
-        <AlertToConfirmBook park = {this.props.parkInfo}/>
+        
+        <AlertToConfirmBook park = {this.props.parkInfo} getDiscount = {this.getDiscount.bind(this)}/>        
         {/* <Button style={{backgroundColor:"green",marginLeft:"50px"}}>+Add To Favourite</Button> */}
       </CardBody>
     </Card>
