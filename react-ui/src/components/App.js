@@ -11,7 +11,8 @@ import SignIn from "./SignIn.jsx";
 import OwnerDashboard from "./OwnerDashboard.jsx";
 import Book from "./book";
 import CustomerService from "./CustomerService.js";
-
+import AdmainDashboard from "./AdminDashboard.js";
+import PromotionCode from "./PromotionCode.jsx";
 
 // import CardHome from './CardHome.jsx';
 class App extends Component {
@@ -36,6 +37,9 @@ class App extends Component {
           <Route exact path="/book" component={Book} />
           <Route exact path="/About" component={About} />
           <Route exact path="/CustomerService" component={CustomerService} />
+          <Route exact path="/AdminDashboard" component={AdmainDashboard} >
+            {/* <Route exact path="/AdminDashboard/PromotionCode" component={PromotionCode} /> */}
+          </Route>
         </div>
       </Router>
     );

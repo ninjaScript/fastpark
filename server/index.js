@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Priority serve any static files.
-app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
+app.use(express.static(path.resolve(__dirname, "../react-ui/public")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -33,7 +33,7 @@ app.post("/login", function (req, res) {
   });
 });
 
-app.post('/admin', function (req, res) {
+app.post('/customer-services', function (req, res) {
   console.log("admin", req.body);
   var user = {
     "name": req.body.name,
@@ -128,11 +128,45 @@ app.post("/updateownerrating", (req, res) => {
     res.send(done);
   });
 });
+// post request to save the promotion code in db
+app.post('/add-promotion', function(req, res){
+  db.savePromotionCode(req.body ,function(promotionCode){
+    console.log(promotionCode)
+    res.send(promotionCode);
+  })
+});
+
+// get request to retrive all promotionCode
+app.get('/promotion', function(req, res){
+  db.getAllpromotion(function(err, result){
+    res.send(result);
+  })
+})
+
+// this to update code promotion availablity
+app.post('/update-promotion', function(req, res){
+  console.log(req.body)
+   db.updateStatePromotionCode(req.body, function(ok, result){
+     if (ok) {
+       res.send(true);
+     }
+   })
+})
+
+// get request to get messages for customer services 
+app.get('/customer-services', function(req, res){
+  db.getAllMessage(function(err, result){
+    if(result) {
+      console.log(result);
+      res.send(result)
+    } 
+  })
+})
 
 // All remaining requests return the React app, so it can handle routing.
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));
-});
+// app.get("*", function (request, response) {
+//   response.sendFile(path.resolve(__dirname, "../react-ui/build", "index.html"));
+// });
 
 app.listen(PORT, function () {
   console.error(
