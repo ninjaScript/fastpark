@@ -32,7 +32,7 @@ class SearchResults extends Component {
         }
       },
       error: function(error) {
-        console.error("errorrrrrr", error);
+        console.error("Error", error);
       }
     });
   }
