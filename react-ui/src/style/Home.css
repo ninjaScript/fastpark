@@ -262,7 +262,7 @@ li{
 }
 
 .customerService{
-	height: 700px;
+	height: 1200px;
 	width: 100%;
 }
 .headCustomer {
@@ -465,4 +465,10 @@ li{
 
 .upper{
 	margin-top: -100px;
+}
+
+/*********************************   WhoWeHelp ******************************/
+.mainTop{
+	margin-top: -50px;
+	height: 800px;
 }
