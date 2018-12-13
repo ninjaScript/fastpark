@@ -15,9 +15,8 @@ import {
   CardSubtitle
 } from "reactstrap";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 // import RatingCom from "./Rating.jsx"
-
 import Rating from "react-rating";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -51,7 +50,7 @@ class book extends React.Component {
       url: "/updatepark",
       type: "POST",
       data: JSON.stringify({
-        parkId: this.props.location.park._id,
+        parkId: this.props.location.state.park._id,
         userId: null
       }),
       contentType: "application/json",
@@ -121,35 +120,35 @@ class book extends React.Component {
           <Card>
             <CardBody>
               <CardTitle>
-                Location: {this.props.location.park.location}
+                Location: {this.props.location.state.park.location}
               </CardTitle>
               <CardSubtitle>
-                Price: {this.props.location.park.price}
+                Price: {this.props.location.state.park.newPrice ? this.props.location.state.park.newPrice: this.props.location.state.park.price} JD
               </CardSubtitle>
             </CardBody>
             <img
               width="100%"
-              src={this.props.location.park.image}
+              src={this.props.location.state.park.image}
               alt="Card image cap"
             />
             <CardBody>
               <CardText>
-                Owner Name: {this.props.location.park.ownerdetails[0].name}
+                Owner Name: {this.props.location.state.park.ownerdetails[0].name}
               </CardText>
               <CardText>
-                Mobile: {this.props.location.park.ownerdetails[0].phoneNumber}
+                Mobile: {this.props.location.state.park.ownerdetails[0].phoneNumber}
               </CardText>
               <CardText>
-                Start Time: {this.props.location.park.startTime}
+                Start Time: {this.props.location.state.park.startTime}
               </CardText>
-              <CardText>End Time: {this.props.location.park.endTime}</CardText>
+              <CardText>End Time: {this.props.location.state.park.endTime}</CardText>
               <Button
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`http://maps.google.com/maps?saddr=${this.state.lat},${
                   this.state.long
-                }&daddr=${this.props.location.park.lat},${
-                  this.props.location.park.long
+                }&daddr=${this.props.location.state.park.lat},${
+                  this.props.location.state.park.long
                 }`}
                 className="btn btn-info"
               >
@@ -191,7 +190,6 @@ class book extends React.Component {
                     color="primary"
                     onClick={this.handleCheckOutClick}
                   >
-                
                     Check Out
                   </Button>{" "}
                   <Button color="secondary" onClick={this.toggle}>

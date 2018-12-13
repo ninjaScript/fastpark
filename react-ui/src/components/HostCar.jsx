@@ -10,7 +10,7 @@ import {
   Label,
   Input
 } from "reactstrap";
-import {Redirect} from "react-router-dom";
+import {browserHistory} from "react-router";
 import HostSignUp from "./HostSignUp.jsx";
 import $ from "jquery";
 import { format } from "url";
@@ -43,12 +43,17 @@ class HostCar extends React.Component {
         data: JSON.stringify(ownerObj),
         contentType: "application/json",
         success: (res) => {
+
           if (res.data) {
             this.setState({isLogin: true, user: res.data});
             window.localStorage.setItem("user", res)
             console.log("pleasssssss", res);
+            browserHistory.push ({
+              pathname: "/owner-dashboard",
+              state: {owner: res.data}
+            })
           } else {
-            console.log("this User not exist");
+            alert("this User not exist");
           }
          
         },
@@ -77,14 +82,14 @@ class HostCar extends React.Component {
 
   render() {
     
-    if(this.state.isLogin){
-      return (
-        <Redirect to = {{
-          pathname: "/OwnerDashboard",
-          user: this.state.user
-        }} />
-      )
-    }
+    // if(this.state.isLogin){
+    //   return (
+    //     <Redirect to = {{
+    //       pathname: "/OwnerDashboard",
+    //       user: this.state.user
+    //     }} />
+    //   )
+    // }
 
     return (
       <div>

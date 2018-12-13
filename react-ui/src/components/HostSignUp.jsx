@@ -11,7 +11,8 @@ import {
   Input
 } from "reactstrap";
 import $ from "jquery";
- 
+import {browserHistory} from 'react-router'
+
 
 class HostSignUp extends React.Component {
   constructor(props) {
@@ -46,6 +47,11 @@ class HostSignUp extends React.Component {
         data: JSON.stringify(ownerObj),
         contentType: "application/json",
         success: function(data) {
+          console.log(data)
+          browserHistory.push({
+            pathname:'/owner-dashboard',
+            state: { owner: data}
+          })
           window.localStorage.setItem("user", JSON.stringify(data))
           console.log("pleasssssss", data);
         },
@@ -131,7 +137,7 @@ class HostSignUp extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.signup} href="/searchresults">
+            <Button color="primary" onClick={this.signup}>
               Sign up
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

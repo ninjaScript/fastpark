@@ -12,7 +12,7 @@ import {
   Col
 } from "reactstrap";
 import "../style/Home.css";
-import { Link } from "react-router-dom";
+import {browserHistory} from 'react-router';
 import $ from "jquery";
 import Footer from "./Footer.js";
 import CustomerService from "./CustomerService.js";
@@ -130,16 +130,22 @@ class CardHome extends React.Component {
                 placeholder="Select a Date & Time"
               />
             </Form>
-            <Link
-              to={{
-                pathname: "/SearchResults",
-                query: this.state.inputValue.toLowerCase()
-              }}
-            >
-              <Button color="primary" id="btn" href="/searchresults">
+        
+              <Button 
+                 color="primary" 
+                 id="btn"
+                 onClick = {() => {
+                    browserHistory.push({
+                      pathname: "/search-results",
+                      state: { 
+                        query: this.state.inputValue.toLowerCase(),
+                        place: this.state.place
+                      }
+                    })
+                 }}
+              >
                 Search
               </Button>
-            </Link>
           </CardBody>
         </Card>
         <div>

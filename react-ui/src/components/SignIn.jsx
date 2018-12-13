@@ -12,8 +12,6 @@ class SignIn extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.login = this.login.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-
-
   }
 
   // send post recuest from client to BE to signin as a user

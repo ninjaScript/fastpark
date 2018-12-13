@@ -8,18 +8,19 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = { parks: [] , noData: ""};
+    console.log("query from the home comp", this.props.location.state);
   }
   componentDidMount() {
     $("#searchtxt").show();
     $("#searchbtn").show();
     $("#root").css("background", "white");
-    console.log("query from the home comp", this.props.location.query);
+   
     $.ajax({
       url: "/parks",
       type: "POST",
       data: JSON.stringify({
-        location: this.props.location.query,
-        place: this.props.location.place
+        location: this.props.location.state.query,
+        place: this.props.location.state.place
       }),
       contentType: "application/json",
       success: parks => {
