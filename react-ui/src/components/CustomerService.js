@@ -51,7 +51,7 @@ export default class CustomerService extends React.Component {
 
       handleChange(e) {
         e.preventDefault();
-        const email = this.state.email;
+        let email = this.state.email;
         let target = e.target;
         this.setState({ [target.name]: target.value });
         // checking for phone number validation where the condition is if the number inputed is less that required validation will be false and provide error
@@ -89,7 +89,7 @@ export default class CustomerService extends React.Component {
             // if the validation true  send data
             if (this.state.validation) {
               $.ajax({
-                url: '/admin',
+                url: '/customer-services',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
