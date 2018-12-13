@@ -340,7 +340,7 @@ const findUser = (user_id, cb) => {
   function (err, user) {
     if(err){console.log('error', err)}
     cb(user)
-  }
+  })
 }
 // save promotion code 
 const savePromotionCode = (promo, callback) => {

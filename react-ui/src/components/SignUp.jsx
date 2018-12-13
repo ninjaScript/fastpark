@@ -1,48 +1,106 @@
 import React from 'react';
 import { Button, Modal, ModalHeader,NavLink, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 import $ from "jquery";
+import ImgComp from "./ImgComp.jsx";
+const axios = require("axios");
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
-      username: ""
+      username: "",
+      img: null
     };
 
     this.toggle = this.toggle.bind(this);
     this.signup = this.signup.bind(this);
   
     this.handleInputChange = this.handleInputChange.bind(this);
-
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
   // send post recuest from client to BE to signup as user and update the data base by adding new user 
 
   signup() {
-    this.toggle()
+    // this.toggle();
+   
 
-    const userObj ={
+    // const userObj ={
+    //   name: this.state.name,
+    //   email: this.state.email,
+    //   plateNumber: this.state.plate,
+    //   phoneNumber: this.state.phoneNumber,
+    //   password: this.state.password,
+    //   username: this.state.username,
+    //   imgUrl: this.state.imgUrl
+    // }
+    // console.log("noooooooooooooooooo",userObj)
+    //     $.ajax({
+    //     url: "/signup",
+    //     type: "POST",
+    //     data: JSON.stringify(userObj),
+    //     contentType: "application/json",
+    //     success: function(data) {
+    //       window.localStorage.setItem("user", data)
+    //       console.log("pleasssssss", data);
+    //     },
+    //     error: function(error) {
+    //       console.error("errorrrrrr", error);
+    //     }
+    //   });
+   
+  }
+
+
+  onFormSubmit() {
+    // e.preventDefault();
+    this.toggle();
+    const formData = new FormData();
+    formData.append('myImage', this.state.img);
+    formData.append ('user' , JSON.stringify({
       name: this.state.name,
       email: this.state.email,
       plateNumber: this.state.plate,
       phoneNumber: this.state.phoneNumber,
       password: this.state.password,
       username: this.state.username
-    }
-    console.log("noooooooooooooooooo",userObj)
-        $.ajax({
-        url: "/signup",
-        type: "POST",
-        data: JSON.stringify(userObj),
-        contentType: "application/json",
-        success: function(data) {
-          window.localStorage.setItem("user", data)
-          console.log("pleasssssss", data);
-        },
-        error: function(error) {
-          console.error("errorrrrrr", error);
-        }
+     }
+    ));
+
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
+
+
+    axios.post("/signup", formData, config)
+      .then((res) => {
+        console.log(res)
+      //   if(res.data.data.length > 0) {
+      //     this.setState({items: res.data.data})
+      // }
+        alert("The file is successfully uploaded");
+       
+      }).catch((error) => {
       });
+
+     // $.ajax({
+     //    url: "/signup",
+     //    type: "POST",
+     //    data: formData,
+     //    headers: { 'content-type': 'multipart/form-data'},
+     //    success: function(data) {
+
+     //      window.localStorage.setItem("user", data)
+     //      console.log("pleasssssss", data);
+     //    },
+     //    error: function(error) {
+     //      console.error("errorrrrrr", error);
+     //    }
+     //  });
   }
+
+
 
   handleInputChange (event) {
     const target = event.target;
@@ -59,6 +117,12 @@ class SignUp extends React.Component {
     });
   
   }
+
+
+  getImg(Img) {
+    this.setState({ img: Img })
+  };
+
   
   render() {
     return (
@@ -95,9 +159,10 @@ class SignUp extends React.Component {
           <Label for="phoneNumber">Phone Number</Label>
           <Input type="phone" name="phoneNumber" id="phoneNumber" placeholder="input your phone number" value={this.state.phoneNumber} onChange={this.handleInputChange}/>
         </FormGroup>
+            <ImgComp getImg={this.getImg.bind(this)} />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.signup}>Sign up</Button>
+            <Button color="primary" onClick={this.onFormSubmit}>Sign up</Button>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
