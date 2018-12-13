@@ -97,15 +97,23 @@ const BookingSchema = new Schema({
 const PromotionCodeSchema = new Schema({
   code: String,
   discount: Number,
-  startTime: Date,
-  endTime: Date
+  startDate: Date,
+  endDate: Date,
+  available: {
+    type: Boolean,
+    default: true
+  }
 })
 
 const CustomerServicesSchema = new Schema({
   name: String,
   email: String,
   phoneNumber: String,
-  comments: String
+  comments: String,
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 })
 
 const User = mongoose.model("User", UserSchema);
@@ -211,6 +219,7 @@ const saveOwner = (data, cb) => {
     rating: data["rating"],
     image: data["image"]
   });
+
   owner.save(function (err) {
     if (err) cb(null, err);
     //returning the auto generated id from the db to be used when adding new parks
@@ -311,8 +320,10 @@ const deletePark = function (parkId, cb) {
 
 //updating the owner rating based on rating after checkout
 const updateOwnerRating = (ownerId, rating, cb) => {
+
   console.log(rating,"rating come from FE")
   Owner.updateOne({ _id: ownerId }, { rating: rating }, function(err, res) {
+
 
 
     if (res) {
@@ -323,16 +334,47 @@ const updateOwnerRating = (ownerId, rating, cb) => {
   });
 };
 
+
 const findUser = (user_id, cb) => {
   User.findOne({_id: user_id},
   function (err, user) {
     if(err){console.log('error', err)}
     cb(user)
+
+// save promotion code 
+const savePromotionCode = (promo, callback) => {
+  let promotionCode = new PromotionCode(promo);
+  promotionCode.save(function (err) {
+    if (err) throw err;
+    callback(promotionCode);
+  });
+}
+//  get all promotion code
+const getAllpromotion = (callback) => {
+  PromotionCode.find(function(err, res){
+    if (err) throw err;
+     callback(null, res)
+
   });
 }
 
+const updateStatePromotionCode = (data, callback) => {
+  PromotionCode.updateOne({ _id: data.codeId }, { available: data.available }, function (err, res) {
+    if (res) {
+      callback(true, res);
+    } else {
+      callback(false, null);
+    }
+  });
+}
 
-
+//  get all Message for customer services 
+const getAllMessage = (callback) => {
+  CustomerServices.find(function(err, res){
+    if (err) throw err;
+     callback(null, res)
+  });
+}
 
 module.exports.findUser = findUser;
 module.exports.saveOwner = saveOwner;
@@ -349,4 +391,8 @@ module.exports.deletePark = deletePark;
 module.exports.updatePark = updatePark;
 // updateOwnerRating
 module.exports.updateOwnerRating = updateOwnerRating;
+module.exports.savePromotionCode = savePromotionCode;
+module.exports.getAllpromotion = getAllpromotion;
+module.exports.updateStatePromotionCode = updateStatePromotionCode;
+module.exports.getAllMessage = getAllMessage;
 
