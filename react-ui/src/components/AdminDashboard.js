@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {Router, Route, Link, browserHistory } from "react-router";
 
 import {
   Card,
@@ -33,22 +33,34 @@ export default class AdmainDashboard extends React.Component {
 
   render() {
     return (
-      <Router>
         <div style={{ margin: 20 }}>
           <h1>Admain Dashboard</h1>
           <Row style={{ marginTop: 40 }}>
             <Col sm={3}>
               <ButtonGroup vertical>
                 
-                <Button outline color="info" size="lg" block>
-                     <Link style= {{textDecoration: "none"}} to = "/AdminDashboard/PromotionCode">
-                       Generate promotion code
-                     </Link>
+                <Button outline color="info" size="lg" block
+                 onClick = {() => {
+                  browserHistory.push({
+                    pathname: '/admin-dashboard/promotion-code',
+                  })
+                 }}
+                >
+                  {/* <Link style= {{textDecoration: "none"}} to = "/admin-dashboard/promotion-code"></Link> */}
+                   Generate promotion code
+                     
                 </Button>
-                <Button outline color="info" size="lg" block>
-                  <Link style= {{textDecoration: "none", marginRight: 10}} to = "/AdminDashboard/MessageCustomers">
+                <Button outline color="info" size="lg" block
+                 onClick = {() => {
+                  browserHistory.push({
+                    pathname: '/admin-dashboard/message-customers',
+                  })
+                 }}
+                >
+                   Message customer services 
+                  {/* <Link style= {{textDecoration: "none", marginRight: 10}} to = "/admin-dashboard/message-customers">
                     Message customer services 
-                  </Link>
+                  </Link> */}
                   <Badge  pill> 12 </Badge>
                 </Button>
                 <Button outline color="info" size="lg" >Track transaction and Booking</Button>
@@ -56,12 +68,13 @@ export default class AdmainDashboard extends React.Component {
               </ButtonGroup>
             </Col>
             <Col sm = {9}>
-                <Route exact path="/AdminDashboard/PromotionCode" component={PromotionCode} />
-                <Route exact path="/AdminDashboard/MessageCustomers" component={MessageCustomers} />
+            
+                {/* <Route exact path={"admin-dashboard/promotion-code"} component={PromotionCode} />
+                <Route exact path= {"admin-dashboard/message-customers"} component={MessageCustomers} /> */}
+             
             </Col>
           </Row>
-        </div>
-      </Router>
+        </div> 
     )
   }
 

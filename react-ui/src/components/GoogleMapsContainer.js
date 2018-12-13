@@ -11,7 +11,7 @@ import {
   CardSubtitle,
   Button
 } from "reactstrap";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 
 class GoogleMapsContainer extends React.Component {
