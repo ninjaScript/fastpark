@@ -37,13 +37,18 @@ const upload = multer({
 app.post("/signup", upload, function (req, res) {
   console.log(req.body);
   console.log(req.file)
-  // db.saveUser(req.body, function (user, err) {
-  //   if (err) console.log("erreeer", err);
-  //     console.log("user", user);
-  //   if (user) {
-  //     res.send(user);
-  //   }
-  // });
+  // recive the data from the formData request;
+  let user = JSON.parse(req.body.user);
+  // make link to image to save in database
+  let imgUrl = 'http://' + req.get('host') + '/Userimg/' + req.file.filename;
+  user.imgUrl = imgUrl;
+  db.saveUser(user, function (user, err) {
+    if (err) console.log("error", err);
+      console.log("user", user);
+    if (user) {
+      res.send(user);
+    }
+  });
 });
 
 // handle login post request from client

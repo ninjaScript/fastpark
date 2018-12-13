@@ -2,7 +2,9 @@ import React from 'react';
 import { Button, Modal, ModalHeader,NavLink, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 import $ from "jquery";
 import ImgComp from "./ImgComp.jsx";
+import {browserHistory} from "react-router";
 const axios = require("axios");
+
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -76,10 +78,18 @@ class SignUp extends React.Component {
     axios.post("/signup", formData, config)
       .then((res) => {
         console.log(res)
-      //   if(res.data.data.length > 0) {
-      //     this.setState({items: res.data.data})
-      // }
-        alert("The file is successfully uploaded");
+        if(res.data) {
+           alert("The file is successfully uploaded");
+          this.setState({user: res.data})
+           window.localStorage.setItem("user", res.data)
+          browserHistory.push ({
+            pathname: '/user-profile',
+            state : {user : res.data}
+          })
+
+       }
+
+       
        
       }).catch((error) => {
       });

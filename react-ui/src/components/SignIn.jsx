@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, NavLink, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 import $ from "jquery";
+import {browserHistory} from "react-router";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -32,6 +33,10 @@ class SignIn extends React.Component {
         success: function(data) {
           window.localStorage.setItem("user", data)
           console.log("pleasssssss", data);
+           browserHistory.push ({
+            pathname: '/user-profile',
+            state : {user : data}
+          })
         },
         error: function(error) {
           console.error("errorrrrrr", error);

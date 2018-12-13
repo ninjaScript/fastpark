@@ -61,9 +61,8 @@ class UserProfile extends React.Component {
         </Navbar>
         <img src = {profBack} className="profile"/>
 			<div className="profileBox">
-				{exampleUser.map(user =>
-								<UserInfo key={user.id} user={user} />	
-            	)}	
+				<UserInfo key={this.props.location.state.user._id} user={this.props.location.state.user}/>
+
 				</div>
 					 <div className="container1">
             <div className="text-center" style={{marginTop: "20px"}}>       
