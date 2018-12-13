@@ -374,6 +374,14 @@ li{
 	width: 100%;
 }
 
+.profile1 {
+
+	margin-top: -200px;
+	height: 600px;
+	width: 107% !important;
+	margin-left: -120px;
+}
+
 .profileBox {
 	margin-top: -400px;
 	width: 1000px;
@@ -400,12 +408,6 @@ li{
 	letter-spacing: 1px;
 }
 
-hr {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-	}
-
 #info {
 	margin-left: 190px;
 	text-align: justify;
@@ -421,9 +423,25 @@ hr {
 }
 
 .edit:hover {
+	outline: none;
 	background-color: white;
-	border: 2px solid #b43932;
+	border: 1px solid #b43932;
 	color: #b43932;
+}
+
+.edit1 {
+	outline: none;
+	border-radius: 10px;
+	width: 60px;
+	color: white;
+	background-color: #006789;
+}
+
+.edit1:hover {
+	outline: none;
+	background-color: white;
+	border: 1px solid #006789;
+	color: #006789;
 }
 
 .mediaBar {
@@ -441,3 +459,10 @@ hr {
 	color: yellow;
 }
 
+#bt:hover {
+	color: red;
+}
+
+.upper{
+	margin-top: -100px;
+}

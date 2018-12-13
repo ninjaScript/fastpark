@@ -45,19 +45,19 @@ class UserProfile extends React.Component {
 	render() {
 		return (
 			<div>
-         <Navbar class="navbar navbar-transparent" light>
+         <Navbar  light>
           <NavbarBrand href="/" className="mr-auto"><img src={logo} width="40px" height="40px" className="logo"/><h2 className="logoName">arkIn</h2></NavbarBrand>
-          <Navbar>Home</Navbar>
-          <Collapse navbar>
             <Nav>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <NavLink id="bt" style={{color: "#b43932"}} href="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink id="bt" style={{color: "#b43932"}}  href="#">About</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink id="bt" style={{color: "#b43932"}}  href="#">Need Assistance</NavLink>
               </NavItem>
             </Nav>
-          </Collapse>
         </Navbar>
         <img src = {profBack} className="profile"/>
 			<div className="profileBox">
