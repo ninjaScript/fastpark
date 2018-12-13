@@ -32,8 +32,6 @@ class About extends React.Component {
 					<li> Mustaf Dirie</li>
 				</div>
 				<div class="aboutimage"></div>
-				<Footer />
-
 			</div>
 
 
