@@ -21,7 +21,6 @@ import background from "../style/bk.jpeg";
 import WhatWeDo from "./WhatWeDo.js";
 import WhoWeHelp from "./WhoWeHelp.js";
 // adding google location library
-import { GoogleComponent } from 'react-google-location';
 import Geocode from "react-geocode";
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
 Geocode.setApiKey("AIzaSyBAe4cdWlsIE8Rc4eXiMumZyJXK7Qn-7FE");
